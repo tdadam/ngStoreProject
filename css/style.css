@@ -1,0 +1,16 @@
+.nav-style {
+    background-color: #3f51b5;
+}
+
+.navbar-right {
+    position: relative;
+    right: 30px;
+}
+
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
+
+.page-header {
+    text-align: center;
+}
