@@ -1,10 +1,10 @@
 (function(){
    'use strict';
 
-    angular.module('authFactory', ['$firebaseAuth'])
+    angular.module('authFactory', [])
         .factory('authFactory', authFactory);
 
-    authFactory.$inject = [];
+    authFactory.$inject = ['$firebaseAuth'];
 
     function authFactory($firebaseAuth) {
         var ref = new Firebase("https://store-project.firebaseio.com");
