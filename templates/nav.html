@@ -1,0 +1,12 @@
+<div>
+    <div id="navbarCollapse" class="collapse navbar-collapse" ng-controller="navController as nav">
+        <ul class="nav navbar-nav nav-pills">
+            <li role="presentation" ng-class="{ active: nav.isActive('/home')}">
+                <a ui-sref="home" data-toggle="collapse" data-target=".navbar-collapse.in">Home</a></li>
+            <li role="presentation" ng-class="{ active: nav.isActive('/contact')}">
+                <a ui-sref="contact" data-toggle="collapse" data-target=".navbar-collapse.in">Contact</a></li>
+            <li class="nav nav-right" role="presentation" ng-class="{ active: nav.isActive('/login')}">
+                <a ui-sref="login" data-toggle="collapse" data-target=".navbar-collapse">Login</a></li>
+        </ul>
+    </div>
+</div>
