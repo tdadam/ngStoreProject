@@ -2,17 +2,21 @@
     'use strict';
 
     angular.module('basicApp', [
-            "ui.router"
+            "ui.router",
+        "home"
+          //  "homeController"
+
         ])
 
         .config(["$stateProvider", "$urlRouterProvider",
             function ($stateProvider, $urlRouterProvider) {
 
                 // define all app states (pages)
+
                 $stateProvider
                     .state("home", {
                         url: "/home",
-                        templateUrl: "../templates/home.html",
+                        templateUrl: "templates/home.html",
                         controller: "homeController as hc"
                     })
                     .state("contact", {
