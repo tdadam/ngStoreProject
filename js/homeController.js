@@ -26,15 +26,30 @@
             $http.jsonp(hc.url)
                 .success(function (data) {
                     hc.WalData = data;
-                    console.log(hc.WalData);
+                    //console.log(hc.WalData);
                 });
 
 
 
         };
+            hc.trends = function() {
+
+                hc.trendurl="http://api.walmartlabs.com/v1/trends?format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
+
+
+                $http.jsonp(hc.trendurl)
+                    .success(function (data) {
+                        hc.trendData = data;
+                        console.log(hc.trendData);
+                    });
 
 
 
-    }
+            };
+
+        hc.trends();
+
+
+        }
 
 }());
