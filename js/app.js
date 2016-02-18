@@ -4,7 +4,6 @@
     angular.module('basicApp', [
             "ui.router",
         "home"
-          //  "homeController"
 
         ])
 
