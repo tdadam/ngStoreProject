@@ -179,13 +179,18 @@
     </div>
     <!--<script src="../libs/elevatorJS/elevator.js"></script>-->
     <script>
-        // Elevator script included on the page, already.
-
-        window.onload = function () {
-            var elevator = new Elevator({
+        window.onload = function() {
+            new Elevator({
                 element: document.querySelector('.elevator-button'),
-                mainAudio: '../libs/elevatorJS/demo/music/elevator.mp3',
-                endAudio: '../libs/elevatorJS/demo/music/ding.mp3'
+                mainAudio: '../libs/elevator.js-master/demo/music/elevator.mp3',
+                endAudio: '../libs/elevator.js-master/demo/music/ding.mp3',
+                duration: 5000,
+                startCallback: function() {
+                    // is called, when the elevator starts moving
+                },
+                endCallback: function() {
+                    // is called, when the elevator reached target level
+                }
             });
         }
     </script>

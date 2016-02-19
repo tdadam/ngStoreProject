@@ -23,8 +23,8 @@
     <!--FontAwesome-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-
-    <!-- ElevateJS -->
+    <!--ElevatorJS-->
+    <script src="libs/elevator.js-master/elevator.js"></script>
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
@@ -35,8 +35,8 @@
 
 <body ng-app="basicApp">
 
-<!--&lt;!&ndash; the navbar has been moved to a separate file &ndash;&gt;-->
-<!--<ng-include src="'templates/navbar.html'"></ng-include>-->
+<!-- the navbar has been moved to a separate file -->
+<ng-include src="'templates/nav.html'"></ng-include>
 
 <!-- this is where the router loads the page templates -->
 <div ui-view class="top-margin"></div>
@@ -56,15 +56,8 @@
 
 
 <!--Angular etc.-->
-<script src="libs/jquery/dist/jquery.js"></script>
-<script src="libs/angular/angular.js"></script>
-<script src="libs/bootstrap/dist/js/bootstrap.js"></script>
-<script src="libs/bootstrap-material-design/dist/js/material.js"></script>
 <script src="libs/firebase/firebase.js"></script>
 <script src="libs/angularfire/dist/angularfire.js"></script>
-<script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
-<!--<script src="libs/"></script>-->
-<!--<script src="libs/"></script>-->
 </body>
 
 </html>
