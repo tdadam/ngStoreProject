@@ -1,14 +1,9 @@
 (function(){
-<<<<<<< HEAD
     'use strict';
 
     angular.module('basicApp', [
             "ui.router",
-        "home",
-        "firebase",
-        "ngStorage",
-        "authController",
-        "authFactory"
+        "home"
 
         ])
 
@@ -26,6 +21,10 @@
                     .state("contact", {
                         url: "/contact",
                         templateUrl: "../templates/contact.html"
+                    })
+                    .state("login", {
+                       url: "/login",
+                       templateUrl: "../templates/login.html"
                     });
 
                 // if none of the above states are matched, use this as the fallback
