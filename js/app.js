@@ -3,7 +3,7 @@
 
     angular.module('basicApp', [
             "ui.router",
-        "home"
+            "home"
 
         ])
 
@@ -21,6 +21,10 @@
                     .state("contact", {
                         url: "/contact",
                         templateUrl: "../templates/contact.html"
+                    })
+                    .state("login", {
+                       url: "/login",
+                       templateUrl: "../templates/login.html"
                     });
 
                 // if none of the above states are matched, use this as the fallback
