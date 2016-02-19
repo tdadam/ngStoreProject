@@ -10,5 +10,6 @@
         var ref = new Firebase("https://store-project.firebaseio.com");
 
         return $firebaseAuth(ref);
+
     }
 }());

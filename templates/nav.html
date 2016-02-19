@@ -5,8 +5,9 @@
                 <a ui-sref="home" data-toggle="collapse" data-target=".navbar-collapse.in">Home</a></li>
             <li role="presentation" ng-class="{ active: nav.isActive('/contact')}">
                 <a ui-sref="contact" data-toggle="collapse" data-target=".navbar-collapse.in">Contact</a></li>
-            <li class="nav nav-right" role="presentation" ng-class="{ active: nav.isActive('/login')}">
-                <a ui-sref="login" data-toggle="collapse" data-target=".navbar-collapse">Login</a></li>
+            <li role="presentation" ng-class="{ active: nav.isActive('/login')}">
+                <a ui-sref="login" data-toggle="collapse" data-target=".navbar-collapse.in">Login</a></li>
         </ul>
+        <button type="button" class="btn btn-default navbar-btn navbar-right" ng-click="nav.showModal()">Sign in</button>
     </div>
 </div>

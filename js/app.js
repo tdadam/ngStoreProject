@@ -1,5 +1,4 @@
 (function(){
-<<<<<<< HEAD
     'use strict';
 
     angular.module('basicApp', [
@@ -8,7 +7,8 @@
         "firebase",
         "ngStorage",
         "authController",
-        "authFactory"
+        "authFactory",
+        "navController"
 
         ])
 
@@ -25,7 +25,12 @@
                     })
                     .state("contact", {
                         url: "/contact",
-                        templateUrl: "../templates/contact.html"
+                        templateUrl: "templates/contact.html"
+                    })
+                    .state("login", {
+                        url: "/login",
+                        templateUrl: "templates/login.html",
+                        controller: "authController as authC"
                     });
 
                 // if none of the above states are matched, use this as the fallback

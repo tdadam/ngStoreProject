@@ -27,9 +27,12 @@
 
 
 <body ng-app="basicApp">
+<div class="page-header">
+    <h1>Super-Duper Megastore</h1>
+</div>
 
-<!--&lt;!&ndash; the navbar has been moved to a separate file &ndash;&gt;-->
-<!--<ng-include src="'templates/navbar.html'"></ng-include>-->
+<!-- the navbar has been moved to a separate file -->
+<ng-include src="'templates/nav.html'"></ng-include>
 
 <!-- this is where the router loads the page templates -->
 <div ui-view class="top-margin"></div>
@@ -40,7 +43,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
 
 <!-- our js files -->
-<script src="js/homeController.js"></script>
+<script src="js/Controllers/homeController.js"></script>
+<script src="js/Controllers/navController.js"></script>
 
 
 <!-- load app.js last -->
@@ -48,15 +52,17 @@
 
 
 <!--Angular etc.-->
-<script src="libs/jquery/dist/jquery.js"></script>
-<script src="libs/angular/angular.js"></script>
-<script src="libs/bootstrap/dist/js/bootstrap.js"></script>
-<script src="libs/bootstrap-material-design/dist/js/material.js"></script>
+<!--<script src="libs/jquery/dist/jquery.min.js"></script>-->
+<!--<script src="libs/angular/angular.min.js"></script>-->
+<!--<script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>-->
 <script src="libs/firebase/firebase.js"></script>
-<script src="libs/angularfire/dist/angularfire.js"></script>
-<script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="libs/angularfire/dist/angularfire.min.js"></script>
+<!--<script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>-->
+<!--<script src="libs/ngstorage/ngStorage.min.js"></script>-->
 <!--<script src="libs/"></script>-->
-<!--<script src="libs/"></script>-->
+<script src="js/Controllers/authController.js"></script>
+<script src="js/Services/authFactory.js"></script>
+
 </body>
 
 </html>

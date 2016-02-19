@@ -1,0 +1,14 @@
+<div>
+    <form>
+        <label>Email:</label>
+        <input ng-model="authC.email" type="email">
+        <label>Password:</label>
+        <input ng-model="authC.password" type="password">
+        <button type="submit">Submit</button>
+    </form>
+
+    <button ng-click="authC.facebookLogin()">Facebook</button>
+    <button ng-click="authC.gauth()">Google</button>
+
+    <div>{{ authC.fbData.facebook.displayName }}</div>
+</div>
