@@ -90,19 +90,39 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img style="align-content: center" src="http://www.thisiscolossal.com/wp-content/uploads/2015/03/florian-1.gif" alt="Chania">
+                <div class="centered">
+                    <img ng-src="{{hc.trendData.items[0].largeImage}}">
+                    <h4><tt>{{hc.trendData.items[0].name}}</tt></h4>
+                   <span class="redFont"><tt>Our Price: {{hc.trendData.items[0].salePrice | currency}}</tt></span>
+                </div>
             </div>
 
             <div class="item">
-                <img src="http://1.bp.blogspot.com/--4r1PZXYtlY/VCf_SbrYYHI/AAAAAAAAeVQ/lzRoIhwE6yU/s1600/greatest-superhero-gif-ever.gif" alt="Chania">
+                <div class="centered">
+                    <img ng-src="{{hc.trendData.items[1].largeImage}}">
+                    <h4><tt>{{hc.trendData.items[1].name}}</tt></h4>
+                    <span class="redFont"><tt>Our Price: {{hc.trendData.items[1].salePrice |currency}}</tt></span>
+
+                </div>
+            </div>
+    
+            <div class="item">
+                <div class="centered">
+                    <img ng-src="{{hc.trendData.items[2].largeImage}}">
+                    <h4><tt>{{hc.trendData.items[2].name}}</tt></h4>
+                    <span class="redFont"><tt>Our Price: {{hc.trendData.items[2].salePrice |currency}}</tt></span>
+
+                </div>
             </div>
 
             <div class="item">
-                <img src="http://cdn.osxdaily.com/wp-content/uploads/2013/07/dancing-banana.gif" alt="Flower">
-            </div>
+                <div class="centered">
+                    <img ng-src="{{hc.trendData.items[3].largeImage}}">
+                    <h4><tt>{{hc.trendData.items[3].name}}</tt></h4>
+                    <span class="redFont"><tt>Our Price: {{hc.trendData.items[3].salePrice |currency}</tt></span>
 
-            <div class="item">
-                <img src="http://49.media.tumblr.com/10d791baa8db7d198c998c52f7f79b29/tumblr_nxzl4zWGZJ1r2geqjo1_540.gif" alt="Flower">
+                </div>
+
             </div>
         </div>
 
