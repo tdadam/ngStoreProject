@@ -1,9 +1,14 @@
 (function(){
+<<<<<<< HEAD
     'use strict';
 
     angular.module('basicApp', [
             "ui.router",
-        "home"
+        "home",
+        "firebase",
+        "ngStorage",
+        "authController",
+        "authFactory"
 
         ])
 
