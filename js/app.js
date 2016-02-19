@@ -1,10 +1,15 @@
 (function(){
+<<<<<<< HEAD
     'use strict';
 
     angular.module('basicApp', [
         "angular-loading-bar",
             "ui.router",
-        "home"
+        "home",
+        "firebase",
+        "ngStorage",
+        "authController",
+        "authFactory"
 
         ])
 
