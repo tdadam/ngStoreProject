@@ -2,14 +2,14 @@
     'use strict';
 
     angular.module('basicApp', [
-            "ui.router",
+        "ui.router",
         "home",
         "firebase",
         "ngStorage",
         "authController",
-        "authFactory",
-        "navController"
-
+        "navController",
+        'firebase.utils',
+        "authSetup"
         ])
 
         .config(["$stateProvider", "$urlRouterProvider",
@@ -35,12 +35,6 @@
 
                 // if none of the above states are matched, use this as the fallback
                 $urlRouterProvider.otherwise("/home");
-
-
-
-
-
-
 
      }]);
 }());
