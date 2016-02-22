@@ -4,6 +4,7 @@
     angular.module('basicApp', [
         "ui.router",
         "home",
+        "angular-loading-bar",
         "firebase",
         "ngStorage",
         "authController",
@@ -21,6 +22,11 @@
                     .state("home", {
                         url: "/home",
                         templateUrl: "templates/home.html",
+                        controller: "homeController as hc"
+                    })
+                    .state("SearchResult", {
+                        url: "/SearchResult",
+                        templateUrl: "templates/SearchResult.html",
                         controller: "homeController as hc"
                     })
                     .state("contact", {

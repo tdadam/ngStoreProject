@@ -1,10 +1,13 @@
+body {
+    background: #F6F6F6;
+}
+
 .nav-style {
-    background-color: #3f51b5;
+    color: #3f51b5;
 }
 
 .navbar-right {
-    position: relative;
-    right: 30px;
+    display: inline-block;
 }
 
 .carousel-inner > .item > img {
@@ -25,5 +28,10 @@ input[type=text] {
 .thumbHeight{
     height: 10%;}
 .featured{ color: #C33329}
-.featuredDiv{margin-top: 4%}
+.featuredDiv{margin-top: 1%}
 .redFont{color:red}
+.featuredDescription{margin-top: 1%}
+.indi{margin-top: 10%}
+.featureName{color:darkgoldenrod}
+.thumbDes{
+    color:black;}
