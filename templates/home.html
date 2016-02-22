@@ -22,8 +22,8 @@
     </div>
 
 
-        <div class="alert alert-info featuredDiv">
-            <h2 class="centered featured">Featured:</h2>
+        <div class="alert featuredDiv">
+            <h2 class="centered">Featured:</h2>
 
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
@@ -42,7 +42,7 @@
                             <img ng-src="{{hc.trendData.items[0].largeImage}}">
 
                             <div class="featuredDescription">
-                                <span class="redFont"><tt>Our Low Price: {{hc.trendData.items[0].salePrice | currency}}</tt></span>
+                                <span class="whiteFont"><tt>Our Low Price: {{hc.trendData.items[0].salePrice | currency}}</tt></span>
                             </div>
 
                         </div>
@@ -54,7 +54,7 @@
                             <img ng-src="{{hc.trendData.items[1].largeImage}}">
 
                             <div class="featuredDescription">
-                                <span class="redFont"><tt>Our Low Price: {{hc.trendData.items[1].salePrice | currency}}</tt></span>
+                                <span class="whiteFont"><tt>Our Low Price: {{hc.trendData.items[1].salePrice | currency}}</tt></span>
                             </div>
 
                         </div>
@@ -66,7 +66,7 @@
                             <img ng-src="{{hc.trendData.items[2].largeImage}}">
 
                             <div class="featuredDescription">
-                                <span class="redFont"><tt>Our Low Price: {{hc.trendData.items[2].salePrice | currency}}</tt></span>
+                                <span class="whiteFont"><tt>Our Low Price: {{hc.trendData.items[2].salePrice | currency}}</tt></span>
                             </div>
 
                         </div>
@@ -78,7 +78,7 @@
                             <img ng-src="{{hc.trendData.items[3].largeImage}}">
 
                             <div class="featuredDescription">
-                                <span class="redFont"><tt>Our Low Price: {{hc.trendData.items[3].salePrice | currency}}</tt></span>
+                                <span class="whiteFont"><tt>Our Low Price: {{hc.trendData.items[3].salePrice | currency}}</tt></span>
                             </div>
 
                         </div>
@@ -178,21 +178,21 @@
         </div>
     </div>
     <!--<script src="../libs/elevatorJS/elevator.js"></script>-->
-    <script>
-        window.onload = function() {
-            new Elevator({
-                element: document.querySelector('.elevator-button'),
-                mainAudio: '../libs/elevator.js-master/demo/music/elevator.mp3',
-                endAudio: '../libs/elevator.js-master/demo/music/ding.mp3',
-                duration: 5000,
-                startCallback: function() {
-                    // is called, when the elevator starts moving
-                },
-                endCallback: function() {
-                    // is called, when the elevator reached target level
-                }
-            });
-        }
-    </script>
+    <!--<script>-->
+        <!--window.onload = function() {-->
+            <!--new Elevator({-->
+                <!--element: document.querySelector('.elevator-button'),-->
+                <!--mainAudio: '../libs/elevator.js-master/demo/music/elevator.mp3',-->
+                <!--endAudio: '../libs/elevator.js-master/demo/music/ding.mp3',-->
+                <!--duration: 5000,-->
+                <!--startCallback: function() {-->
+                    <!--// is called, when the elevator starts moving-->
+                <!--},-->
+                <!--endCallback: function() {-->
+                    <!--// is called, when the elevator reached target level-->
+                <!--}-->
+            <!--});-->
+        <!--}-->
+    <!--</script>-->
 </div>
 

@@ -27,11 +27,17 @@ input[type=text] {
 .description{ margin-left: 2%}
 .thumbHeight{
     height: 10%;}
-.featured{ color: #C33329}
-.featuredDiv{margin-top: 1%}
+.featuredDiv {
+    margin-top: 1%;
+    color: #E8E8E8;
+    background: #990100;
+}
 .redFont{color:red}
+.whiteFont{color: #F6F6F6}
 .featuredDescription{margin-top: 1%}
 .indi{margin-top: 10%}
-.featureName{color:darkgoldenrod}
+.featureName {
+    color: #333333
+}
 .thumbDes{
     color:black;}
