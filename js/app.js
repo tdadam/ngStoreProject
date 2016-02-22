@@ -3,7 +3,7 @@
 
     angular.module('basicApp', [
         "angular-loading-bar",
-            "ui.router",
+        "ui.router",
         "home"
 
         ])
@@ -22,7 +22,21 @@
                     .state("SearchResult", {
                         url: "/SearchResult",
                         templateUrl: "templates/SearchResult.html",
-                        controller: "homeController as hc"
+                        controller: "SearchResultController as hc",
+                        resolve:{
+                            searchResult: function ($http,$stateParams) {
+                                var url="http://api.walmartlabs.com/v1/search?query="+$stateParams.searchQuery+"&format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
+
+
+                                 return $http.jsonp(url)
+                                    .success(function (data) {
+                                        //hc.WalData = data;
+                                        //console.log(hc.WalData);
+                                        return data;
+                                    });
+
+                            }
+                        }
                     })
                     .state("contact", {
                         url: "/contact",

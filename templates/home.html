@@ -1,32 +1,20 @@
 <div>
-
-    <!--<div class="nav-style">-->
-    <!--<ul class="nav nav-pills">-->
-    <!--<li role="presentation" class="active"><a href="#">Home</a></li>-->
-    <!--<li role="presentation"><a href="#">Profile</a></li>-->
-    <!--<li role="presentation"><a href="#">Messages</a></li>-->
-    <!--<li role="presentation" class="navbar-right"><a href="#">Login</a></li>-->
-    <!--</ul>-->
-    <!--</div>-->
     <div class="centered alert alert-success">
         <h1><i class="fa fa-shopping-bag fa-lg"></i> Super-Duper Megastore</h1>
         <!--<a ui-sref="SearchResult" data-toggle="collapse" data-target=".navbar-collapse.in">About</a></li>-->
 
         <div class="searchBar">
             <input placeholder="Search" type="text" width="200" name="queryInput" ng-model="hc.searchQuery">
-            <input class="btn btn-success" id="fetchbtn" ng-click="hc.search()" ui-sref="SearchResult" value="Search Our Products">
-            <!--<button class="btn btn-success" id="fetchbtn" ng-click="hc.search()"><i class="fa fa-search fa-lg"></i> Search Our Products</button>-->
+            <!--<input class="btn btn-success" id="fetchbtn" ng-click="hc.search()" ui-sref="SearchResult" value="Search Our Products">-->
+            <button class="btn btn-success" id="fetchbtn" ng-click="hc.search()" ><i class="fa fa-search fa-lg"></i> Search Our Products</button>
 
             <br>
         </div>
     </div>
-
-
         <div class="alert alert-info featuredDiv">
             <h2 class="centered featured">Featured:</h2>
 
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
-
                 <!-- Indicators -->
                 <ol class="carousel-indicators ">
                     <li data-target="#myCarousel" data-slide-to="0" class="indi "></li>
@@ -59,7 +47,6 @@
 
                         </div>
                     </div>
-
                     <div class="item">
                         <div class="centered">
                             <h3 class="featureName"><tt>{{hc.trendData.items[2].name}}</tt></h3>
@@ -71,7 +58,6 @@
 
                         </div>
                     </div>
-
                     <div class="item">
                         <div class="centered">
                             <h3 class="featureName"><tt>{{hc.trendData.items[3].name}}</tt></h3>
@@ -85,7 +71,6 @@
 
                     </div>
                 </div>
-
                 <!-- Left and right controls -->
                 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -97,76 +82,76 @@
                 </a>
             </div>
         </div>
-    <div class="alert alert-warning">
-        <div class="row">
-            <div class="col-sm-6" style="background-color:lavender;">
-                <div class="centered">
-                    <h1><tt>{{hc.WalData.items[0].name}}</tt></h1>
-                    <img ng-src="{{hc.WalData.items[0].largeImage}}"/><br>
-                </div>
-                <div class="description">
-                    <p style="color:#602a26;"><tt>Item Description: <span style="color:#ff707f"> {{hc.WalData.items[0].shortDescription}}</span></tt>
-                    </p>
-                    <tt>Item id:{{hc.WalData.items[0].itemId}}</tt><br>
-                    <tt>Our Price: {{hc.WalData.items[0].salePrice | currency}}</tt><br>
-                    <!--<tt>MSRP: {{hc.WalData.items[0].msrp}}</tt><br>-->
-                    <p style="color: red;"><tt>You saved: {{hc.WalData.items[0].msrp-hc.WalData.items[0].salePrice | currency}}</tt></p>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="thumbHeight" style="background-color:lavenderblush;">
-                    <div class="centered">
-                        <h4 class="thumbDes"><tt>{{hc.WalData.items[1].name}}</tt></h4>
-                        <img ng-src="{{hc.WalData.items[1].thumbnailImage}}"/><br>
-                    </div>
-                    <div class="description">
-                        <tt>Item id: {{hc.WalData.items[1].itemId}}</tt><br>
-                        <tt>Our Price: {{hc.WalData.items[1].salePrice | currency}}</tt><br>
-                        <tt>MSRP: {{hc.WalData.items[1].msrp | currency}}</tt>
-                    </div>
+    <!--<div class="alert alert-warning">-->
+        <!--<div class="row">-->
+            <!--<div class="col-sm-6" style="background-color:lavender;">-->
+                <!--<div class="centered">-->
+                    <!--<h1><tt>{{hc.WalData.items[0].name}}</tt></h1>-->
+                    <!--<img ng-src="{{hc.WalData.items[0].largeImage}}"/><br>-->
+                <!--</div>-->
+                <!--<div class="description">-->
+                    <!--<p style="color:#602a26;"><tt>Item Description: <span style="color:#ff707f"> {{hc.WalData.items[0].shortDescription}}</span></tt>-->
+                    <!--</p>-->
+                    <!--<tt>Item id:{{hc.WalData.items[0].itemId}}</tt><br>-->
+                    <!--<tt>Our Price: {{hc.WalData.items[0].salePrice | currency}}</tt><br>-->
+                    <!--&lt;!&ndash;<tt>MSRP: {{hc.WalData.items[0].msrp}}</tt><br>&ndash;&gt;-->
+                    <!--<p style="color: red;"><tt>You saved: {{hc.WalData.items[0].msrp-hc.WalData.items[0].salePrice | currency}}</tt></p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-3">-->
+                <!--<div class="thumbHeight" style="background-color:lavenderblush;">-->
+                    <!--<div class="centered">-->
+                        <!--<h4 class="thumbDes"><tt>{{hc.WalData.items[1].name}}</tt></h4>-->
+                        <!--<img ng-src="{{hc.WalData.items[1].thumbnailImage}}"/><br>-->
+                    <!--</div>-->
+                    <!--<div class="description">-->
+                        <!--<tt>Item id: {{hc.WalData.items[1].itemId}}</tt><br>-->
+                        <!--<tt>Our Price: {{hc.WalData.items[1].salePrice | currency}}</tt><br>-->
+                        <!--<tt>MSRP: {{hc.WalData.items[1].msrp | currency}}</tt>-->
+                    <!--</div>-->
 
-                </div>
-                <div class="thumbHeight" style="background-color: #ebb8bd">
-                    <div class="centered">
-                        <h4 class="thumbDes"><tt>{{hc.WalData.items[2].name}}</tt></h4>
-                        <img ng-src="{{hc.WalData.items[4].thumbnailImage}}"/><br>
-                    </div>
-                    <div class="description">
-                        <tt>Item id: {{hc.WalData.items[4].itemId}}</tt><br>
-                        <tt>Our Price: {{hc.WalData.items[4].salePrice | currency}}</tt><br>
-                        <tt>MSRP: {{hc.WalData.items[4].msrp | currency}}</tt>
-                    </div>
+                <!--</div>-->
+                <!--<div class="thumbHeight" style="background-color: #ebb8bd">-->
+                    <!--<div class="centered">-->
+                        <!--<h4 class="thumbDes"><tt>{{hc.WalData.items[2].name}}</tt></h4>-->
+                        <!--<img ng-src="{{hc.WalData.items[4].thumbnailImage}}"/><br>-->
+                    <!--</div>-->
+                    <!--<div class="description">-->
+                        <!--<tt>Item id: {{hc.WalData.items[4].itemId}}</tt><br>-->
+                        <!--<tt>Our Price: {{hc.WalData.items[4].salePrice | currency}}</tt><br>-->
+                        <!--<tt>MSRP: {{hc.WalData.items[4].msrp | currency}}</tt>-->
+                    <!--</div>-->
 
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="thumbHeight" style="background-color:lavender;">
-                    <div class="centered">
-                        <h4 class="thumbDes"><tt>{{hc.WalData.items[2].name}}</tt></h4>
-                        <img ng-src="{{hc.WalData.items[2].thumbnailImage}}"/><br>
-                    </div>
-                    <div class="description">
-                        <tt>Item id: {{hc.WalData.items[2].itemId}}</tt><br>
-                        <tt>Our Price: {{hc.WalData.items[2].salePrice | currency}}</tt><br>
-                        <tt>MSRP: {{hc.WalData.items[2].msrp | currency}}</tt>
-                    </div>
-                </div>
-                <div class="thumbHeight" style="background-color:#7ac563;">
-                    <div class="centered">
-                        <h4 class="thumbDes"><tt>{{hc.WalData.items[3].name}}</tt></h4>
-                        <img ng-src="{{hc.WalData.items[5].thumbnailImage}}"/><br>
-                    </div>
-                    <div class="description">
-                        <tt>Item id: {{hc.WalData.items[5].itemId}}</tt><br>
-                        <tt>Our Price: {{hc.WalData.items[5].salePrice | currency}}</tt><br>
-                        <tt>MSRP: {{hc.WalData.items[5].msrp | currency}}</tt>
-                    </div>
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-3">-->
+                <!--<div class="thumbHeight" style="background-color:lavender;">-->
+                    <!--<div class="centered">-->
+                        <!--<h4 class="thumbDes"><tt>{{hc.WalData.items[2].name}}</tt></h4>-->
+                        <!--<img ng-src="{{hc.WalData.items[2].thumbnailImage}}"/><br>-->
+                    <!--</div>-->
+                    <!--<div class="description">-->
+                        <!--<tt>Item id: {{hc.WalData.items[2].itemId}}</tt><br>-->
+                        <!--<tt>Our Price: {{hc.WalData.items[2].salePrice | currency}}</tt><br>-->
+                        <!--<tt>MSRP: {{hc.WalData.items[2].msrp | currency}}</tt>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="thumbHeight" style="background-color:#7ac563;">-->
+                    <!--<div class="centered">-->
+                        <!--<h4 class="thumbDes"><tt>{{hc.WalData.items[3].name}}</tt></h4>-->
+                        <!--<img ng-src="{{hc.WalData.items[5].thumbnailImage}}"/><br>-->
+                    <!--</div>-->
+                    <!--<div class="description">-->
+                        <!--<tt>Item id: {{hc.WalData.items[5].itemId}}</tt><br>-->
+                        <!--<tt>Our Price: {{hc.WalData.items[5].salePrice | currency}}</tt><br>-->
+                        <!--<tt>MSRP: {{hc.WalData.items[5].msrp | currency}}</tt>-->
+                    <!--</div>-->
 
-                </div>
+                <!--</div>-->
 
-            </div>
-        </div>
-    </div>
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <div style="text-align: center;">
         <div class="elevator-button" style="display: inline-block; cursor: pointer;">
