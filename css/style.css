@@ -1,9 +1,13 @@
 body {
-    background: #F6F6F6;
+    background: #DCE0E6;
+}
+
+tt {
+    font-family: 'Oxygen', sans-serif;
 }
 
 .nav-style {
-    color: #3f51b5;
+    color: #2B4C7E;
 }
 
 .navbar-right {
@@ -17,27 +21,63 @@ body {
 .page-header {
     text-align: center;
 }
+
 .searchBar{
     text-align: right;
 }
+
 input[type=text] {
     width: 300px;
 }
-.centered{text-align: center}
-.description{ margin-left: 2%}
-.thumbHeight{
-    height: 10%;}
+
+.centered {
+    text-align: center
+}
+
+.description {
+    margin-left: 2%
+}
+
+.thumbHeight {
+    height: 10%;
+}
+
 .featuredDiv {
     margin-top: 1%;
-    color: #E8E8E8;
-    background: #990100;
+    color: #DCE0E6;
+    background: #567EBB;
 }
-.redFont{color:red}
-.whiteFont{color: #F6F6F6}
-.featuredDescription{margin-top: 1%}
-.indi{margin-top: 10%}
+
+.titleDiv {
+    background: #1F1F20;
+    color: #567EBB;
+}
+
+.redFont {
+    color:red
+}
+
+.whiteFont {
+    color: #DCE0E6
+}
+
+.featuredDescription {
+    margin-top: 1%
+}
+
+.indi {
+    margin-top: 10%
+}
+
 .featureName {
-    color: #333333
+    color: #1F1F20
 }
-.thumbDes{
-    color:black;}
+
+.thumbDes {
+    color:black;
+}
+
+.searchBtn {
+    background: #567EBB;
+    color: #2B4C7E;
+}

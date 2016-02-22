@@ -3,8 +3,8 @@
 
     angular.module('basicApp', [
         "angular-loading-bar",
-            "ui.router",
-            "home"
+        "ui.router",
+        "home"
 
         ])
 

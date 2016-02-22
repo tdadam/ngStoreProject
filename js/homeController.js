@@ -32,6 +32,7 @@
 
 
         };
+
             hc.trends = function() {
 
                 //hc.trendurl="http://api.walmartlabs.com/v1/trends?format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";

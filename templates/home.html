@@ -8,13 +8,13 @@
     <!--<li role="presentation" class="navbar-right"><a href="#">Login</a></li>-->
     <!--</ul>-->
     <!--</div>-->
-    <div class="centered alert alert-success">
+    <div class="centered alert titleDiv">
         <h1><i class="fa fa-shopping-bag fa-lg"></i> Super-Duper Megastore</h1>
         <!--<a ui-sref="SearchResult" data-toggle="collapse" data-target=".navbar-collapse.in">About</a></li>-->
 
         <div class="searchBar">
             <input placeholder="Search" type="text" width="200" name="queryInput" ng-model="hc.searchQuery">
-            <input class="btn btn-success" id="fetchbtn" ng-click="hc.search()" ui-sref="SearchResult" value="Search Our Products">
+            <input class="btn searchBtn" id="fetchbtn" ng-click="hc.search()" ui-sref="SearchResult" value="Search Our Products">
             <!--<button class="btn btn-success" id="fetchbtn" ng-click="hc.search()"><i class="fa fa-search fa-lg"></i> Search Our Products</button>-->
 
             <br>
@@ -97,86 +97,6 @@
                 </a>
             </div>
         </div>
-    <div class="alert alert-warning">
-        <div class="row">
-            <div class="col-sm-6" style="background-color:lavender;">
-                <div class="centered">
-                    <h1><tt>{{hc.WalData.items[0].name}}</tt></h1>
-                    <img ng-src="{{hc.WalData.items[0].largeImage}}"/><br>
-                </div>
-                <div class="description">
-                    <p style="color:#602a26;"><tt>Item Description: <span style="color:#ff707f"> {{hc.WalData.items[0].shortDescription}}</span></tt>
-                    </p>
-                    <tt>Item id:{{hc.WalData.items[0].itemId}}</tt><br>
-                    <tt>Our Price: {{hc.WalData.items[0].salePrice | currency}}</tt><br>
-                    <!--<tt>MSRP: {{hc.WalData.items[0].msrp}}</tt><br>-->
-                    <p style="color: red;"><tt>You saved: {{hc.WalData.items[0].msrp-hc.WalData.items[0].salePrice | currency}}</tt></p>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="thumbHeight" style="background-color:lavenderblush;">
-                    <div class="centered">
-                        <h4 class="thumbDes"><tt>{{hc.WalData.items[1].name}}</tt></h4>
-                        <img ng-src="{{hc.WalData.items[1].thumbnailImage}}"/><br>
-                    </div>
-                    <div class="description">
-                        <tt>Item id: {{hc.WalData.items[1].itemId}}</tt><br>
-                        <tt>Our Price: {{hc.WalData.items[1].salePrice | currency}}</tt><br>
-                        <tt>MSRP: {{hc.WalData.items[1].msrp | currency}}</tt>
-                    </div>
-
-                </div>
-                <div class="thumbHeight" style="background-color: #ebb8bd">
-                    <div class="centered">
-                        <h4 class="thumbDes"><tt>{{hc.WalData.items[2].name}}</tt></h4>
-                        <img ng-src="{{hc.WalData.items[4].thumbnailImage}}"/><br>
-                    </div>
-                    <div class="description">
-                        <tt>Item id: {{hc.WalData.items[4].itemId}}</tt><br>
-                        <tt>Our Price: {{hc.WalData.items[4].salePrice | currency}}</tt><br>
-                        <tt>MSRP: {{hc.WalData.items[4].msrp | currency}}</tt>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="thumbHeight" style="background-color:lavender;">
-                    <div class="centered">
-                        <h4 class="thumbDes"><tt>{{hc.WalData.items[2].name}}</tt></h4>
-                        <img ng-src="{{hc.WalData.items[2].thumbnailImage}}"/><br>
-                    </div>
-                    <div class="description">
-                        <tt>Item id: {{hc.WalData.items[2].itemId}}</tt><br>
-                        <tt>Our Price: {{hc.WalData.items[2].salePrice | currency}}</tt><br>
-                        <tt>MSRP: {{hc.WalData.items[2].msrp | currency}}</tt>
-                    </div>
-                </div>
-                <div class="thumbHeight" style="background-color:#7ac563;">
-                    <div class="centered">
-                        <h4 class="thumbDes"><tt>{{hc.WalData.items[3].name}}</tt></h4>
-                        <img ng-src="{{hc.WalData.items[5].thumbnailImage}}"/><br>
-                    </div>
-                    <div class="description">
-                        <tt>Item id: {{hc.WalData.items[5].itemId}}</tt><br>
-                        <tt>Our Price: {{hc.WalData.items[5].salePrice | currency}}</tt><br>
-                        <tt>MSRP: {{hc.WalData.items[5].msrp | currency}}</tt>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div style="text-align: center;">
-        <div class="elevator-button" style="display: inline-block; cursor: pointer;">
-            <svg style="display: block; position: relative; left: 15px; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" height="50px" width="50px">
-                            <path d="M70,47.5H30c-1.4,0-2.5,1.1-2.5,2.5v40c0,1.4,1.1,2.5,2.5,2.5h40c1.4,0,2.5-1.1,2.5-2.5V50C72.5,48.6,71.4,47.5,70,47.5z   M47.5,87.5h-5v-25h5V87.5z M57.5,87.5h-5v-25h5V87.5z M67.5,87.5h-5V60c0-1.4-1.1-2.5-2.5-2.5H40c-1.4,0-2.5,1.1-2.5,2.5v27.5h-5  v-35h35V87.5z"/>
-                            <path d="M50,42.5c1.4,0,2.5-1.1,2.5-2.5V16l5.7,5.7c0.5,0.5,1.1,0.7,1.8,0.7s1.3-0.2,1.8-0.7c1-1,1-2.6,0-3.5l-10-10  c-1-1-2.6-1-3.5,0l-10,10c-1,1-1,2.6,0,3.5c1,1,2.6,1,3.5,0l5.7-5.7v24C47.5,41.4,48.6,42.5,50,42.5z"/>
-        </svg>
-            <b>Back to Top</b>
-        </div>
-    </div>
     <!--<script src="../libs/elevatorJS/elevator.js"></script>-->
     <!--<script>-->
         <!--window.onload = function() {-->
