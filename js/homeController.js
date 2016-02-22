@@ -8,16 +8,16 @@
         .controller('homeController', homeController);
     function homeController($http, $state, $localStorage) {
         var hc = this;
+        hc.storage = $localStorage;
 
         // JASONP get function to get data from walmart.
         hc.search = function () {
-            hc.storage = $localStorage;
-            hc.storage.items.push(
-                {
-                    search: hc.searchQuery
-                }
-            );
-            $state.go("SearchResult", {searchQuery: hc.storage.items[0].search});
+            hc.storage.search=hc.searchQuery;
+            if(!hc.storage.search){
+                hc.storage.search=hc.searchQuery;
+
+            }
+            $state.go("SearchResult", {searchQuery:$localStorage.search});
 
         };
         hc.trends = function () {
