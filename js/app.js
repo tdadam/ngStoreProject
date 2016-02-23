@@ -36,9 +36,9 @@
                         resolve:{
                             searchResult: function ($http,$stateParams) {
                                 var url="http://api.walmartlabs.com/v1/search?query="+$stateParams.searchQuery+"&format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
-                                    console.log($stateParams);
+                                console.log($stateParams);
 
-                                 return $http.jsonp(url)
+                                return $http.jsonp(url)
                                     .success(function (data) {
                                         return data;
                                     });
@@ -47,13 +47,13 @@
                     })
                     .state("select", {
                         url: "/select",
-                        templateUrl: "templates/selectedProduct.html",
+                        templateUrl: "templates/selectedProduct.html"
                         //controller: "SearchResultController as sc"
 
                     })
                     .state("contact", {
                         url: "/contact",
-                        templateUrl: "../templates/contact.html"
+                        templateUrl: "templates/contact.html"
                     })
                     .state("login", {
                         url: "/login",

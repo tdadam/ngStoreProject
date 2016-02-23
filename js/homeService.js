@@ -16,7 +16,7 @@
         hs.storage = $sessionStorage.$default(getDefaultData());
 
         hs.addTask = search;
-       // hs.removeCompleted = removeCompleted;   // removes all completed items from all lists
+        // hs.removeCompleted = removeCompleted;   // removes all completed items from all lists
         hs.reset = reset;
         hs.addList=addList;
 
