@@ -2,12 +2,18 @@
     'use strict';
 
     angular.module('basicApp', [
-            "angular-loading-bar",
-            "ui.router",
-            "ngStorage",
-            "home",
-            "homeService"
-
+        "angular-loading-bar",
+        "ui.router",
+        "home",
+        "homeService",
+        "firebase",
+        "ngStorage",
+        "authController",
+        "navController",
+        'firebase.utils',
+        "authSetup",
+        "cartController",
+        "cartFactory"
         ])
 
         .config(["$stateProvider", "$urlRouterProvider",
@@ -36,8 +42,6 @@
                                     .success(function (data) {
                                         return data;
                                     });
-
-
                             }
                         }
                     })
@@ -53,21 +57,17 @@
                     })
                     .state("login", {
                         url: "/login",
-                        templateUrl: "templates/login.html"
+                        templateUrl: "templates/login.html",
+                        controller: "authController as authC"
                     })
                     .state("cart", {
                         url: "/cart",
-                        templateUrl: "templates/cart.html"
+                        templateUrl: "templates/cart.html",
+                        controller: "cartController as cartC"
                     });
 
                 // if none of the above states are matched, use this as the fallback
                 $urlRouterProvider.otherwise("/home");
 
-
-
-
-
-
-
-            }]);
+     }]);
 }());
