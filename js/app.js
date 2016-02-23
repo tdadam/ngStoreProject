@@ -2,10 +2,15 @@
     'use strict';
 
     angular.module('basicApp', [
-        "angular-loading-bar",
         "ui.router",
-        "home"
-
+        "home",
+        "angular-loading-bar",
+        "firebase",
+        "ngStorage",
+        "authController",
+        "navController",
+        'firebase.utils',
+        "authSetup"
         ])
 
         .config(["$stateProvider", "$urlRouterProvider",
@@ -29,22 +34,17 @@
                         templateUrl: "templates/contact.html"
                     })
                     .state("login", {
-                       url: "/login",
-                       templateUrl: "templates/login.html"
+                        url: "/login",
+                        templateUrl: "templates/login.html",
+                        controller: "authController as authC"
                     })
                     .state("cart", {
-                       url: "/cart",
-                       templateUrl: "templates/cart.html"
+                        url: "/cart",
+                        templateUrl: "templates/cart.html"
                     });
 
                 // if none of the above states are matched, use this as the fallback
                 $urlRouterProvider.otherwise("/home");
-
-
-
-
-
-
 
      }]);
 }());
