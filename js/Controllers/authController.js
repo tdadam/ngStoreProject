@@ -20,6 +20,8 @@
         $scope.email = null;
         $scope.pass = null;
         $scope.confirm = null;
+        $scope.firstName = null;
+        $scope.lastName = null;
         $scope.createMode = false;
 
         $scope.login = function (email, pass) {
@@ -37,6 +39,7 @@
             if (assertValidAccountProps()) {
                 var email = $scope.email;
                 var pass = $scope.pass;
+                var name = $scope.firstName + ' ' + $scope.lastName;
                 // create user credentials in Firebase auth system
                 authSetup.$createUser({email: email, password: pass})
                     .then(function () {
@@ -47,7 +50,7 @@
                         // create a user profile in our data store
                         var ref = fbutil.ref('users', user.uid);
                         return fbutil.handler(function (cb) {
-                            ref.set({email: email, name: name || firstPartOfEmail(email)}, cb);
+                            ref.set({email: email, name: name || firstPartOfEmail(email) }, cb);
                         });
                     })
                     .then(function (/* user */) {
