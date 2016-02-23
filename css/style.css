@@ -81,3 +81,7 @@ input[type=text] {
     background: #567EBB;
     color: #2B4C7E;
 }
+
+.right {
+    text-align: right
+}
