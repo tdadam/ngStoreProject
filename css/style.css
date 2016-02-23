@@ -1,17 +1,10 @@
-body {
-    background: #DCE0E6;
-}
-
-tt {
-    font-family: 'Oxygen', sans-serif;
-}
-
 .nav-style {
-    color: #2B4C7E;
+    background-color: #3f51b5;
 }
 
 .navbar-right {
-    display: inline-block;
+    position: relative;
+    right: 30px;
 }
 
 .carousel-inner > .item > img {
@@ -21,11 +14,9 @@ tt {
 .page-header {
     text-align: center;
 }
-
 .searchBar{
     text-align: right;
 }
-
 input[type=text] {
     width: 300px;
 }

@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('basicApp', [
+        "angular-loading-bar",
         "ui.router",
         "home",
-        "angular-loading-bar",
         "homeService",
         "firebase",
         "ngStorage",
@@ -53,16 +53,11 @@
                     })
                     .state("contact", {
                         url: "/contact",
-                        templateUrl: "templates/contact.html"
+                        templateUrl: "../templates/contact.html"
                     })
                     .state("login", {
-                        url: "/login",
-                        templateUrl: "templates/login.html",
-                        controller: "authController as authC"
-                    })
-                    .state("cart", {
-                        url: "/cart",
-                        templateUrl: "templates/cart.html"
+                       url: "/login",
+                       templateUrl: "../templates/login.html"
                     });
 
                 // if none of the above states are matched, use this as the fallback
