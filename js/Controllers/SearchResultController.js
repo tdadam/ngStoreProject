@@ -23,7 +23,7 @@
             $http.jsonp(sc.url)
                 .success(function (data) {
                     sc.walData = data;
-                    console.log(sc.walData);
+                  //  console.log(sc.walData);
                 });
 
 
