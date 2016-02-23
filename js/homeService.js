@@ -7,9 +7,9 @@
     angular.module('homeService', [])
         .service('homeService', homeService);
 
-    homeService.$inject = ['$sessionStorage'];
+    homeService.$inject = ['$state', '$sessionStorage'];
 
-    function homeService($state,$sessionStorage) {
+    function homeService($state, $sessionStorage) {
 
         // list everything
         var hs = this;
