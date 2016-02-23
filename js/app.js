@@ -37,6 +37,10 @@
                         url: "/login",
                         templateUrl: "templates/login.html",
                         controller: "authController as authC"
+                    })
+                    .state("cart", {
+                        url: "/cart",
+                        templateUrl: "templates/cart.html"
                     });
 
                 // if none of the above states are matched, use this as the fallback

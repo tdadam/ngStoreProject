@@ -4,8 +4,13 @@
     <div class=" alert alert-success">
         <h1 class="centered">Super-Duper Megastore</h1>
         <!--<a ui-sref="SearchResult" data-toggle="collapse" data-target=".navbar-collapse.in">About</a></li>-->
-        <button class="btn btn-danger" ui-sref="home"><i class="fa fa-arrow-left"> Go Back</i>
-        </button>
+        <button class="btn btn-danger" ui-sref="home"><i class="fa fa-arrow-left"> Go Back</i></button>
+    </div>
+    <div class="alert alert-info">
+        <input placeholder="Search" type="text" width="200" name="queryInput" ng-model="hc.searchQuery">
+        <!--<input class="btn btn-success" id="fetchbtn" ng-click="hc.search()" ui-sref="SearchResult" value="Search Our Products">-->
+        <button class="btn btn-success" id="fetchbtn" ng-click="hc.search()"><i class="fa fa-search fa-lg"></i> Search Our Products</button>
+
     </div>
     <div class="row">
         <div class="col-sm-6" style="background-color:lavender;">
