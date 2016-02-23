@@ -4,16 +4,16 @@
    angular.module('authController', [])
        .controller('authController', authController);
 
-    authController.$inject = ['$scope', 'authSetup', '$location', 'fbutil', '$localStorage', '$timeout'];
+    authController.$inject = ['$scope', 'authFactory', '$localStorage', '$timeout'];
 
-    function authController($scope, authSetup, $location, fbutil, $localStorage, $timeout) {
+    function authController($scope, authFactory, $localStorage, $timeout) {
 
         var authC = this;
         var url = 'https://store-project.firebaseio.com';
         authC.facebookLogin = facebookLogin;
         authC.deleteFacebookData = deleteFacebookData;
 
-        //authC.fbData = authFactory;
+        authC.fbData = $localStorage['firebase:session::store-project'];
         // if facebook data is found in local storage, use it
         authC.message = authC.fbData && authC.fbData.facebook ? "Logged in to Facebook." : "No Facebook data found.";
 
@@ -62,35 +62,10 @@
             }
         };
 
-        function assertValidAccountProps() {
-            if (!$scope.email) {
-                $scope.err = 'Please enter an email address';
-            }
-            else if (!$scope.pass || !$scope.confirm) {
-                $scope.err = 'Please enter a password';
-            }
-            else if ($scope.createMode && $scope.pass !== $scope.confirm) {
-                $scope.err = 'Passwords do not match';
-            }
-            return !$scope.err;
-        }
+        $scope.addUser = function () {
 
-        function errMessage(err) {
-            return angular.isObject(err) && err.code ? err.code : err + '';
-        }
-
-        function firstPartOfEmail(email) {
-            return ucfirst(email.substr(0, email.indexOf('@')) || '');
-        }
-
-        function ucfirst(str) {
-            // inspired by: http://kevin.vanzonneveld.net
-            str += '';
-            var f = str.charAt(0).toUpperCase();
-            return f + str.substr(1);
-        }
-
-        //var ref = new Firebase(url);
+        };
+        var ref = new Firebase(url);
         function facebookLogin() {
             ref.authWithOAuthPopup('facebook', function (error, authData) {
                 if (error) {
