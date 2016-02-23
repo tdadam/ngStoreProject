@@ -4,10 +4,14 @@
     angular.module('basicApp', [
         "angular-loading-bar",
         "ui.router",
-        "ngStorage",
         "home",
-        "homeService"
-
+        "homeService",
+        "firebase",
+        "ngStorage",
+        "authController",
+        "navController",
+        'firebase.utils',
+        "authSetup"
         ])
 
         .config(["$stateProvider", "$urlRouterProvider",
@@ -58,12 +62,6 @@
 
                 // if none of the above states are matched, use this as the fallback
                 $urlRouterProvider.otherwise("/home");
-
-
-
-
-
-
 
      }]);
 }());
