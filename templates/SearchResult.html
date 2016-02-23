@@ -7,7 +7,7 @@
             </div>
             <div class="col-sm-6 right">
                 <input placeholder="Search" type="text" width="200" name="newSearchInput" ng-model="sc.newSearch">
-                <button class="btn searchBtn" id="searchBtn" ng-click="sc.search()"><i class="fa fa-search fa-lg"></i>
+                <button class="btn searchBtn" id="searchBtn" ng-click="sc.search()"><i class="fa fa-search fa-lg whiteFont"></i>
                     Search Our Products
                 </button>
             </div>
@@ -16,7 +16,7 @@
 
     <div class="alert resultsDiv">
         <div class="row">
-            <div ui-sref="select" class="col-sm-6 accentBlueBG">
+            <div ui-sref="select" ng-click="se.setSelect();" class="col-sm-6 accentBlueBG">
                 <div class="centered">
                     <h1><tt>{{sc.walData.items[0].name}}</tt></h1>
                     <img ng-src="{{sc.walData.items[0].largeImage}}"/><br>

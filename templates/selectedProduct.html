@@ -1,6 +1,4 @@
 <div>
-
-
     <div class=" alert alert-success">
         <h1 class="centered"><i class="fa fa-shopping-bag fa-lg"></i> Super-Duper Megastore</h1>
         <div class="row">
@@ -8,12 +6,11 @@
                 <button class="btn btn-danger" ng-click="se.back()"><i class="fa fa-arrow-left fa-lg"></i> Go Back</i></button>
             </div>
             <div class="col-sm-6 right">
-                <!--<input placeholder="Search" type="text" width="200" name="newSearchInput" ng-model="sc.newSearch">-->
-                <!--<button class="btn btn-success" id="searchBtn" ng-click="sc.search()"><i class="fa fa-search fa-lg"></i> Search Our Products</button>-->
+                <input placeholder="Search" type="text" width="200" name="newSearch" ng-model="se.newSearchQuery">
+                <button class="btn btn-success" id="searchBtn" ng-click="se.newSearch()"><i class="fa fa-search fa-lg"></i> Search Our Products</button>
             </div>
         </div>
     </div>
-
 
     <div>
         <h1><tt>{{se.search}}</tt></h1>
