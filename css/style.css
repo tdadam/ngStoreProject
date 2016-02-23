@@ -7,6 +7,14 @@ tt.ng-binding {
     font-family: 'Dosis', sans-serif;
 }
 
+tt {
+    font-family: 'Dosis', sans-serif;
+}
+
+span.ng-binding {
+    font-family: 'Dosis', sans-serif;
+}
+
 .lowprice {
     font-size: large;
 }
@@ -39,7 +47,8 @@ input[type=text] {
 }
 
 .description {
-    margin-left: 2%
+    margin-left: 2%;
+    font-size: medium;
 }
 
 .thumbHeight {
@@ -62,7 +71,7 @@ input[type=text] {
 }
 
 .whiteFont {
-    color: #DCE0E6
+    color: #DCE0E6;
 }
 
 .featuredDescription {
@@ -88,4 +97,22 @@ input[type=text] {
 
 .right {
     text-align: right
+}
+
+.resultsDiv {
+    background: #1F1F20;
+    padding: 25px;
+}
+
+.accentBlueBG {
+    background: #567EBB;
+}
+
+.otherResults {
+    background: #2B4C7E;
+    color: #DCE0E6;
+}
+
+.accentBlueTxt {
+    color: #5688c5;
 }
