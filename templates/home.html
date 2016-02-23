@@ -3,6 +3,7 @@
         <h1><i class="fa fa-shopping-bag fa-lg"></i> Super-Duper Megastore</h1>
         <div class="searchBar">
             <input placeholder="Search" type="text" width="200" name="queryInput" ng-model="hc.searchQuery">
+
             <button class="btn btn-success" id="searchBtn" ng-click="hc.search()" ><i class="fa fa-search fa-lg"></i> Search Our Products</button>
             <button class="btn btn-success" ng-click="hc.local()">click to see</button>
 
@@ -28,7 +29,7 @@
                             <img ng-src="{{hc.trendData.items[0].largeImage}}">
 
                             <div class="featuredDescription">
-                                <span class="redFont"><tt>Our Low Price: {{hc.trendData.items[0].salePrice | currency}}</tt></span>
+                                <span class="whiteFont"><tt>Our Low Price: {{hc.trendData.items[0].salePrice | currency}}</tt></span>
                             </div>
 
                         </div>
@@ -39,7 +40,7 @@
                             <img ng-src="{{hc.trendData.items[1].largeImage}}">
 
                             <div class="featuredDescription">
-                                <span class="redFont"><tt>Our Low Price: {{hc.trendData.items[1].salePrice | currency}}</tt></span>
+                                <span class="whiteFont"><tt>Our Low Price: {{hc.trendData.items[1].salePrice | currency}}</tt></span>
                             </div>
 
                         </div>
@@ -50,7 +51,7 @@
                             <img ng-src="{{hc.trendData.items[2].largeImage}}">
 
                             <div class="featuredDescription">
-                                <span class="redFont"><tt>Our Low Price: {{hc.trendData.items[2].salePrice | currency}}</tt></span>
+                                <span class="whiteFont"><tt>Our Low Price: {{hc.trendData.items[2].salePrice | currency}}</tt></span>
                             </div>
 
                         </div>
@@ -61,9 +62,8 @@
                             <img ng-src="{{hc.trendData.items[3].largeImage}}">
 
                             <div class="featuredDescription">
-                                <span class="redFont"><tt>Our Low Price: {{hc.trendData.items[3].salePrice | currency}}</tt></span>
+                                <span class="whiteFont"><tt>Our Low Price: {{hc.trendData.items[3].salePrice | currency}}</tt></span>
                             </div>
-
                         </div>
 
                     </div>
@@ -89,16 +89,20 @@
         </div>
     </div>
     <!--<script src="../libs/elevatorJS/elevator.js"></script>-->
-    <script>
-        // Elevator script included on the page, already.
-
-        window.onload = function () {
-            var elevator = new Elevator({
-                element: document.querySelector('.elevator-button'),
-                mainAudio: '../libs/elevatorJS/demo/music/elevator.mp3',
-                endAudio: '../libs/elevatorJS/demo/music/ding.mp3'
-            });
-        }
-    </script>
+    <!--<script>-->
+        <!--window.onload = function() {-->
+            <!--new Elevator({-->
+                <!--element: document.querySelector('.elevator-button'),-->
+                <!--mainAudio: '../libs/elevator.js-master/demo/music/elevator.mp3',-->
+                <!--endAudio: '../libs/elevator.js-master/demo/music/ding.mp3',-->
+                <!--duration: 5000,-->
+                <!--startCallback: function() {-->
+                    <!--// is called, when the elevator starts moving-->
+                <!--},-->
+                <!--endCallback: function() {-->
+                    <!--// is called, when the elevator reached target level-->
+                <!--}-->
+            <!--});-->
+        <!--}-->
+    <!--</script>-->
 </div>
-

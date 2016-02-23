@@ -1,86 +1,86 @@
 <div>
-
-
     <div class=" alert alert-success">
         <h1 class="centered"><i class="fa fa-shopping-bag fa-lg"></i> Super-Duper Megastore</h1>
         <div class="row">
-        <div class="col-sm-6">
-            <button class="btn btn-danger" ui-sref="home"><i class="fa fa-arrow-left fa-lg"></i> Go Back</button>
-        </div>
-        <div class="col-sm-6 right">
-            <input placeholder="Search" type="text" width="200" name="newSearchInput" ng-model="sc.newSearch">
-            <button class="btn btn-success" id="searchBtn" ng-click="sc.search()"><i class="fa fa-search fa-lg"></i> Search Our Products</button>
-        </div>
+            <div class="col-sm-6">
+                <button class="btn btn-danger" ui-sref="home"><i class="fa fa-arrow-left fa-lg"></i> Go Back</button>
+            </div>
+            <div class="col-sm-6 right">
+                <input placeholder="Search" type="text" width="200" name="newSearchInput" ng-model="sc.newSearch">
+                <button class="btn btn-success" id="searchBtn" ng-click="sc.search()"><i class="fa fa-search fa-lg"></i>
+                    Search Our Products
+                </button>
+            </div>
         </div>
     </div>
 
     <div class="alert alert-warning">
-    <div class="row">
-        <div ui-sref="select" class="col-sm-6" style="background-color:lavender;">
-            <div class="centered">
-                <h1><tt>{{sc.walData.items[0].name}}</tt></h1>
-                <img ng-src="{{sc.walData.items[0].largeImage}}"/><br>
-            </div>
-            <div class="description">
-                <p style="color:#602a26;"><tt>Item Description: <span style="color:#ff707f"> {{sc.walData.items[0].shortDescription}}</span></tt>
-                </p>
-                <tt>Item id:{{sc.walData.items[0].itemId}}</tt><br>
-                <tt>Our Price: {{sc.walData.items[0].salePrice | currency}}</tt><br>
-                <!--<tt>MSRP: {{sc.walData.items[0].msrp}}</tt><br>-->
-                <p style="color: red;"><tt>You saved:{{sc.walData.items[0].msrp-sc.walData.items[0].salePrice | currency}}</tt></p>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="thumbHeight" style="background-color:lavenderblush;">
+        <div class="row">
+            <div ui-sref="select" class="col-sm-6" style="background-color:lavender;">
                 <div class="centered">
-                    <h3><tt>{{sc.walData.items[1].name}}</tt></h3>
-                    <img ng-src="{{sc.walData.items[1].thumbnailImage}}"/><br>
+                    <h1><tt>{{sc.walData.items[0].name}}</tt></h1>
+                    <img ng-src="{{sc.walData.items[0].largeImage}}"/><br>
                 </div>
                 <div class="description">
-                    <tt>Item id:{{sc.walData.items[1].itemId}}</tt><br>
-                    <tt>Our Price: {{sc.walData.items[1].salePrice | currency}}</tt><br>
-                    <tt>MSRP: {{sc.walData.items[1].msrp | currency}}</tt>
+                    <p style="color:#602a26;"><tt>Item Description: <span style="color:#ff707f"> {{sc.walData.items[0].shortDescription}}</span></tt>
+                    </p>
+                    <tt>Item id:{{sc.walData.items[0].itemId}}</tt><br>
+                    <tt>Our Price: {{sc.walData.items[0].salePrice | currency}}</tt><br>
+                    <!--<tt>MSRP: {{sc.walData.items[0].msrp}}</tt><br>-->
+                    <p style="color: red;"><tt>You saved:{{sc.walData.items[0].msrp-sc.walData.items[0].salePrice | currency}}</tt></p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="thumbHeight" style="background-color:lavenderblush;">
+                    <div class="centered">
+                        <h3><tt>{{sc.walData.items[1].name}}</tt></h3>
+                        <img ng-src="{{sc.walData.items[1].thumbnailImage}}"/><br>
+                    </div>
+                    <div class="description">
+                        <tt>Item id:{{sc.walData.items[1].itemId}}</tt><br>
+                        <tt>Our Price: {{sc.walData.items[1].salePrice | currency}}</tt><br>
+                        <tt>MSRP: {{sc.walData.items[1].msrp | currency}}</tt>
+                    </div>
+
+                </div>
+                <div class="thumbHeight" style="background-color: #ebb8bd">
+                    <div class="centered">
+                        <h3><tt>{{sc.walData.items[2].name}}</tt></h3>
+                        <img ng-src="{{sc.walData.items[4].thumbnailImage}}"/><br>
+                    </div>
+                    <div class="description">
+                        <tt>Item id:{{sc.walData.items[4].itemId}}</tt><br>
+                        <tt>Our Price: {{sc.walData.items[4].salePrice | currency}}</tt><br>
+                        <tt>MSRP: {{sc.walData.items[4].msrp | currency}}</tt>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="thumbHeight" style="background-color:lavender;">
+                    <div class="centered">
+                        <h2><tt>{{sc.walData.items[2].name}}</tt></h2>
+                        <img ng-src="{{sc.walData.items[2].thumbnailImage}}"/><br>
+                    </div>
+                    <div class="description">
+                        <tt>Item id:{{sc.walData.items[2].itemId}}</tt><br>
+                        <tt>Our Price: {{sc.walData.items[2].salePrice | currency}}</tt><br>
+                        <tt>MSRP: {{sc.walData.items[2].msrp | currency}}</tt>
+                    </div>
+                </div>
+                <div class="thumbHeight" style="background-color:#32f442;">
+                    <div class="centered">
+                        <h3><tt>{{sc.walData.items[3].name}}</tt></h3>
+                        <img ng-src="{{sc.walData.items[5].thumbnailImage}}"/><br>
+                    </div>
+                    <div class="description">
+                        <tt>Item id:{{sc.walData.items[5].itemId}}</tt><br>
+                        <tt>Our Price: {{sc.walData.items[5].salePrice | currency}}</tt><br>
+                        <tt>MSRP: {{sc.walData.items[5].msrp | currency}}</tt>
+                    </div>
                 </div>
 
             </div>
-            <div class="thumbHeight" style="background-color: #ebb8bd">
-                <div class="centered">
-                    <h3><tt>{{sc.walData.items[2].name}}</tt></h3>
-                    <img ng-src="{{sc.walData.items[4].thumbnailImage}}"/><br>
-                </div>
-                <div class="description">
-                    <tt>Item id:{{sc.walData.items[4].itemId}}</tt><br>
-                    <tt>Our Price: {{sc.walData.items[4].salePrice | currency}}</tt><br>
-                    <tt>MSRP: {{sc.walData.items[4].msrp | currency}}</tt>
-                </div>
-
-            </div>
         </div>
-        <div class="col-sm-3">
-            <div class="thumbHeight" style="background-color:lavender;">
-                <div class="centered">
-                    <h2><tt>{{sc.walData.items[2].name}}</tt></h2>
-                    <img ng-src="{{sc.walData.items[2].thumbnailImage}}"/><br>
-                </div>
-                <div class="description">
-                    <tt>Item id:{{sc.walData.items[2].itemId}}</tt><br>
-                    <tt>Our Price: {{sc.walData.items[2].salePrice | currency}}</tt><br>
-                    <tt>MSRP: {{sc.walData.items[2].msrp | currency}}</tt>
-                </div>
-            </div>
-            <div class="thumbHeight" style="background-color:#32f442;">
-                <div class="centered">
-                    <h3><tt>{{sc.walData.items[3].name}}</tt></h3>
-                    <img ng-src="{{sc.walData.items[5].thumbnailImage}}"/><br>
-                </div>
-                <div class="description">
-                    <tt>Item id:{{sc.walData.items[5].itemId}}</tt><br>
-                    <tt>Our Price: {{sc.walData.items[5].salePrice | currency}}</tt><br>
-                    <tt>MSRP: {{sc.walData.items[5].msrp | currency}}</tt>
-                </div>
-            </div>
-
-        </div>
-    </div>
     </div>
 </div>
