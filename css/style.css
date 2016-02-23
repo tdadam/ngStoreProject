@@ -20,16 +20,59 @@
 input[type=text] {
     width: 300px;
 }
-.centered{text-align: center}
-.description{ margin-left: 2%}
-.thumbHeight{
-    height: 10%;}
-.featured{ color: #C33329}
-.featuredDiv{margin-top: 1%}
-.redFont{color:red}
-.featuredDescription{margin-top: 1%}
-.indi{margin-top: 10%}
-.featureName{color:darkgoldenrod}
-.thumbDes{
-    color:black;}
-.right{text-align: right}
+
+.centered {
+    text-align: center
+}
+
+.description {
+    margin-left: 2%
+}
+
+.thumbHeight {
+    height: 10%;
+}
+
+.featuredDiv {
+    margin-top: 1%;
+    color: #DCE0E6;
+    background: #567EBB;
+}
+
+.titleDiv {
+    background: #1F1F20;
+    color: #567EBB;
+}
+
+.redFont {
+    color: red
+}
+
+.whiteFont {
+    color: #DCE0E6
+}
+
+.featuredDescription {
+    margin-top: 1%
+}
+
+.indi {
+    margin-top: 10%
+}
+
+.featureName {
+    color: #1F1F20
+}
+
+.thumbDes {
+    color:black;
+}
+
+.searchBtn {
+    background: #567EBB;
+    color: #2B4C7E;
+}
+
+.right {
+    text-align: right
+}
