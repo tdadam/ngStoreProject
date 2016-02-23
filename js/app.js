@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('basicApp', [
-        "angular-loading-bar",
-        "ui.router",
-        "ngStorage",
-        "home",
-        "homeService"
+            "angular-loading-bar",
+            "ui.router",
+            "ngStorage",
+            "home",
+            "homeService"
 
         ])
 
@@ -30,9 +30,9 @@
                         resolve:{
                             searchResult: function ($http,$stateParams) {
                                 var url="http://api.walmartlabs.com/v1/search?query="+$stateParams.searchQuery+"&format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
-                                    console.log($stateParams);
+                                console.log($stateParams);
 
-                                 return $http.jsonp(url)
+                                return $http.jsonp(url)
                                     .success(function (data) {
                                         return data;
                                     });
@@ -52,8 +52,8 @@
                         templateUrl: "../templates/contact.html"
                     })
                     .state("login", {
-                       url: "/login",
-                       templateUrl: "../templates/login.html"
+                        url: "/login",
+                        templateUrl: "../templates/login.html"
                     });
 
                 // if none of the above states are matched, use this as the fallback
@@ -65,5 +65,5 @@
 
 
 
-     }]);
+            }]);
 }());
