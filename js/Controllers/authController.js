@@ -4,9 +4,9 @@
    angular.module('authController', [])
        .controller('authController', authController);
 
-    authController.$inject = ['$scope', 'authFactory', '$localStorage', '$timeout'];
+    authController.$inject = ['$scope', 'authSetup', '$localStorage', '$timeout', '$location'];
 
-    function authController($scope, authFactory, $localStorage, $timeout) {
+    function authController($scope, authSetup, $localStorage, $timeout, $location) {
 
         var authC = this;
         var url = 'https://store-project.firebaseio.com';
