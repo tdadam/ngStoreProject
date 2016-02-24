@@ -122,3 +122,36 @@ input[type=text] {
     color: #1F1F20;
     margin-bottom: 25px;
 }
+
+.contactDiv {
+    margin-top: 1%;
+    color: #1F1F20;
+    background: #567EBB;
+    font-size: large;
+}
+
+.linkStyle {
+    color: #2B4C7E;
+}
+
+.linkStyle:hover {
+    color: #DCE0E6;
+}
+
+.magicTitle {
+    color: #567EBB;
+    background: -webkit-linear-gradient(92deg,#567EBB,#DCE0E6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: hue 30s infinite linear;
+}
+
+@-webkit-keyframes hue {
+    from {
+        -webkit-filter: hue-rotate(0deg);
+    }
+
+    to {
+        -webkit-filter: hue-rotate(-360deg);
+    }
+}
