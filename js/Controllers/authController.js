@@ -36,7 +36,7 @@
 
         $scope.createAccount = function () {
             $scope.err = null;
-            if (assertValidAccountProps()) {
+            if ( assertValidAccountProps() ) {
                 var email = $scope.email;
                 var pass = $scope.pass;
                 var name = $scope.firstName + ' ' + $scope.lastName;
@@ -62,9 +62,34 @@
             }
         };
 
-        $scope.addUser = function () {
+        function assertValidAccountProps() {
+            if( !$scope.email ) {
+                $scope.err = 'Please enter an email address';
+            }
+            else if( !$scope.pass || !$scope.confirm ) {
+                $scope.err = 'Please enter a password';
+            }
+            else if( $scope.createMode && $scope.pass !== $scope.confirm ) {
+                $scope.err = 'Passwords do not match';
+            }
+            return !$scope.err;
+        }
 
-        };
+        function errMessage(err) {
+            return angular.isObject(err) && err.code? err.code : err + '';
+        }
+
+        function firstPartOfEmail(email) {
+            return ucfirst(email.substr(0, email.indexOf('@'))||'');
+        }
+
+        function ucfirst (str) {
+            // inspired by: http://kevin.vanzonneveld.net
+            str += '';
+            var f = str.charAt(0).toUpperCase();
+            return f + str.substr(1);
+        }
+
         var ref = new Firebase(url);
         function facebookLogin() {
             ref.authWithOAuthPopup('facebook', function (error, authData) {
