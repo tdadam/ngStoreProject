@@ -3,8 +3,7 @@
         <h1><i class="fa fa-shopping-bag fa-lg"></i> Super-Duper Megastore</h1>
         <div class="searchBar">
             <input placeholder="Search" type="text" width="200" name="queryInput" ng-model="hc.searchQuery">
-            <button class="btn searchBtn" id="searchBtn" ng-click="hc.search()" ><i class="fa fa-search fa-lg"></i> Search Our Products</button>
-            <button class="btn searchBtn" ng-click="hc.local()">click to see</button>
+            <button class="btn searchBtn" id="searchBtn" ng-click="hc.search()" ><i class="fa fa-search fa-lg whiteFont"></i> Search Our Products</button>
 
             <br>
         </div>
@@ -14,8 +13,8 @@
 
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
-                <ol class="carousel-indicators ">
-                    <li data-target="#myCarousel" data-slide-to="0" class="indi "></li>
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                     <li data-target="#myCarousel" data-slide-to="1"></li>
                     <li data-target="#myCarousel" data-slide-to="2"></li>
                     <li data-target="#myCarousel" data-slide-to="3"></li>
@@ -28,7 +27,7 @@
                             <img ng-src="{{hc.trendData.items[0].largeImage}}">
 
                             <div class="featuredDescription">
-                                <span class="whiteFont lowprice"><tt>Our Low Price: {{hc.trendData.items[0].salePrice | currency}}</tt></span>
+                                <span class="lowprice"><tt><span class="whiteFont">Our Low Price:</span> {{hc.trendData.items[0].salePrice | currency}}</tt></span>
                             </div>
 
                         </div>
@@ -39,7 +38,7 @@
                             <img ng-src="{{hc.trendData.items[1].largeImage}}">
 
                             <div class="featuredDescription">
-                                <span class="whiteFont lowprice"><tt>Our Low Price: {{hc.trendData.items[1].salePrice | currency}}</tt></span>
+                                <span class="lowprice"><tt><span class="whiteFont">Our Low Price:</span> {{hc.trendData.items[1].salePrice | currency}}</tt></span>
                             </div>
 
                         </div>
@@ -50,7 +49,7 @@
                             <img ng-src="{{hc.trendData.items[2].largeImage}}">
 
                             <div class="featuredDescription">
-                                <span class="whiteFont lowprice"><tt>Our Low Price: {{hc.trendData.items[2].salePrice | currency}}</tt></span>
+                                <span class="lowprice"><tt><span class="whiteFont">Our Low Price:</span> {{hc.trendData.items[2].salePrice | currency}}</tt></span>
                             </div>
 
                         </div>
@@ -61,7 +60,7 @@
                             <img ng-src="{{hc.trendData.items[3].largeImage}}">
 
                             <div class="featuredDescription">
-                                <span class="whiteFont lowprice"><tt>Our Low Price: {{hc.trendData.items[3].salePrice | currency}}</tt></span>
+                                <span class="lowprice"><tt><span class="whiteFont">Our Low Price:</span> {{hc.trendData.items[3].salePrice | currency}}</tt></span>
                             </div>
 
                         </div>
@@ -89,15 +88,11 @@
         </div>
     </div>
     <!--<script src="../libs/elevatorJS/elevator.js"></script>-->
-    <script>
-        // Elevator script included on the page, already.
-
-        window.onload = function () {
-            var elevator = new Elevator({
-                element: document.querySelector('.elevator-button'),
-                mainAudio: '../libs/elevatorJS/demo/music/elevator.mp3',
-                endAudio: '../libs/elevatorJS/demo/music/ding.mp3'
-            });
-        }
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.carousel').carousel({
+                interval: 5000
+            })
+        });
     </script>
 </div>

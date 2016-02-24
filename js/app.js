@@ -14,7 +14,8 @@
             "authSetup",
             "cartController",
             "cartFactory",
-            "accountController"
+            "accountController",
+            "select"
         ])
 
         .config(["$stateProvider", "$urlRouterProvider",
@@ -48,8 +49,8 @@
                     })
                     .state("select", {
                         url: "/select",
-                        templateUrl: "templates/selectedProduct.html"
-                        //controller: "SearchResultController as sc"
+                        templateUrl: "templates/selectedProduct.html",
+                        controller: "selectCtrl as se"
 
                     })
                     .state("contact", {
