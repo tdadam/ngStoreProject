@@ -15,8 +15,9 @@
     </div>
 
     <div class="alert resultsDiv">
+        <h2 class="featuredDiv">Results: </h2>
         <div class="row">
-            <div ui-sref="select" ng-click="se.setSelect();" class="col-sm-6 accentBlueBG">
+            <div ui-sref="select" ng-click="se.setSelect();" class="col-sm-6 accentBlueBG firstResult">
                 <div class="centered">
                     <h1><tt>{{sc.walData.items[0].name}}</tt></h1>
                     <img ng-src="{{sc.walData.items[0].largeImage}}"/><br>
@@ -36,9 +37,9 @@
                         <img ng-src="{{sc.walData.items[1].thumbnailImage}}"/><br>
                     </div>
                     <div class="description">
-                        <tt><span class="accentBlueTxt">Item id:</span> {{sc.walData.items[1].itemId}}</tt><br>
-                        <tt><span class="accentBlueTxt">Our Price:</span> {{sc.walData.items[1].salePrice | currency}}</tt><br>
-                        <tt><span class="accentBlueTxt">MSRP:</span> {{sc.walData.items[1].msrp | currency}}</tt>
+                        <tt><span class="whiteFont">Item id:</span> {{sc.walData.items[1].itemId}}</tt><br>
+                        <tt><span class="whiteFont">Our Price:</span> {{sc.walData.items[1].salePrice | currency}}</tt><br>
+                        <tt><span class="whiteFont">MSRP:</span> {{sc.walData.items[1].msrp | currency}}</tt>
                     </div>
 
                 </div>
@@ -48,9 +49,9 @@
                         <img ng-src="{{sc.walData.items[4].thumbnailImage}}"/><br>
                     </div>
                     <div class="description">
-                        <tt><span class="accentBlueTxt">Item id:</span> {{sc.walData.items[4].itemId}}</tt><br>
-                        <tt><span class="accentBlueTxt">Our Price:</span> {{sc.walData.items[4].salePrice | currency}}</tt><br>
-                        <tt><span class="accentBlueTxt">MSRP:</span> {{sc.walData.items[4].msrp | currency}}</tt>
+                        <tt><span class="whiteFont">Item id:</span> {{sc.walData.items[4].itemId}}</tt><br>
+                        <tt><span class="whiteFont">Our Price:</span> {{sc.walData.items[4].salePrice | currency}}</tt><br>
+                        <tt><span class="whiteFont">MSRP:</span> {{sc.walData.items[4].msrp | currency}}</tt>
                     </div>
 
                 </div>
@@ -58,13 +59,13 @@
             <div class="col-sm-3">
                 <div class="thumbHeight otherResults">
                     <div class="centered">
-                        <h2><tt>{{sc.walData.items[2].name}}</tt></h2>
+                        <h3><tt>{{sc.walData.items[2].name}}</tt></h3>
                         <img ng-src="{{sc.walData.items[2].thumbnailImage}}"/><br>
                     </div>
                     <div class="description">
-                        <tt><span class="accentBlueTxt">Item id:</span> {{sc.walData.items[2].itemId}}</tt><br>
-                        <tt><span class="accentBlueTxt">Our Price:</span> {{sc.walData.items[2].salePrice | currency}}</tt><br>
-                        <tt><span class="accentBlueTxt">MSRP:</span> {{sc.walData.items[2].msrp | currency}}</tt>
+                        <tt><span class="whiteFont">Item id:</span> {{sc.walData.items[2].itemId}}</tt><br>
+                        <tt><span class="whiteFont">Our Price:</span> {{sc.walData.items[2].salePrice | currency}}</tt><br>
+                        <tt><span class="whiteFont">MSRP:</span> {{sc.walData.items[2].msrp | currency}}</tt>
                     </div>
                 </div>
                 <div class="thumbHeight otherResults">
@@ -73,9 +74,9 @@
                         <img ng-src="{{sc.walData.items[5].thumbnailImage}}"/><br>
                     </div>
                     <div class="description">
-                        <tt><span class="accentBlueTxt">Item id:</span> {{sc.walData.items[5].itemId}}</tt><br>
-                        <tt><span class="accentBlueTxt">Our Price:</span> {{sc.walData.items[5].salePrice | currency}}</tt><br>
-                        <tt><span class="accentBlueTxt">MSRP:</span> {{sc.walData.items[5].msrp | currency}}</tt>
+                        <tt><span class="whiteFont">Item id:</span> {{sc.walData.items[5].itemId}}</tt><br>
+                        <tt><span class="whiteFont">Our Price:</span> {{sc.walData.items[5].salePrice | currency}}</tt><br>
+                        <tt><span class="whiteFont">MSRP:</span> {{sc.walData.items[5].msrp | currency}}</tt>
                     </div>
                 </div>
             </div>

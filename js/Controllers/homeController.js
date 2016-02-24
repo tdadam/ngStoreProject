@@ -6,7 +6,7 @@
     //apiCtrl.$inject = ['homeService'];
     //function apiCtrl(homeService) {
 
-    homeController.$inject = ['$http', '$state', '$localStorage','homeService'];
+    homeController.$inject = ['$http', '$state', '$localStorage', 'homeService'];
     // list everything
     function homeController($http, $state, $localStorage, homeService) {
         var hc = this;

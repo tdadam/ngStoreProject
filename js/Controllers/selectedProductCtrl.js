@@ -1,6 +1,3 @@
-/**
- * Created by edgarisla1 on 2/23/16.
- */
 (function () {
     'use strict';
 
@@ -9,7 +6,7 @@
     //apiCtrl.$inject = ['homeService'];
     //function apiCtrl(homeService) {
 
-    selectCtrl.$inject = ['$http', '$state', '$localStorage','homeService'];
+    selectCtrl.$inject = ['$http', '$state', '$localStorage', 'homeService'];
     // list everything
     function selectCtrl($http, $state, $localStorage, homeService) {
         var se = this;
