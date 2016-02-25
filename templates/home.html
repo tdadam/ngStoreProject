@@ -12,7 +12,7 @@
 
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
-                <ol class="carousel-indicators">
+                <ol class="carousel-indicators" style="display: inline-block">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                     <li data-target="#myCarousel" data-slide-to="1"></li>
                     <li data-target="#myCarousel" data-slide-to="2"></li>
@@ -28,15 +28,18 @@
                         <h2><span class="featureName">Our Low Price: </span>{{dat.salePrice | currency}}</span></h2><br>
                     </div>
                 </div>
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                    <!-- Left and right controls -->
+                    <p class="centered">
+                        <a class="left linkStyle" href="#myCarousel" role="button" data-slide="prev">
+                            <i class="fa fa-chevron-circle-left fa-2x"> Prev.</i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <span style="margin: 50px"></span>
+                        <a class="right linkStyle" href="#myCarousel" role="button" data-slide="next">
+                            <i class="fa fa-chevron-circle-right fa-2x"> Next</i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </p>
             </div>
         </div>
     <!--<div style="text-align: center;">-->
@@ -49,11 +52,4 @@
         <!--</div>-->
     <!--</div>-->
     <!--&lt;!&ndash;<script src="../libs/elevatorJS/elevator.js"></script>&ndash;&gt;-->
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.carousel').carousel({
-                interval: 5000
-            })
-        });
-    </script>
 </div>

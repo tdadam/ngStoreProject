@@ -34,7 +34,7 @@
         hc.trends();
 
         $('.carousel').carousel({
-            interval: 3500
+            interval: 4000
         });
     }
 }());
