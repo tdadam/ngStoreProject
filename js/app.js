@@ -17,7 +17,7 @@
             "accountController",
             "select",
             "rating-widget"
-        ])
+    ])
 
         .config(["$stateProvider", "$urlRouterProvider",
             function ($stateProvider, $urlRouterProvider) {

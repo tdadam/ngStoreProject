@@ -159,3 +159,7 @@ input[type=text] {
         -webkit-filter: hue-rotate(-360deg);
     }
 }
+.carImage{margin-bottom: 50%}
+.carousel-indicators {
+    bottom:-10px;
+}
