@@ -14,10 +14,11 @@
         se.newSearch= function () {
 
             homeService.addSearch(se.newSearchQuery);
-            console.log(se.newSearchQuery);
+            //console.log(se.newSearchQuery);
             $state.go("SearchResult", {searchQuery: homeService.storage.search});
         };
         se.search=homeService.storage.search;
+        se.selected=homeService.selected;
 
 
 

@@ -11,6 +11,13 @@
 
        var sc =this;
         sc.walData=searchResult.data;
+        sc.searchLim=16;
+
+        sc.selectedItem= function (name,name2) {
+            homeService.addSelected(name);
+          //testing purposes:
+           console.log(name);
+        };
 
         sc.search = function() {
             homeService.addSearch(sc.newSearch);
@@ -21,7 +28,6 @@
             $http.jsonp(sc.url)
                 .success(function (data) {
                     sc.walData = data;
-                  //  console.log(sc.walData);
                 });
 
 

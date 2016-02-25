@@ -15,8 +15,9 @@
             "cartController",
             "cartFactory",
             "accountController",
-            "select"
-        ])
+            "select",
+            "rating-widget"
+    ])
 
         .config(["$stateProvider", "$urlRouterProvider",
             function ($stateProvider, $urlRouterProvider) {
