@@ -130,6 +130,10 @@ input[type=text] {
     font-size: large;
 }
 
+.imgBorder {
+    border: 8px black double;
+}
+
 .linkStyle {
     color: #2B4C7E;
 }
