@@ -4,9 +4,9 @@
    angular.module('authController', [])
        .controller('authController', authController);
 
-    authController.$inject = ['$scope', 'authSetup', '$localStorage', '$timeout', '$location', 'fbutil'];
+    authController.$inject = ['$scope', 'authSetup', '$localStorage', '$timeout', '$location', 'fbutil', '$firebaseObject'];
 
-    function authController($scope, authSetup, $localStorage, $timeout, $location, fbutil) {
+    function authController($scope, authSetup, $localStorage, $timeout, $location, fbutil, $firebaseObject) {
 
         var authC = this;
         var url = 'https://store-project.firebaseio.com';
@@ -48,7 +48,8 @@
                     })
                     .then(function (user) {
                         // create a user profile in our data store
-                        var ref = fbutil.ref('users', user.uid);
+                        //var ref = fbutil.ref('users', user.uid);
+                        var ref = fbutil.ref('use.rs', user.uid);
                         return fbutil.handler(function (cb) {
                             ref.set({email: email, name: name || firstPartOfEmail(email) }, cb);
                         });
