@@ -1,13 +1,14 @@
 <div>
     <div class="centered alert titleDiv">
         <h1><i class="fa fa-shopping-bag magicTitle largerBag"></i> Super-Duper Megastore</h1>
-        <div class="right">
+        <div class="searchBar right">
             <input placeholder="Search" type="text" width="200" name="queryInput" ng-model="hc.searchQuery">
-            <button class="btn searchBtn" id="searchBtn" ng-click="hc.search()" ><i class="fa fa-search magicTitle largeIcon"></i> Search Our Products</button>
+            <button class="btn searchBtn" id="searchBtn" ng-click="hc.search()"><i
+                    class="fa fa-search magicTitle largeIcon"></i> Search Our Products
+            </button>
 
             <br>
         </div>
-    </div>
         <div class="alert featuredDiv">
             <h2 class="centered featured">Featured:</h2>
 
@@ -19,65 +20,32 @@
                     <li data-target="#myCarousel" data-slide-to="2"></li>
                     <li data-target="#myCarousel" data-slide-to="3"></li>
                 </ol>
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <div class="centered">
-                            <h3 class="featureName"><tt>{{hc.trendData.items[0].name}}</tt></h3>
-                            <img ng-src="{{hc.trendData.items[0].largeImage}}">
 
-                            <div class="featuredDescription">
-                                <span class="lowprice"><tt><span class="whiteFont">Our Low Price:</span> {{hc.trendData.items[0].salePrice | currency}}</tt></span>
-                            </div>
+                <div class="carousel-inner">
+                    <div class="item centered" ng-class="{active:!$index}"
+                         ng-repeat=" dat in hc.carouselDat | limitTo:4">
+                        <h3 class="featureName"><tt>{{dat.name}}</tt></h3>
+                        <!--<h2>{{dat.salePrice | currency}}</span></h2>-->
 
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="centered">
-                            <h3 class="featureName"><tt>{{hc.trendData.items[1].name}}</tt></h3>
-                            <img ng-src="{{hc.trendData.items[1].largeImage}}">
-
-                            <div class="featuredDescription">
-                                <span class="lowprice"><tt><span class="whiteFont">Our Low Price:</span> {{hc.trendData.items[1].salePrice | currency}}</tt></span>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="centered">
-                            <h3 class="featureName"><tt>{{hc.trendData.items[2].name}}</tt></h3>
-                            <img ng-src="{{hc.trendData.items[2].largeImage}}">
-
-                            <div class="featuredDescription">
-                                <span class="lowprice"><tt><span class="whiteFont">Our Low Price:</span> {{hc.trendData.items[2].salePrice | currency}}</tt></span>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="centered">
-                            <h3 class="featureName"><tt>{{hc.trendData.items[3].name}}</tt></h3>
-                            <img ng-src="{{hc.trendData.items[3].largeImage}}">
-
-                            <div class="featuredDescription">
-                                <span class="lowprice"><tt><span class="whiteFont">Our Low Price:</span> {{hc.trendData.items[3].salePrice | currency}}</tt></span>
-                            </div>
-
-                        </div>
+                        <img class="carImage" src="{{dat.largeImage}}">
+                        <h2>{{dat.salePrice | currency}}</span></h2><br>
 
                     </div>
                 </div>
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
+    </div>
+
+
     <div style="text-align: center;">
         <div class="elevator-button" style="display: inline-block; cursor: pointer;">
             <svg style="display: block; margin: 0 auto; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" height="50px" width="50px">
@@ -89,7 +57,7 @@
     </div>
     <!--<script src="../libs/elevatorJS/elevator.js"></script>-->
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.carousel').carousel({
                 interval: 5000
             })
