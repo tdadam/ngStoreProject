@@ -32,9 +32,21 @@
         };
 
         hc.trends();
+        hc.selectedItem = function (name) {
+            homeService.addSelected(name);
+        };
 
         $('.carousel').carousel({
             interval: 3500
         });
+
+        hc.myFunc= function (keyEvent,search) {
+            if (keyEvent.which=== 13){
+                homeService.addSearch(search);
+                $state.go("SearchResult", {searchQuery: homeService.storage.search});
+
+            }
+
+        };
     }
 }());
