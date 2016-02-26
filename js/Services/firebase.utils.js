@@ -1,10 +1,9 @@
-
 // a simple wrapper on Firebase and AngularFire to simplify deps and keep things DRY
 angular.module('firebase.utils', ['firebase'])
    .factory('fbutil', ['$window', '$q', function($window, $q) {
       "use strict";
 
-       var FBURL = "https://store-project.firebaseio.com";
+      var FBURL = "https://store-project.firebaseio.com";
       var utils = {
         // convert a node or Firebase style callback to a future
         handler: function(fn, context) {
@@ -61,5 +60,7 @@ angular.module('firebase.utils', ['firebase'])
         }
         return ref;
       }
-   }]);
+       function fbAuthRef (){
 
+       }
+   }]);

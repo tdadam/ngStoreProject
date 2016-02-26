@@ -36,15 +36,16 @@ span.ng-binding {
 .page-header {
     text-align: center;
 }
-.searchBar{
-    text-align: right;
-}
 input[type=text] {
     width: 300px;
 }
 
 .centered {
-    text-align: center
+    text-align: center;
+}
+
+.controls {
+    text-align: center;
 }
 
 .description {
@@ -65,6 +66,19 @@ input[type=text] {
 .titleDiv {
     background: #1F1F20;
     color: #567EBB;
+}
+
+.title {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.largerBag {
+    font-size: 50px;
+}
+
+.largeIcon {
+    font-size: 20px;
 }
 
 .redFont {
@@ -92,12 +106,21 @@ input[type=text] {
 }
 
 .searchBtn {
-    background: #567EBB;
-    color: #2B4C7E;
+    background: #DCE0E6;
+    color: #567EBB;
+}
+
+.backBtn {
+    background: #DCE0E6;
+    color: #567EBB;
 }
 
 .right {
     text-align: right
+}
+
+.left {
+    text-align: left;
 }
 
 .resultsDiv {
@@ -144,7 +167,7 @@ input[type=text] {
 
 .magicTitle {
     color: #567EBB;
-    background: -webkit-linear-gradient(92deg,#567EBB,#DCE0E6);
+    background: -webkit-linear-gradient(92deg,#2B4C7E,#567EBB,#DCE0E6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -webkit-animation: hue 30s infinite linear;
@@ -160,6 +183,3 @@ input[type=text] {
     }
 }
 .carImage{margin-bottom: 50%}
-.carousel-indicators {
-    bottom:-10px;
-}

@@ -11,6 +11,6 @@
         if(!$rootScope.loggedIn){
             $state.go("login")
         }
-        cC.itemsInCart = cartFactory;
+        cC.itemsInCart = cartFactory.ref;
     }
 }());

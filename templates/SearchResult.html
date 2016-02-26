@@ -1,13 +1,13 @@
 <div>
-    <div class=" alert titleDiv">
-        <h1 class="centered"><i class="fa fa-shopping-bag fa-lg magicTitle"></i> Super-Duper Megastore</h1>
+    <div class="centered alert titleDiv">
+        <h1 class="title" ui-sref="home"><i class="fa fa-shopping-bag magicTitle largerBag"></i> Super-Duper Megastore</h1>
         <div class="row">
-            <div class="col-sm-6">
-                <button class="btn" ui-sref="home"><i class="fa fa-arrow-left fa-lg"></i> Go Back</button>
+            <div class="col-sm-6 left">
+                <button class="btn backBtn" ui-sref="home"><i class="fa fa-arrow-left fa-lg"></i> Go Back</button>
             </div>
             <div class="col-sm-6 right">
                 <input placeholder="Search" type="text" width="200" name="newSearchInput" ng-model="sc.newSearch">
-                <button class="btn searchBtn" id="searchBtn" ng-click="sc.search()"><i class="fa fa-search fa-lg whiteFont"></i>
+                <button class="btn searchBtn" id="searchBtn" ng-click="sc.search()"><i class="fa fa-search largeIcon magicTitle"></i>
                     Search Our Products
                 </button>
             </div>
