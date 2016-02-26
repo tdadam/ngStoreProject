@@ -13,7 +13,7 @@
             "firebase.utils",
             "authSetup",
             "cartController",
-            "cartFactory",
+            "cartService",
             "accountController",
             "select",
             "rating-widget"

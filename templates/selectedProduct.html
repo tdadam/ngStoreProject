@@ -35,7 +35,7 @@
                         <br>
                         <br>
                         <br>
-                        <button class="btn btn-success"><i class="fa fa-cart-plus fa-lg"></i> Add to Cart</button><br><br>
+                        <button class="btn btn-success" ng-click="se.addToCart(se.selected)"><i class="fa fa-cart-plus fa-lg"></i> Add to Cart</button><br><br>
                         <tt><span class="whiteFont">Item Description:</span> {{se.selected.shortDescription}}</tt><br>
                         <tt><span class="whiteFont">Item id:</span> {{se.selected.itemId}}</tt><br>
                         <tt><span class="whiteFont">Our Price:</span> {{se.selected.salePrice | currency}}</tt><br>
