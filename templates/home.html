@@ -10,7 +10,9 @@
             </button>
             <br>
         </div>
-        <div class="alert featuredDiv">
+    </div>
+    <div>
+        <div class="alert featuredDiv" style="margin: 2% auto">
             <h2 class="centered featured">Featured:</h2>
 
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -26,18 +28,27 @@
                          ng-repeat=" dat in hc.carouselDat | limitTo:4" ng-click="hc.selectedItem(dat)"
                          ui-sref="select">
                         <h3 class="featureName"><tt>{{dat.name}}</tt></h3>
+
+                        <!--<div class="carousel-caption" style="margin: 350px 80px;"></div>-->
+
                         <img class="carImage" src="{{dat.largeImage}}">
-                        <h2><span class="featureName">Our Low Price: </span>{{dat.salePrice | currency}}</span></h2><br>
+                        <div class="carousel-caption">
+                            <h3 class="whiteFont" style="margin: 0 80px 325px; background: rgba(255, 255, 255, 0.6);">
+                                <tt>{{dat.name}}</tt></h3>
+                            <h2 class="featureName" style="background: rgba(255, 255, 255, 0.6); margin: 0 80px 0">Our
+                                Low Price: {{dat.salePrice | currency}}</h2>
+                        </div>
+                        <br>
                     </div>
                 </div>
                 <!-- Left and right controls -->
                 <p class="centered">
-                    <a class="left linkStyle" href="#myCarousel" role="button" data-slide="prev">
-                        <i class="fa fa-chevron-circle-left fa-2x"> Prev.</i>
+                    <a class="left linkStyle noUnderline" href="#myCarousel" role="button" data-slide="prev">
+                        <i class="fa fa-chevron-circle-left fa-2x"> Prev</i>
                         <span class="sr-only">Previous</span>
                     </a>
                     <span style="margin: 50px"></span>
-                    <a class="right linkStyle" href="#myCarousel" role="button" data-slide="next">
+                    <a class="right linkStyle noUnderline" href="#myCarousel" role="button" data-slide="next">
                         <i class="fa fa-chevron-circle-right fa-2x"> Next</i>
                         <span class="sr-only">Next</span>
                     </a>
@@ -73,6 +84,17 @@
             })
         });
     </script>
+</div>
+<div class="alert featuredDiv">
+    <h2 class="centered">Welcome to Super-Duper MegaStore!</h2>
+    <p class="featureName description">Super-Duper Megastore is your destination for the most super-duper deals</p>
+    <p class="featureName descriptionSmall">We hope you have an enjoyable experience with our site. We appreciate your
+        feedback so please visit</p>
+    <p class="featureName descriptionSmall">the contact page if you have something to say about the site, or want some
+        questions answered.</p>
+    <p class="featureName descriptionSmall">If you want to find a product, use the search at the top of the page to find
+        whatever you may be looking for.</p>
+</div>
 </div>
 <!--<div style="text-align: center;">-->
 <!--<div class="elevator-button" style="display: inline-block; cursor: pointer;">-->
