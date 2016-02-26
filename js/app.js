@@ -15,15 +15,15 @@
             "cartController",
             "cartFactory",
             "accountController",
-            "select"
-        ])
+            "select",
+            "rating-widget"
+    ])
 
         .config(["$stateProvider", "$urlRouterProvider",
             function ($stateProvider, $urlRouterProvider) {
 
                 // define all app states (pages)
-
-                $stateProvider
+                    $stateProvider
                     .state("home", {
                         url: "/home",
                         templateUrl: "templates/home.html",
@@ -31,7 +31,10 @@
                     })
                     .state("SearchResult", {
                         url: "/SearchResult",
-                        params: {searchQuery: null},
+                        params: {
+                            searchQuery: "dog"
+
+                        },
 
                         templateUrl: "templates/SearchResult.html",
                         controller: "SearchResultController as sc",

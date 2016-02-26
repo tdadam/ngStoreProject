@@ -15,8 +15,6 @@
 
         sc.selectedItem= function (name,name2) {
             homeService.addSelected(name);
-          //testing purposes:
-          // console.log(name2);
         };
 
         sc.search = function() {
