@@ -1,5 +1,5 @@
 body {
-    background: #DCE0E6;
+    background: #cdd1de;
     font-family: 'Dosis', sans-serif;
 }
 
@@ -127,7 +127,9 @@ input[type=text] {
 
 .resultsDiv {
     background: #567EBB;
+    margin: 2% auto;
     padding: 25px;
+    width: 60vw;
 }
 
 .accentBlueBG {
@@ -173,10 +175,10 @@ input[type=text] {
 
 .magicTitle {
     color: #567EBB;
-    background: -webkit-linear-gradient(92deg,#2B4C7E,#567EBB,#DCE0E6);
+    background: -webkit-linear-gradient(120deg,#2B4C7E,#567EBB,#DCE0E6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    -webkit-animation: hue 30s infinite linear;
+    -webkit-animation: hue 20s infinite linear;
 }
 
 @-webkit-keyframes hue {
