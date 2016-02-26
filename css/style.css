@@ -41,7 +41,11 @@ input[type=text] {
 }
 
 .centered {
-    text-align: center
+    text-align: center;
+}
+
+.controls {
+    text-align: center;
 }
 
 .description {
@@ -179,6 +183,3 @@ input[type=text] {
     }
 }
 .carImage{margin-bottom: 50%}
-.carousel-indicators {
-    bottom:-10px;
-}
