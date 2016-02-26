@@ -1,8 +1,10 @@
 <div>
     <div class="centered alert titleDiv">
         <h1><i class="fa fa-shopping-bag magicTitle largerBag"></i> Super-Duper Megastore</h1>
+
         <div class="searchBar right">
-            <input placeholder="Search" type="text" width="200" name="queryInput" ng-model="hc.searchQuery">
+            <input placeholder="Search" type="text" width="200" name="queryInput" ng-model="hc.searchQuery"
+                   ng-keypress="hc.myFunc($event, hc.searchQuery)">
             <button class="btn searchBtn" id="searchBtn" ng-click="hc.search()"><i
                     class="fa fa-search magicTitle largeIcon"></i> Search Our Products
             </button>
@@ -21,10 +23,10 @@
                     <li data-target="#myCarousel" data-slide-to="2"></li>
                     <li data-target="#myCarousel" data-slide-to="3"></li>
                 </ol>
-
                 <div class="carousel-inner">
                     <div class="item centered" ng-class="{active:!$index}"
-                         ng-repeat=" dat in hc.carouselDat | limitTo:4">
+                         ng-repeat=" dat in hc.carouselDat | limitTo:4" ng-click="hc.selectedItem(dat)"
+                         ui-sref="select">
                         <h3 class="featureName"><tt>{{dat.name}}</tt></h3>
 
                         <!--<div class="carousel-caption" style="margin: 350px 80px;"></div>-->
