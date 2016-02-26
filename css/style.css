@@ -49,8 +49,13 @@ input[type=text] {
 }
 
 .description {
-    margin-left: 2%;
-    font-size: medium;
+    text-align: center;
+    font-size: 25px;
+}
+
+.descriptionSmall {
+    text-align: center;
+    font-size: 18px;
 }
 
 .thumbHeight {
@@ -58,7 +63,8 @@ input[type=text] {
 }
 
 .featuredDiv {
-    margin-top: 1%;
+    margin: 0 auto;
+    width: 52vw;
     color: #DCE0E6;
     background: #567EBB;
 }
@@ -87,10 +93,6 @@ input[type=text] {
 
 .whiteFont {
     color: #DCE0E6;
-}
-
-.featuredDescription {
-    margin-top: 1%
 }
 
 .indi {
@@ -165,6 +167,10 @@ input[type=text] {
     color: #DCE0E6;
 }
 
+.noUnderline:hover {
+    text-decoration: none;
+}
+
 .magicTitle {
     color: #567EBB;
     background: -webkit-linear-gradient(92deg,#2B4C7E,#567EBB,#DCE0E6);
@@ -182,4 +188,10 @@ input[type=text] {
         -webkit-filter: hue-rotate(-360deg);
     }
 }
-.carImage{margin-bottom: 50%}
+.carImage {
+    margin-bottom: 50%;
+}
+
+.carousel-caption {
+    color: #DCE0E6;
+}
