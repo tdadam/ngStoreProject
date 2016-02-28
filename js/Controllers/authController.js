@@ -49,7 +49,7 @@
                     .then(function (user) {
                         // create a user profile in our data store
                         //var ref = fbutil.ref('users', user.uid);
-                        var ref = fbutil.ref('use.rs', user.uid);
+                        var ref = fbutil.ref('users', user.uid);
                         return fbutil.handler(function (cb) {
                             ref.set({email: email, name: name || firstPartOfEmail(email) }, cb);
                         });
