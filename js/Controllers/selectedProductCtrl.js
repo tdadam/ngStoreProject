@@ -6,9 +6,9 @@
     //apiCtrl.$inject = ['homeService'];
     //function apiCtrl(homeService) {
 
-    selectCtrl.$inject = ['$http', '$state', '$localStorage', 'homeService', 'cartService'];
+    selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService'];
     // list everything
-    function selectCtrl($http, $state, $localStorage, homeService, cartService) {
+    function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService) {
         var se = this;
 
         se.addToCart = addToCart;
@@ -22,6 +22,13 @@
         se.search = homeService.storage.search;
         se.selected = homeService.selected;
 
+        var profile = '';
+
+        (function(){
+            if ($rootScope.loggedIn){
+                profile = $firebaseObject(fbutil.ref('users', user.uid));
+            }
+        }());
 
         se.back = function () {
             $state.go("SearchResult", {searchQuery: homeService.storage.search});
@@ -34,13 +41,14 @@
             var img = item.thumbnailImage;
             var price = item.salePrice;
             var itemID = item.itemId;
-            //var user = Auth.uid;
+            var user = profile.$id;
 
             var newItem = {
                 name: name,
                 image: img,
                 price: price,
-                Id: itemID
+                Id: itemID,
+                user: user
             };
 
             cartService.addToCart(newItem);

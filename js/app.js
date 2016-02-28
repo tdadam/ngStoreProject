@@ -53,8 +53,12 @@
                     .state("select", {
                         url: "/select",
                         templateUrl: "templates/selectedProduct.html",
-                        controller: "selectCtrl as se"
-
+                        controller: "selectCtrl as se",
+                        resolve: {
+                            user: ['authSetup', function (authSetup) {
+                                return authSetup.$waitForAuth();
+                            }]
+                        }
                     })
                     .state("contact", {
                         url: "/contact",
