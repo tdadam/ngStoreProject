@@ -1,47 +1,53 @@
 <div>
     <div>
         <div class="centered alert titleDiv">
-            <h1 class="title" ui-sref="home"><i class="fa fa-shopping-bag largerBag magicTitle"></i> Super-Duper Megastore</h1>
+            <h1 class="title" ui-sref="home"><i class="fa fa-shopping-bag largerBag magicTitle"></i> Super-Duper
+                Megastore</h1>
             <div class="row">
                 <div class="col-sm-6 left">
                     <button class="btn" ng-click="se.back()"><i class="fa fa-arrow-left fa-lg"></i> Go Back</button>
                 </div>
                 <div class="col-sm-6 right">
                     <input placeholder="Search" type="text" width="200" name="newSearch" ng-model="se.newSearchQuery">
-                    <button class="btn searchBtn" id="searchBtn" ng-click="se.newSearch()"><i class="fa fa-search largeIcon magicTitle"></i> Search Our Products</button>
+                    <button class="btn searchBtn" id="searchBtn" ng-click="se.newSearch()"><i
+                            class="fa fa-search largeIcon magicTitle"></i> Search Our Products
+                    </button>
                 </div>
             </div>
         </div>
-    <div class="alert resultsDiv">
-        <div class="alert resultsDiv">
-            <h2 class="featuredDiv">You Clicked On:</h2>
+        <div>
+            <div class="alert resultsDiv">
+                <div>
+                    <div class="row">
+                        <div class="col-sm-6 centered">
 
-            <div>
-                <div class="row">
-                    <div class="col-sm-6 centered">
+                            <h3><tt>{{se.selected.name}}</tt></h3>
+                            <img class="imgBorder" ng-src="{{se.selected.largeImage}}"/><br>
+                        </div>
 
-                        <h3><tt>{{se.selected.name}}</tt></h3>
-                        <img class="imgBorder" ng-src="{{se.selected.largeImage}}"/><br>
-                    </div>
-
-                    <div class="col-sm-6">
-
-                        <!--tyler, I know that I should of created a class and added a margin-top, but that will be your job since your doing styling-->
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <button class="btn btn-success" ng-show="loggedIn" ng-click="se.addToCart(se.selected)"><i class="fa fa-cart-plus fa-lg"></i> Add to Cart</button><br><br>
-                        <tt><span class="whiteFont">Item Description:</span> {{se.selected.shortDescription}}</tt><br>
-                        <tt><span class="whiteFont">Item id:</span> {{se.selected.itemId}}</tt><br>
-                        <tt><span class="whiteFont">Our Price:</span> {{se.selected.salePrice | currency}}</tt><br>
-                        <tt><span class="whiteFont">MSRP:</span> {{se.selected.msrp | currency}}</tt><br>
-                        <tt><span class="whiteFont">Shipping:</span> {{se.selected.standardShipRate | currency}}</tt><br>
-                        <img ng-src="{{se.selected.customerRatingImage}}"/><br>
+                        <div class="col-sm-6" style="margin-top: 240px;">
+                            <!--tyler, I know that I should of created a class and added a margin-top, but that will be your job since your doing styling-->
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <button class="btn btn-success" ng-show="loggedIn" ng-click="se.addToCart(se.selected)"><i
+                                    class="fa fa-cart-plus fa-lg"></i> Add to Cart
+                            </button>
+                            <br><br>
+                            <span class="whiteFont">Item Description: </span><tt
+                                style="width: 530px; white-space: pre-wrap; word-wrap: break-word; word-break: break-all;">{{se.selected.shortDescription}}</tt><br>
+                            <tt><span class="whiteFont">Item id:</span> {{se.selected.itemId}}</tt><br>
+                            <tt><span class="whiteFont">Our Price:</span> {{se.selected.salePrice | currency}}</tt><br>
+                            <tt><span class="whiteFont">MSRP:</span> {{se.selected.msrp | currency}}</tt><br>
+                            <tt><span class="whiteFont">Shipping:</span> {{se.selected.standardShipRate |
+                                currency}}</tt><br>
+                            <img ng-src="{{se.selected.customerRatingImage}}"/><br>
+                        </div>
                     </div>
                 </div>
             </div>
