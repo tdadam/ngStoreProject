@@ -13,7 +13,7 @@
             "firebase.utils",
             "authSetup",
             "cartController",
-            "cartFactory",
+            "cartService",
             "accountController",
             "select",
             "rating-widget"
@@ -53,8 +53,12 @@
                     .state("select", {
                         url: "/select",
                         templateUrl: "templates/selectedProduct.html",
-                        controller: "selectCtrl as se"
-
+                        controller: "selectCtrl as se",
+                        resolve: {
+                            user: ['authSetup', function (authSetup) {
+                                return authSetup.$waitForAuth();
+                            }]
+                        }
                     })
                     .state("contact", {
                         url: "/contact",
@@ -68,7 +72,12 @@
                     .state("cart", {
                         url: "/cart",
                         templateUrl: "templates/cart.html",
-                        controller: "cartController as cartC"
+                        controller: "cartController as cartC",
+                        resolve: {
+                            user: ['authSetup', function (authSetup) {
+                                return authSetup.$waitForAuth();
+                            }]
+                        }
                     })
                     .state("account", {
                         url: "/account",
