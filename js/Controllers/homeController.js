@@ -37,7 +37,7 @@
         };
 
         $('.carousel').carousel({
-            interval: 3500
+            interval: 4000
         });
 
         hc.myFunc= function (keyEvent,search) {

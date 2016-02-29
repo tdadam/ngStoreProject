@@ -4,9 +4,9 @@
    angular.module('authController', [])
        .controller('authController', authController);
 
-    authController.$inject = ['$scope', 'authSetup', '$localStorage', '$timeout', '$location'];
+    authController.$inject = ['$scope', 'authSetup', '$localStorage', '$timeout', '$location', 'fbutil', '$firebaseObject'];
 
-    function authController($scope, authSetup, $localStorage, $timeout, $location) {
+    function authController($scope, authSetup, $localStorage, $timeout, $location, fbutil, $firebaseObject) {
 
         var authC = this;
         var url = 'https://store-project.firebaseio.com';
@@ -36,7 +36,7 @@
 
         $scope.createAccount = function () {
             $scope.err = null;
-            if (assertValidAccountProps()) {
+            if ( assertValidAccountProps() ) {
                 var email = $scope.email;
                 var pass = $scope.pass;
                 var name = $scope.firstName + ' ' + $scope.lastName;
@@ -48,6 +48,7 @@
                     })
                     .then(function (user) {
                         // create a user profile in our data store
+                        //var ref = fbutil.ref('users', user.uid);
                         var ref = fbutil.ref('users', user.uid);
                         return fbutil.handler(function (cb) {
                             ref.set({email: email, name: name || firstPartOfEmail(email) }, cb);
@@ -62,9 +63,34 @@
             }
         };
 
-        $scope.addUser = function () {
+        function assertValidAccountProps() {
+            if( !$scope.email ) {
+                $scope.err = 'Please enter an email address';
+            }
+            else if( !$scope.pass || !$scope.confirm ) {
+                $scope.err = 'Please enter a password';
+            }
+            else if( $scope.createMode && $scope.pass !== $scope.confirm ) {
+                $scope.err = 'Passwords do not match';
+            }
+            return !$scope.err;
+        }
 
-        };
+        function errMessage(err) {
+            return angular.isObject(err) && err.code? err.code : err + '';
+        }
+
+        function firstPartOfEmail(email) {
+            return ucfirst(email.substr(0, email.indexOf('@'))||'');
+        }
+
+        function ucfirst (str) {
+            // inspired by: http://kevin.vanzonneveld.net
+            str += '';
+            var f = str.charAt(0).toUpperCase();
+            return f + str.substr(1);
+        }
+
         var ref = new Firebase(url);
         function facebookLogin() {
             ref.authWithOAuthPopup('facebook', function (error, authData) {

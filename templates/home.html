@@ -1,49 +1,60 @@
 <div>
     <div class="centered alert titleDiv">
-        <h1><i class="fa fa-shopping-bag magicTitle"></i> Super-Duper Megastore</h1>
-
-        <div class="searchBar">
-            <input placeholder="Search" type="text" width="200" name="queryInput" ng-model="hc.searchQuery"  ng-keypress="hc.myFunc($event, hc.searchQuery)">
+        <h1><i class="fa fa-shopping-bag magicTitle largerBag"></i> Super-Duper Megastore</h1>
+        <div class="searchBar right">
+            <input placeholder="Search" type="text" width="200" name="queryInput" ng-model="hc.searchQuery"
+                   ng-keypress="hc.myFunc($event, hc.searchQuery)">
             <button class="btn searchBtn" id="searchBtn" ng-click="hc.search()"><i
-                    class="fa fa-search fa-lg whiteFont"></i> Search Our Products
+                    class="fa fa-search magicTitle largeIcon"></i> Search Our Products
             </button>
             <br>
         </div>
     </div>
-    <div class="alert alert-info featuredDiv">
-        <h2 class="centered featured">Featured:</h2>
+    <div>
+        <div class="alert featuredDiv" style="margin: 2% auto">
+            <h2 class="centered featured">Featured:</h2>
 
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators" style="display: inline-block">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item centered" ng-class="{active:!$index}"
+                         ng-repeat=" dat in hc.carouselDat | limitTo:4" ng-click="hc.selectedItem(dat)"
+                         ui-sref="select">
 
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="item centered" ng-class="{active:!$index}"
-                     ng-repeat=" dat in hc.carouselDat | limitTo:4" ng-click="hc.selectedItem(dat)" ui-sref="select">
-                    <h3 class="featureName"><tt>{{dat.name}}</tt></h3>
-                    <img class="carImage" src="{{dat.largeImage}}">
+                        <!--<div class="carousel-caption" style="margin: 350px 80px;"></div>-->
 
-                    <h2>{{dat.salePrice | currency}}</span></h2><br>
+                        <img class="carImage" src="{{dat.largeImage}}">
+                        <div class="carousel-caption">
+                            <h3 class="whiteFont" style="margin: 0 80px 325px; background: rgba(255, 255, 255, 0.6);">
+                                <tt>{{dat.name}}</tt></h3>
+                            <h2 class="featureName" style="background: rgba(255, 255, 255, 0.6); margin: 0 80px 0">Our
+                                Low Price: {{dat.salePrice | currency}}</h2>
+                        </div>
+                        <br>
+                    </div>
                 </div>
+                <!-- Left and right controls -->
+                <p class="centered">
+                    <a class="left linkStyle noUnderline" href="#myCarousel" role="button" data-slide="prev">
+                        <!--<span class="fa fa-2x">Prev <i class="fa fa-chevron-circle-left"></i></span>-->
+                        <i class="fa fa-chevron-circle-left fa-2x"> Prev</i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <span style="margin: 50px"></span>
+                    <a class="right linkStyle noUnderline" href="#myCarousel" role="button" data-slide="next">
+                        <span class="fa fa-2x">Next <i class="fa fa-chevron-circle-right"></i></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </p>
             </div>
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-
         </div>
     </div>
-
     <!--<div style="text-align: center;">-->
     <!--<div class="elevator-button" style="display: inline-block; cursor: pointer;">-->
     <!--<svg style="display: block; margin: 0 auto; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" height="50px" width="50px">-->
@@ -53,12 +64,15 @@
     <!--<b style="margin: 0 auto">Back to Top</b>-->
     <!--</div>-->
     <!--</div>-->
-    <!--<script src="../libs/elevatorJS/elevator.js"></script>-->
-    <!--<script type="text/javascript">-->
-    <!--$(document).ready(function() {-->
-    <!--$('.carousel').carousel({-->
-    <!--interval: 5000-->
-    <!--})-->
-    <!--});-->
-    <!--</script>-->
+    <!--&lt;!&ndash;<script src="../libs/elevatorJS/elevator.js"></script>&ndash;&gt;-->
+    <div class="alert featuredDiv">
+        <h2 class="centered">Welcome to Super-Duper MegaStore!</h2>
+        <p class="featureName description">Super-Duper Megastore is your destination for the most super-duper deals</p>
+        <p class="featureName descriptionSmall">We hope you have an enjoyable experience with our site. We appreciate your
+            feedback so please visit</p>
+        <p class="featureName descriptionSmall">the <a class="linkStyle" ui-sref="contact">contact page</a> if you have something to say about the site, or want some
+            questions answered.</p>
+        <p class="featureName descriptionSmall">If you want to find a product, use the search at the top of the page to find
+            whatever you may be looking for.</p>
+    </div>
 </div>

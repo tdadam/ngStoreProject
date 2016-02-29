@@ -1,5 +1,5 @@
 body {
-    background: #DCE0E6;
+    background: #cdd1de;
     font-family: 'Dosis', sans-serif;
 }
 
@@ -16,7 +16,7 @@ span.ng-binding {
     font-family: 'Dosis', sans-serif;
 }
 
-.lowprice {
+.lrgfont {
     font-size: large;
 }
 
@@ -36,20 +36,26 @@ span.ng-binding {
 .page-header {
     text-align: center;
 }
-.searchBar{
-    text-align: right;
-}
 input[type=text] {
     width: 300px;
 }
 
 .centered {
-    text-align: center
+    text-align: center;
+}
+
+.controls {
+    text-align: center;
 }
 
 .description {
-    margin-left: 2%;
-    font-size: medium;
+    text-align: center;
+    font-size: 25px;
+}
+
+.descriptionSmall {
+    text-align: center;
+    font-size: 18px;
 }
 
 .thumbHeight {
@@ -57,7 +63,8 @@ input[type=text] {
 }
 
 .featuredDiv {
-    margin-top: 1%;
+    margin: 0 auto;
+    width: 52vw;
     color: #DCE0E6;
     background: #567EBB;
 }
@@ -67,16 +74,25 @@ input[type=text] {
     color: #567EBB;
 }
 
+.title {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.largerBag {
+    font-size: 50px;
+}
+
+.largeIcon {
+    font-size: 20px;
+}
+
 .redFont {
     color: red
 }
 
 .whiteFont {
     color: #DCE0E6;
-}
-
-.featuredDescription {
-    margin-top: 1%
 }
 
 .indi {
@@ -92,17 +108,28 @@ input[type=text] {
 }
 
 .searchBtn {
-    background: #567EBB;
-    color: #2B4C7E;
+    background: #DCE0E6;
+    color: #567EBB;
+}
+
+.backBtn {
+    background: #DCE0E6;
+    color: #567EBB;
 }
 
 .right {
     text-align: right
 }
 
+.left {
+    text-align: left;
+}
+
 .resultsDiv {
     background: #567EBB;
+    margin: 2% auto;
     padding: 25px;
+    width: 60vw;
 }
 
 .accentBlueBG {
@@ -142,12 +169,16 @@ input[type=text] {
     color: #DCE0E6;
 }
 
+.noUnderline:hover {
+    text-decoration: none;
+}
+
 .magicTitle {
     color: #567EBB;
-    background: -webkit-linear-gradient(92deg,#567EBB,#DCE0E6);
+    background: -webkit-linear-gradient(120deg,#2B4C7E,#567EBB,#DCE0E6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    -webkit-animation: hue 30s infinite linear;
+    -webkit-animation: hue 20s infinite linear;
 }
 
 @-webkit-keyframes hue {
@@ -159,7 +190,40 @@ input[type=text] {
         -webkit-filter: hue-rotate(-360deg);
     }
 }
-.carImage{margin-bottom: 50%}
-.carousel-indicators {
-    bottom:-10px;
+.carImage {
+    margin-bottom: 50%;
+}
+
+.carousel-caption {
+    color: #DCE0E6;
+}
+
+.label, label.inline {
+    display: inline-block;
+    width: 125px;
+}
+
+.label2, label.inline {
+    display: inline-block;
+    width: 115px;
+}
+
+.logoutDiv {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.logoutBtn {
+    background: #1F1F20;
+    color: #DCE0E6;
+}
+
+.logoutBtn:hover {
+    background: #DCE0E6;
+    color: #1F1F20;
+}
+
+.profileBtns:hover {
+    background: #1F1F20;
+    color: #DCE0E6;
 }
