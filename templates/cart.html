@@ -6,11 +6,11 @@
         <div class="alert featuredDiv featureName">
             <h2 class="whiteFont" style="margin-bottom: 40px">{{profile.name}}'s Cart</h2>
             <div class="centered">
-                <span class="description">You currently have __ items in your cart.</span>
+                <span class="description">You currently have {{cartC.items.length}} items in your cart.</span>
             </div>
         </div>
     </div>
-    <div ng-repeat="item in cartC.itemsInCart">
+    <div ng-repeat="item in cartC.items">
         {{item.salePrice}}
     </div>
 </div>
