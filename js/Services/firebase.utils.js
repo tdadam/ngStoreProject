@@ -60,7 +60,4 @@ angular.module('firebase.utils', ['firebase'])
         }
         return ref;
       }
-       function fbAuthRef (){
-
-       }
    }]);

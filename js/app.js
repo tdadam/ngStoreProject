@@ -94,8 +94,8 @@
 
                 // if none of the above states are matched, use this as the fallback
                 $urlRouterProvider.otherwise("/home");
-
             }])
+
         .run(['$rootScope', 'authSetup', function ($rootScope, authSetup) {
             // track status of authentication
             authSetup.$onAuth(function (user) {
