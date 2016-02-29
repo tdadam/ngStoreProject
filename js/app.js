@@ -72,7 +72,12 @@
                     .state("cart", {
                         url: "/cart",
                         templateUrl: "templates/cart.html",
-                        controller: "cartController as cartC"
+                        controller: "cartController as cartC",
+                        resolve: {
+                            user: ['authSetup', function (authSetup) {
+                                return authSetup.$waitForAuth();
+                            }]
+                        }
                     })
                     .state("account", {
                         url: "/account",
