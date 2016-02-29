@@ -4,7 +4,7 @@
     angular.module('homeService', [])
         .service('homeService', homeService);
 
-    homeService.$inject = ['$state', '$sessionStorage'];
+    homeService.$inject = ['$state','$sessionStorage'];
 
     function homeService($state, $sessionStorage) {
 
@@ -21,7 +21,8 @@
         }
 
         function select(name){
-            hs.selected=name;
+            $sessionStorage.object=name;
+            hs.selected=$sessionStorage.object;
         }
 
     }
