@@ -6,21 +6,27 @@
     //apiCtrl.$inject = ['homeService'];
     //function apiCtrl(homeService) {
 
-    selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService'];
+    selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService','$sessionStorage','$localStorage'];
     // list everything
-    function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService) {
+    function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService, $sessionStorage, $localStorage) {
         var se = this;
+        $('#zoom_01').elevateZoom({
+            zoomType: "inner",
+            cursor: "crosshair",
+            zoomWindowFadeIn: 500,
+            zoomWindowFadeOut: 750
+        });
 
         se.addToCart = addToCart;
 
         se.newSearch = function () {
 
             homeService.addSearch(se.newSearchQuery);
-            //console.log(se.newSearchQuery);
-            $state.go("SearchResult", {searchQuery: homeService.storage.search});
+            $localStorage.searchQuery=se.newSearchQuery;
+            $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
         };
         se.search = homeService.storage.search;
-        se.selected = homeService.selected;
+        se.selected=$sessionStorage.object;
 
         var profile = '';
 
@@ -31,8 +37,7 @@
         }());
 
         se.back = function () {
-            $state.go("SearchResult", {searchQuery: homeService.storage.search});
-            console.log(homeService.storage.search);
+            $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
         };
 
         function addToCart(item) {
