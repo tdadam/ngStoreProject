@@ -16,7 +16,7 @@ span.ng-binding {
     font-family: 'Dosis', sans-serif;
 }
 
-.lowprice {
+.lrgfont {
     font-size: large;
 }
 
@@ -195,5 +195,35 @@ input[type=text] {
 }
 
 .carousel-caption {
+    color: #DCE0E6;
+}
+
+.label, label.inline {
+    display: inline-block;
+    width: 125px;
+}
+
+.label2, label.inline {
+    display: inline-block;
+    width: 115px;
+}
+
+.logoutDiv {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.logoutBtn {
+    background: #1F1F20;
+    color: #DCE0E6;
+}
+
+.logoutBtn:hover {
+    background: #DCE0E6;
+    color: #1F1F20;
+}
+
+.profileBtns:hover {
+    background: #1F1F20;
     color: #DCE0E6;
 }

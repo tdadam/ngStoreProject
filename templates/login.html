@@ -2,36 +2,45 @@
     <div class="centered alert titleDiv">
         <h1 class="title" ui-sref="home"><i class="fa fa-shopping-bag largerBag magicTitle"></i> Super-Duper Megastore</h1>
     </div>
-    <div>
-        <div class="jumbotron">
-            <h1 class="centered">Login Here</h1>
+    <div class="alert featuredDiv featureName">
+        <div>
+            <h2 class="whiteFont" style="margin-bottom: 40px">Login / Register</h2>
         </div>
-    </div>
     <form>
-        <label>
-            <span>email</span>
-            <input type="text" ng-model="email"/>
-        </label>
-        <label>
-            <span>password</span>
-            <input type="password" ng-model="pass"/>
-        </label>
-        <label ng-cloak ng-show="createMode">
-            <span>confirm pass</span>
-            <input type="password" ng-model="confirm"/>
-        </label>
-        <label ng-cloak ng-show="createMode">
-            <span>First Name:</span>
-            <input type="text" ng-model="firstName"/>
-        </label>
-        <label ng-cloak ng-show="createMode">
-            <span>Last Name:</span>
-            <input type="text" ng-model="lastName"/>
-        </label>
-        <button ng-click="login(email, pass)" ng-hide="createMode">Log In</button>
-        <button ng-click="createMode = true" ng-hide="createMode">Register</button>
-        <button ng-cloak ng-show="createMode" ng-click="createAccount()">Create Account</button>
-        <button ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
+        <div>
+            <label>
+                <span class="label featureName lrgfont">Email: </span>
+                <input type="text" ng-model="email"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <span class="label featureName lrgfont">Password: </span>
+                <input type="password" ng-model="pass"/>
+            </label>
+        </div>
+        <div>
+            <label ng-cloak ng-show="createMode">
+                <span class="label featureName lrgfont">Confirm Pass: </span>
+                <input type="password" ng-model="confirm"/>
+            </label>
+        </div>
+        <div>
+            <label ng-cloak ng-show="createMode">
+                <span class="label featureName lrgfont">First Name:</span>
+                <input type="text" ng-model="firstName"/>
+            </label>
+        </div>
+        <div>
+            <label ng-cloak ng-show="createMode">
+                <span class="label featureName lrgfont">Last Name:</span>
+                <input type="text" ng-model="lastName"/>
+            </label>
+        </div>
+        <button class="btn profileBtns" ng-click="login(email, pass)" ng-hide="createMode">Log In</button>
+        <button class="btn profileBtns" ng-click="createMode = true" ng-hide="createMode">Register</button>
+        <button class="btn profileBtns" ng-cloak ng-show="createMode" ng-click="createAccount()">Create Account</button>
+        <button class="btn profileBtns" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
         <p ng-show="err" class="error">{{err}}</p>
     </form>
     <!--<div>-->
@@ -42,4 +51,5 @@
     <!--<div>{{ authC.fbData.facebook.displayName }}</div>-->
     <!--</div>-->
     <div>{{profile.email}}</div>
+    </div>
 </div>
