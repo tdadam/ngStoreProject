@@ -98,6 +98,6 @@
             // track status of authentication
             authSetup.$onAuth(function (user) {
                 $rootScope.loggedIn = !!user;
-            })
-        }])
+            });
+        }]);
 }());
