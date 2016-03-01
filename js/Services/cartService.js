@@ -50,12 +50,10 @@ console.log(cS.itemsInCart);
                             cS.items.push(cS.itemsInCart[i]);
                         }
                     }
-                    console.log(cS.items);
-                    $timeout(function(){});
+                    console.log(cS.itemsInCart);
                 });
 
             }
         }
-        cS.checkUser();
     }
 }());
