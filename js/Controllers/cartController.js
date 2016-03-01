@@ -18,13 +18,12 @@
                 var unbind;
                 profile = $firebaseObject(fbutil.ref('users', user.uid));
                 profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
-
             }
             cartService.checkUser();
         }
 
         if(!$rootScope.loggedIn){
-            $state.go("login")
+            $state.go("login");
         }
 
         setProfile();
