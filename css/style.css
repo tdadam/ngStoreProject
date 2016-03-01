@@ -232,6 +232,10 @@ input[type=text] {
     margin-top:8%
 }
 
-.zoomContainer {
-    cursor: crosshair;
+.searchResult {
+    cursor: pointer;
+}
+
+.searchResult:hover {
+
 }

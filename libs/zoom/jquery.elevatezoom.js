@@ -128,7 +128,7 @@ if ( typeof Object.create !== 'function' ) {
 				//CrossFade Wrappe
 				if(self.options.imageCrossfade){
 					self.zoomWrap = self.$elem.wrap('<div style="height:'+self.nzHeight+'px;width:'+self.nzWidth+'px;" class="zoomWrapper" />');        
-					self.$elem.css('position', 'absolute'); 
+					self.$elem.css('position', 'absolute');
 				}
 
 				self.zoomLock = 1;
@@ -147,7 +147,7 @@ if ( typeof Object.create !== 'function' ) {
 				//if window zoom        
 				if(self.options.zoomType == "window") {
 					self.zoomWindowStyle = "overflow: hidden;"
-						+ "background-position: 0px 0px;text-align:center;"  
+						+ "background-position: 0px 0px;text-align:center;"
 						+ "background-color: " + String(self.options.zoomWindowBgColour)            
 						+ ";width: " + String(self.options.zoomWindowWidth) + "px;"
 						+ "height: " + String(self.options.zoomWindowHeight)
