@@ -4,22 +4,13 @@
     angular.module('cartController', [])
         .controller('cartController', cartController);
 
-    cartController.$inject = ['$scope', '$rootScope', '$state', 'user', 'fbutil', 'cartService', '$firebaseObject','$localStorage'];
+    cartController.$inject = ['$scope', '$rootScope', '$state', 'user', 'fbutil', 'cartService', '$firebaseObject'];
 
-    function cartController ($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject,$localStorage) {
-    var cC = this;
+    function cartController ($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject) {
+        var cC = this;
 
-        cC.loading = loading;
-        cC.items = [];
-        function loading (){
-            cartService.checkUser();
-            cC.items = cartService.items;
-        }
-
-        //cC.items = cartService.items;
-        //cC.items=$localStorage.object;
-        //console.log(cC.items);
-        cC.setProfile = setProfile;
+        cC.items = cartService.items;
+        cC.checkUser = checkUser;
         var profile = '';
 
         function setProfile() {
@@ -34,6 +25,11 @@
             $state.go("login");
         }
 
+        function checkUser() {
+            cartService.checkUser();
+        }
+        checkUser();
         setProfile();
+        console.log(cC.items[0]);
     }
 }());
