@@ -4,21 +4,12 @@
     angular.module('cartController', [])
         .controller('cartController', cartController);
 
-    cartController.$inject = ['$scope', '$rootScope', '$state', 'user', 'fbutil', 'cartService', '$firebaseObject','$localStorage'];
+    cartController.$inject = ['$scope', '$rootScope', '$state', 'user', 'fbutil', 'cartService', '$firebaseObject'];
 
-    function cartController ($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject,$localStorage) {
+    function cartController ($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject) {
     var cC = this;
 
-        cC.loading = loading;
-        cC.items = [];
-        function loading (){
-            cartService.checkUser();
-            cC.items = cartService.items;
-        }
-
-        //cC.items = cartService.items;
-        //cC.items=$localStorage.object;
-        //console.log(cC.items);
+        cC.items = cartService.items;
         cC.setProfile = setProfile;
         var profile = '';
 
@@ -29,6 +20,7 @@
                 profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
 
             }
+            cartService.checkUser();
         }
 
         if(!$rootScope.loggedIn){
