@@ -36,9 +36,11 @@
 
                         }
                     }
+                    console.log(cS.itemsInCart);
                 });
 
             }
         }
+
     }
 }());
