@@ -6,7 +6,7 @@
                 <button class="btn backBtn" ui-sref="home"><i class="fa fa-arrow-left fa-lg"></i> Go Back</button>
             </div>
             <div class="col-sm-6 right">
-                <input placeholder="Search" type="text" width="200" name="newSearchInput" ng-model="sc.newSearch">
+                <input placeholder="Search" type="text" width="200"  name="newSearchInput" ng-model="sc.newSearch" ng-keypress="sc.clickEnter($event, sc.newSearch)">
                 <button class="btn searchBtn" id="searchBtn" ng-click="sc.search()"><i class="fa fa-search largeIcon magicTitle"></i>
                     Search Our Products
                 </button>
