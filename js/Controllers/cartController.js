@@ -35,7 +35,5 @@
         }
 
         setProfile();
-
-        console.log(cC.items);
     }
 }());

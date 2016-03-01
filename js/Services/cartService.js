@@ -47,8 +47,7 @@ console.log(cS.itemsInCart);
                     cS.items = [];
                     for (var i = 0; i < cS.cartItems.length; i++) {
                         if (cS.cartItems[i].user === profile.$id) {
-
-                            cS.items.push(cS.cartItems[i]);
+                            cS.items.push(cS.itemsInCart[i]);
                         }
                     }
                     console.log(cS.items);
