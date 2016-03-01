@@ -30,6 +30,6 @@
         }
         checkUser();
         setProfile();
-console.log(cC.items);
+console.log(cC.items[0]);
     }
 }());

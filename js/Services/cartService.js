@@ -33,6 +33,7 @@
                         if (cS.itemsInCart[i].user === profile.$id) {
 
                             cS.items.push(cS.itemsInCart[i]);
+
                         }
                     }
                 });
