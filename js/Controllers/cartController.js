@@ -29,6 +29,7 @@
             cartService.checkUser();
         }
         checkUser();
+        setProfile();
 console.log(cC.items);
     }
 }());
