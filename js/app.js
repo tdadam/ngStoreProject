@@ -16,7 +16,8 @@
             "cartService",
             "accountController",
             "select",
-            "rating-widget"
+            "rating-widget",
+            "toaster"
     ])
 
         .config(["$stateProvider", "$urlRouterProvider",

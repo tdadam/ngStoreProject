@@ -4,9 +4,9 @@
     angular.module('cartController', [])
         .controller('cartController', cartController);
 
-    cartController.$inject = ['$scope', '$rootScope', '$state', 'user', 'fbutil', 'cartService', '$firebaseObject','$localStorage','homeService','$sessionStorage'];
+    cartController.$inject = ['$scope', '$rootScope', '$state', 'user', 'fbutil', 'cartService', '$firebaseObject','$localStorage','homeService','$sessionStorage','$http'];
 
-    function cartController($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject,$localStorage,homeService,$sessionStorage) {
+    function cartController($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject,$localStorage,homeService,$sessionStorage,$http) {
         var cC = this;
 
 
@@ -14,6 +14,21 @@
         cC.loadItems = loadItems;
         cC.selectedItem=selectedItem;
         cC.profile = '';
+
+        cC.clickEnter= function (keyEvent, search) {
+            if (keyEvent.which=== 13){
+                homeService.addSearch(search);
+                $localStorage.searchQuery=search;
+                $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
+
+            }
+        };
+
+        cC.search = function() {
+            homeService.addSearch(cC.newSearch);
+            $localStorage.searchQuery=cC.newSearch;
+            $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
+        };
 
 
         function setProfile() {
@@ -31,6 +46,7 @@
             var profile = cC.profile;
             cC.items = cartService.loadItems(profile);
         }
+
 
         if (!$rootScope.loggedIn) {
             $state.go("login");

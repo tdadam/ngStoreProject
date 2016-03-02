@@ -51,10 +51,10 @@
 
 
 
-    selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService', '$sessionStorage', '$localStorage'];
+    selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService', '$sessionStorage', '$localStorage','toaster'];
 
     // list everything
-    function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService, $sessionStorage, $localStorage) {
+    function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService, $sessionStorage, $localStorage, toaster) {
         var se = this;
         se.clickEnter = function (keyEvent, search) {
             if (keyEvent.which === 13) {
@@ -94,6 +94,7 @@
         };
 
         function addToCart(item) {
+            toaster.pop('success', "Item Added to Cart:", item.name);
             //
             //var name = item.name;
             //var img = item.thumbnailImage;
