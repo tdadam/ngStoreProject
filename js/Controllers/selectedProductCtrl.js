@@ -3,7 +3,6 @@
 
     angular.module('select', [])
         .controller('selectCtrl', selectCtrl);
-
     //  .directive('ngElevateZoom', function() {
 
     //    return {
@@ -76,9 +75,6 @@
         se.search = homeService.storage.search;
 
         se.selected = $sessionStorage.object;
-        se.showS= function() {
-            console.log(se.selected);
-        };
 
         se.profile = '';
 
@@ -101,13 +97,6 @@
             //var price = item.salePrice;
             //var itemID = item.itemId;
             var profile = se.profile;
-
-            //var newItem = {
-            //    name: name,
-            //    image: img,
-            //    price: price,
-            //    Id: itemID
-            //};
             cartService.addToCart(item, profile);
         }
     }

@@ -4,9 +4,9 @@
     angular.module('cartController', [])
         .controller('cartController', cartController);
 
-    cartController.$inject = ['$scope', '$rootScope', '$state', 'user', 'fbutil', 'cartService', '$firebaseObject','$localStorage','homeService','$sessionStorage','$http'];
+    cartController.$inject = ['$scope', '$rootScope', '$state', 'user', 'fbutil', 'cartService', '$firebaseObject', '$timeout', '$localStorage', 'homeService', '$sessionStorage', '$http'];
 
-    function cartController($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject,$localStorage,homeService,$sessionStorage,$http) {
+    function cartController($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject, $timeout, $localStorage, homeService, $sessionStorage, $http) {
         var cC = this;
 
 
@@ -14,6 +14,9 @@
         cC.loadItems = loadItems;
         cC.selectedItem=selectedItem;
         cC.profile = '';
+        cC.total = 0;
+        cC.cartTotal = 0;
+        cC.items = [];
 
         cC.clickEnter= function (keyEvent, search) {
             if (keyEvent.which=== 13){
@@ -45,6 +48,10 @@
         function loadItems() {
             var profile = cC.profile;
             cC.items = cartService.loadItems(profile);
+
+            $timeout(function(){for (var i = 0; i < cC.items.length; i++) {
+                cC.cartTotal += cC.items[i].salePrice;
+            }}, 1500);
         }
 
 
