@@ -7,14 +7,22 @@
 
 
 
-    function SearchResultController(searchResult, $http, homeService, $localStorage) {
+    function SearchResultController($state, searchResult, $http, homeService, $localStorage) {
 
        var sc =this;
         sc.walData=searchResult.data;
-        sc.searchLim=12;
+        sc.searchLim=9;
 
-        sc.selectedItem= function (name,name2) {
+        sc.selectedItem= function (name) {
             homeService.addSelected(name);
+        };
+        sc.clickEnter= function (keyEvent, search) {
+            if (keyEvent.which=== 13){
+                homeService.addSearch(search);
+                $localStorage.searchQuery=search;
+                $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
+
+            }
         };
 
         sc.search = function() {
