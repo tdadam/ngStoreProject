@@ -4,7 +4,6 @@
     angular.module('select', [])
         .controller('selectCtrl', selectCtrl);
 
-
     selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService', '$sessionStorage', '$localStorage'];
 
     // list everything
@@ -28,6 +27,7 @@
             $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
         };
         se.search = homeService.storage.search;
+
         se.selected = $sessionStorage.object;
 
         se.profile = '';
@@ -44,19 +44,7 @@
         };
 
         function addToCart(item) {
-
-            //var name = item.name;
-            //var img = item.thumbnailImage;
-            //var price = item.salePrice;
-            //var itemID = item.itemId;
             var profile = se.profile;
-
-            //var newItem = {
-            //    name: name,
-            //    image: img,
-            //    price: price,
-            //    Id: itemID
-            //};
             cartService.addToCart(item, profile);
         }
     }
