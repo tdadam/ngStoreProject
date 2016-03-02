@@ -227,4 +227,15 @@ input[type=text] {
     background: #1F1F20;
     color: #DCE0E6;
 }
-.thumb{margin-top:8%}
+
+.thumb {
+    margin-top:8%
+}
+
+.searchResult {
+    cursor: pointer;
+}
+
+.searchResult:hover {
+
+}
