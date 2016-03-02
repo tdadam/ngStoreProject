@@ -11,6 +11,7 @@
 
         cC.items = cartService.items;
         cC.setProfile = setProfile;
+        cC.checkUser = checkUser;
         var profile = '';
 
         function setProfile() {
@@ -26,8 +27,11 @@
             $state.go("login");
         }
 
+        function checkUser() {
+            cartService.checkUser();
+        }
+        checkUser();
         setProfile();
-
-        console.log(cC.items);
+        console.log(cC.items[0]);
     }
 }());
