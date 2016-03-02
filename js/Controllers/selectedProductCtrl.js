@@ -4,31 +4,6 @@
     angular.module('select', [])
         .controller('selectCtrl', selectCtrl);
 
-    //  .directive('ngElevateZoom', function() {
-
-    //    return {
-    //        restrict: 'A',
-    //        link: function(scope, element, attrs) {
-    //            element.attr('data-zoom-image',attrs.zoomImage);
-    //            $(element).elevateZoom({
-    //                //zoomType: "inner",
-    //                //cursor: "crosshair",
-    //                //zoomWindowFadeIn: 800,
-    //                //zoomWindowFadeOut:950,
-    //                ////zoomWindowFadeIn: 500,
-    //                ////zoomWindowFadeOut: 750,
-    //                scrollZoom:true,
-    //                zoomType: "lens",
-
-    //                lensShape: "round",
-    //                lensSize: 160
-
-    //            }).css("height","400px");
-    //        }
-    //    };
-    //});
-
-
 
     selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService', '$sessionStorage', '$localStorage'];
 
@@ -54,9 +29,6 @@
         };
         se.search = homeService.storage.search;
         se.selected = $sessionStorage.object;
-        se.showS= function() {
-            console.log(se.selected);
-        };
 
         se.profile = '';
 
@@ -72,7 +44,7 @@
         };
 
         function addToCart(item) {
-            //
+
             //var name = item.name;
             //var img = item.thumbnailImage;
             //var price = item.salePrice;
