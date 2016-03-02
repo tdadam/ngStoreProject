@@ -1,4 +1,4 @@
-(function(){
+(function () {
     'use strict';
 
     angular.module('cartController', [])
@@ -6,30 +6,35 @@
 
     cartController.$inject = ['$scope', '$rootScope', '$state', 'user', 'fbutil', 'cartService', '$firebaseObject'];
 
-    function cartController ($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject) {
+    function cartController($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject) {
         var cC = this;
 
-        cC.items = cartService.items;
-        cC.checkUser = checkUser;
-        var profile = '';
+        cC.setProfile = setProfile;
+        cC.loadItems = loadItems;
+        cC.profile = '';
 
         function setProfile() {
-            if ($rootScope.loggedIn){
+            if ($rootScope.loggedIn) {
                 var unbind;
-                profile = $firebaseObject(fbutil.ref('users', user.uid));
-                profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
+                cC.profile = $firebaseObject(fbutil.ref('users', user.uid));
+                cC.profile.$bindTo($scope, 'profile').then(function (ub) {
+                    unbind = ub;
+                });
             }
+
         }
 
-        if(!$rootScope.loggedIn){
+        function loadItems() {
+            var profile = cC.profile;
+            cC.items = cartService.loadItems(profile);
+        }
+
+        if (!$rootScope.loggedIn) {
             $state.go("login");
         }
 
-        function checkUser() {
-            cartService.checkUser();
-        }
-        checkUser();
         setProfile();
-        console.log(cC.items[0]);
+        loadItems();
+
     }
 }());
