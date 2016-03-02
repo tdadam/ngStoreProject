@@ -54,9 +54,6 @@
         se.small_image = se.selected.largeImage;
         se.large_image = se.selected.largeImage;
 
-        console.log(se.selected);
-
-
         se.profile = '';
 
         (function () {
@@ -71,19 +68,19 @@
 
         function addToCart(item) {
 
-            var name = item.name;
-            var img = item.thumbnailImage;
-            var price = item.salePrice;
-            var itemID = item.itemId;
+            //var name = item.name;
+            //var img = item.thumbnailImage;
+            //var price = item.salePrice;
+            //var itemID = item.itemId;
             var profile = se.profile;
-
-            var newItem = {
-                name: name,
-                image: img,
-                price: price,
-                Id: itemID
-            };
-            cartService.addToCart(newItem, profile);
+            //
+            //var newItem = {
+            //    name: name,
+            //    image: img,
+            //    price: price,
+            //    Id: itemID
+            //};
+            cartService.addToCart(item, profile);
         }
     }
 }());
