@@ -6,7 +6,7 @@
                 <button class="btn backBtn" ui-sref="home"><i class="fa fa-arrow-left fa-lg"></i> Go Back</button>
             </div>
             <div class="col-sm-6 right">
-                <input placeholder="Search" type="text" width="200" name="newSearchInput" ng-model="sc.newSearch">
+                <input placeholder="Search" type="text" width="200"  name="newSearchInput" ng-model="sc.newSearch" ng-keypress="sc.clickEnter($event, sc.newSearch)">
                 <button class="btn searchBtn" id="searchBtn" ng-click="sc.search()"><i class="fa fa-search largeIcon magicTitle"></i>
                     Search Our Products
                 </button>
@@ -20,9 +20,9 @@
 
             <div class="centered row">
 
-                <div class="col-md-4" style="display: inline-block;" ng-repeat="data in sc.walData.items | limitTo: sc.searchLim" ng-click="sc.selectedItem(data, data.name)" ui-sref="select">
+                <div class="col-md-4" style="display: inline-block;" ng-repeat="data in sc.walData.items | limitTo: sc.searchLim">
                     <h3 style="white-space: nowrap; width: 100%; overflow: hidden; text-overflow: ellipsis;"><tt>{{data.name}}</tt></h3>
-                    <img ng-src="{{data.thumbnailImage}}"/><br>
+                    <img ng-src="{{data.thumbnailImage}}"  ng-click="sc.selectedItem(data, data.name)" ui-sref="select" class="searchResult"/><br>
                     <tt><span class="whiteFont">Item id:</span> {{data.itemId}}</tt><br>
                     <tt><span class="whiteFont">Our Price:</span> {{data.salePrice | currency}}</tt><br>
                     <img ng-src="{{data.customerRatingImage}}"/><br>

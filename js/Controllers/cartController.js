@@ -7,7 +7,7 @@
     cartController.$inject = ['$scope', '$rootScope', '$state', 'user', 'fbutil', 'cartService', '$firebaseObject'];
 
     function cartController ($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject) {
-    var cC = this;
+        var cC = this;
 
         cC.items = cartService.items;
         cC.checkUser = checkUser;
@@ -29,6 +29,7 @@
             cartService.checkUser();
         }
         checkUser();
-console.log(cC.items);
+        setProfile();
+        console.log(cC.items[0]);
     }
 }());

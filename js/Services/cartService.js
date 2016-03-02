@@ -24,20 +24,23 @@
             cS.items.push(item);
         }
 
-        function checkUser () {
-            if ($rootScope.loggedIn) {
-                var authSet = authSetup.$waitForAuth().then(function(a){
-                    profile = $firebaseObject(fbutil.ref('users', a.uid));
-                    cS.items = [];
-                    for (var i = 0; i < cS.itemsInCart.length; i++) {
-                        if (cS.itemsInCart[i].user === profile.$id) {
+    function checkUser () {
+                if ($rootScope.loggedIn) {
+                    var authSet = authSetup.$waitForAuth().then(function(a){
+                        profile = $firebaseObject(fbutil.ref('users', a.uid));
+                        cS.items = [];
+                        for (var i = 0; i < cS.itemsInCart.length; i++) {
+                            if (cS.itemsInCart[i].user === profile.$id) {
 
-                            cS.items.push(cS.itemsInCart[i]);
+                                cS.items.push(cS.itemsInCart[i]);
+
+                            }
                         }
-                    }
-                });
+                        console.log(cS.itemsInCart);
+                    });
 
+                }
             }
-        }
+
     }
 }());

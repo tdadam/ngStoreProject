@@ -8,7 +8,8 @@
                     <button class="btn" ng-click="se.back()"><i class="fa fa-arrow-left fa-lg"></i> Go Back</button>
                 </div>
                 <div class="col-sm-6 right">
-                    <input placeholder="Search" type="text" width="200" name="newSearch" ng-model="se.newSearchQuery">
+                    <input placeholder="Search" type="text" width="200" name="newSearch" ng-model="se.newSearchQuery"
+                           ng-keypress="se.clickEnter($event, se.newSearchQuery)" >
                     <button class="btn searchBtn" id="searchBtn" ng-click="se.newSearch()"><i
                             class="fa fa-search largeIcon magicTitle"></i> Search Our Products
                     </button>
@@ -22,23 +23,31 @@
                         <div class="col-sm-6 centered">
 
                             <h3><tt>{{se.selected.name}}</tt></h3>
-                            <img class="imgBorder" ng-src="{{se.selected.largeImage}}"/><br>
+                            <!--<img class="imgBorder" ng-src="{{se.selected.largeImage}}"/><br>-->
+                            <img ng-elevate-zoom ng-src="{{se.small_image}}" zoom-image="{{se.large_image}}"/>
                         </div>
 
-                        <div class="col-md-6" style="margin-top: 220px;">
-                            <button class="btn btn-success" ng-show="loggedIn" ng-click="se.addToCart(se.selected)"><i
-                                    class="fa fa-cart-plus fa-lg"></i> Add to Cart
-                            </button>
-                            <br><br>
-                            <span class="whiteFont">Item Description: </span><tt
-                                style="width: 530px; white-space: pre-wrap; word-wrap: break-word; word-break: normal;">{{se.selected.shortDescription}}</tt><br>
-                            <tt><span class="whiteFont">Item id:</span> {{se.selected.itemId}}</tt><br>
-                            <tt><span class="whiteFont">Our Price:</span> {{se.selected.salePrice | currency}}</tt><br>
-                            <tt><span class="whiteFont">MSRP:</span> {{se.selected.msrp | currency}}</tt><br>
-                            <tt><span class="whiteFont">Shipping:</span> {{se.selected.standardShipRate |
-                                currency}}</tt><br>
-                            <img ng-src="{{se.selected.customerRatingImage}}"/><br>
+                        <div class="col-md-6" style="margin-top: 4.5%;">
+                           <div class="col-sm-3 thumb" ng-repeat="otherPics in se.selected.imageEntities">
+                               <img ng-src="{{otherPics.thumbnailImage}}">
 
+                           </div>
+                            <div class="col-sm-12">
+                            <div class="row">
+                                <button class="btn btn-success" style="margin-top: 4%" ng-show="loggedIn" ng-click="se.addToCart(se.selected)"><i
+                                        class="fa fa-cart-plus fa-lg"></i> Add to Cart
+                                </button>
+                                <br><br>
+                                <span class="whiteFont">Item Description: </span><tt
+                                    style="width: 530px; white-space: pre-wrap; word-wrap: break-word; word-break: normal;">{{se.selected.shortDescription}}</tt><br>
+                                <tt><span class="whiteFont">Item id:</span> {{se.selected.itemId}}</tt><br>
+                                <tt><span class="whiteFont">Our Price:</span> {{se.selected.salePrice | currency}}</tt><br>
+                                <tt><span class="whiteFont">MSRP:</span> {{se.selected.msrp | currency}}</tt><br>
+                                <tt><span class="whiteFont">Shipping:</span> {{se.selected.standardShipRate | currency}}</tt><br>
+                                <img ng-src="{{se.selected.customerRatingImage}}"/><br>
+
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>
