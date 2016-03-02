@@ -50,17 +50,6 @@
         se.selected=$sessionStorage.object;
 
 
-
-
-        //se.small_image = se.selected.largeImage;
-        se.small_image = se.selected.largeImage;
-        se.large_image = se.selected.largeImage;
-
-        console.log(se.selected);
-
-
-
-
         var profile = '';
 
         (function(){
