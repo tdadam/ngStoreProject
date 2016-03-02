@@ -1,7 +1,17 @@
 <div>
     <div class="centered alert titleDiv">
-        <h1 class="title" ui-sref="home"><i class="fa fa-shopping-bag largerBag magicTitle"></i> Super-Duper Megastore</h1>
+        <h1 class="title" ui-sref="home"><i class="fa fa-shopping-bag magicTitle largerBag"></i> Super-Duper Megastore</h1>
+        <div class="row">
+
+            <div class="col-sm-12 right">
+                <input placeholder="Search" type="text" width="200"  name="newSearchInput" ng-model="cartC.newSearch" ng-keypress="cartC.clickEnter($event, sc.newSearch)">
+                <button class="btn searchBtn" id="searchBtn" ng-click="cartC.search()"><i class="fa fa-search largeIcon magicTitle"></i>
+                    Search Our Products
+                </button>
+            </div>
+        </div>
     </div>
+
     <div>
         <div class="alert featuredDiv featureName">
             <h2 class="whiteFont" style="margin-bottom: 40px">{{profile.name}}'s Cart</h2>
@@ -10,11 +20,12 @@
             </div>
 
             <div ng-repeat="myCart in cartC.items">
-                <div style="border: 3px black solid;margin-top: 1%">
-                    <img ng-src="{{myCart.image}}">
+
+                <div ng-click="cartC.selectedItem(myCart)" ui-sref="select" style="border: 3px black solid; margin-top: 1%">
+                    <img ng-src="{{myCart.mediumImage}}">
                     <tt><span class="whiteFont">Name:</span> {{myCart.name}}</tt><br>
-                    <tt><span class="whiteFont">Item id:</span> {{myCart.Id}}</tt><br>
-                    <tt><span class="whiteFont">Our Price:</span> {{myCart.price| currency}}</tt><br>
+                    <tt><span class="whiteFont">Item id:</span> {{myCart.itemId}}</tt><br>
+                    <tt><span class="whiteFont">Our Price:</span> {{myCart.salePrice | currency}}</tt><br>
 
                 </div>
 
