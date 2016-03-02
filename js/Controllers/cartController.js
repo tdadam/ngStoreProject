@@ -4,14 +4,17 @@
     angular.module('cartController', [])
         .controller('cartController', cartController);
 
-    cartController.$inject = ['$scope', '$rootScope', '$state', 'user', 'fbutil', 'cartService', '$firebaseObject'];
+    cartController.$inject = ['$scope', '$rootScope', '$state', 'user', 'fbutil', 'cartService', '$firebaseObject','$localStorage','homeService','$sessionStorage'];
 
-    function cartController($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject) {
+    function cartController($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject,$localStorage,homeService,$sessionStorage) {
         var cC = this;
+
 
         cC.setProfile = setProfile;
         cC.loadItems = loadItems;
+        cC.selectedItem=selectedItem;
         cC.profile = '';
+
 
         function setProfile() {
             if ($rootScope.loggedIn) {
@@ -31,6 +34,12 @@
 
         if (!$rootScope.loggedIn) {
             $state.go("login");
+        }
+        function selectedItem(object){
+            console.log(object);
+
+                $sessionStorage.object=object;
+
         }
 
         function removeItem(item) {

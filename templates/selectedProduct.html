@@ -21,10 +21,8 @@
                 <div>
                     <div class="row">
                         <div class="col-sm-6 centered">
-
                             <h3><tt>{{se.selected.name}}</tt></h3>
-                            <img class="imgBorder" ng-src="{{se.selected.largeImage}}"/><br>
-
+                            <img class="style_prevu_kit"  ng-src="{{se.selected.largeImage}}"/><br>
                         </div>
 
                         <div class="col-md-6" style="margin-top: 4.5%;">
@@ -45,6 +43,7 @@
                                 <tt><span class="whiteFont">MSRP:</span> {{se.selected.msrp | currency}}</tt><br>
                                 <tt><span class="whiteFont">Shipping:</span> {{se.selected.standardShipRate | currency}}</tt><br>
                                 <img ng-src="{{se.selected.customerRatingImage}}"/><br>
+                                <button ng-click="se.showS()">click</button>
 
                             </div>
                             </div>

@@ -3,7 +3,9 @@
 
     angular.module('select', [])
         .controller('selectCtrl', selectCtrl);
+
     //  .directive('ngElevateZoom', function() {
+
     //    return {
     //        restrict: 'A',
     //        link: function(scope, element, attrs) {
@@ -17,8 +19,10 @@
     //                ////zoomWindowFadeOut: 750,
     //                scrollZoom:true,
     //                zoomType: "lens",
+
     //                lensShape: "round",
     //                lensSize: 160
+
     //            }).css("height","400px");
     //        }
     //    };
@@ -46,7 +50,9 @@
         //});
 
 
+
     selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService', '$sessionStorage', '$localStorage'];
+
     // list everything
     function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService, $sessionStorage, $localStorage) {
         var se = this;
@@ -70,20 +76,16 @@
         se.search = homeService.storage.search;
 
         se.selected = $sessionStorage.object;
-
-
-        //se.small_image = se.selected.largeImage;
-        se.small_image = se.selected.largeImage;
-        se.large_image = se.selected.largeImage;
-
-        console.log(se.selected);
-
+        se.showS= function() {
+            console.log(se.selected);
+        };
 
         se.profile = '';
 
         (function () {
             if ($rootScope.loggedIn) {
                 se.profile = $firebaseObject(fbutil.ref('users', user.uid));
+
             }
         }());
 
@@ -92,20 +94,20 @@
         };
 
         function addToCart(item) {
-
-            var name = item.name;
-            var img = item.thumbnailImage;
-            var price = item.salePrice;
-            var itemID = item.itemId;
+            //
+            //var name = item.name;
+            //var img = item.thumbnailImage;
+            //var price = item.salePrice;
+            //var itemID = item.itemId;
             var profile = se.profile;
 
-            var newItem = {
-                name: name,
-                image: img,
-                price: price,
-                Id: itemID
-            };
-            cartService.addToCart(newItem, profile);
+            //var newItem = {
+            //    name: name,
+            //    image: img,
+            //    price: price,
+            //    Id: itemID
+            //};
+            cartService.addToCart(item, profile);
         }
     }
 }());
