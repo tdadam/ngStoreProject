@@ -2,26 +2,28 @@
     'use strict';
 
     angular.module('select', [])
-        .controller('selectCtrl', selectCtrl).directive('ngElevateZoom', function() {
-        return {
-            restrict: 'A',
-            link: function(scope, element, attrs) {
-                element.attr('data-zoom-image',attrs.zoomImage);
-                $(element).elevateZoom({
-                    //zoomType: "inner",
-                    //cursor: "crosshair",
-                    //zoomWindowFadeIn: 800,
-                    //zoomWindowFadeOut:950,
-                    ////zoomWindowFadeIn: 500,
-                    ////zoomWindowFadeOut: 750,
-                    scrollZoom:true,
-                    zoomType: "lens",
-                    lensShape : "round",
-                    lensSize : 160
-                }).css("height","400px");
-            }
-        };
-    });
+        .controller('selectCtrl', selectCtrl);
+    //    .
+    //    directive('ngElevateZoom', function() {
+    //    return {
+    //        restrict: 'A',
+    //        link: function(scope, element, attrs) {
+    //            element.attr('data-zoom-image',attrs.zoomImage);
+    //            $(element).elevateZoom({
+    //                //zoomType: "inner",
+    //                //cursor: "crosshair",
+    //                //zoomWindowFadeIn: 800,
+    //                //zoomWindowFadeOut:950,
+    //                ////zoomWindowFadeIn: 500,
+    //                ////zoomWindowFadeOut: 750,
+    //                scrollZoom:true,
+    //                zoomType: "lens",
+    //                lensShape : "round",
+    //                lensSize : 160
+    //            }).css("height","400px");
+    //        }
+    //    };
+    //});
 
 
     selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService','$sessionStorage','$localStorage'];
@@ -47,16 +49,6 @@
         };
         se.search = homeService.storage.search;
         se.selected=$sessionStorage.object;
-
-
-
-
-        //se.small_image = se.selected.largeImage;
-        se.small_image = se.selected.largeImage;
-        se.large_image = se.selected.largeImage;
-
-        console.log(se.selected);
-
 
 
 

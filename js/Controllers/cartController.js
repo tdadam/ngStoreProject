@@ -12,6 +12,7 @@
         cC.items = cartService.items;
         cC.checkUser = checkUser;
         var profile = '';
+        console.log(cartService.itemsInCart);
 
         function setProfile() {
             if ($rootScope.loggedIn){
@@ -29,6 +30,10 @@
             cartService.checkUser();
         }
         checkUser();
+
+
+        setProfile();
+        setProfile();
         setProfile();
 console.log(cC.items[0]);
     }

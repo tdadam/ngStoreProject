@@ -36,7 +36,7 @@
 
                         }
                     }
-                    console.log(cS.itemsInCart);
+                    console.log(cS.items);
                 });
 
             }
