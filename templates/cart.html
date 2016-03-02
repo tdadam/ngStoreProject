@@ -10,11 +10,12 @@
             </div>
 
             <div ng-repeat="myCart in cartC.items">
-                <div style="border: 3px black solid;margin-top: 1%">
-                    <img ng-src="{{myCart.image}}">
+
+                <div ng-click="cartC.selectedItem(myCart)" ui-sref="select" style="border: 3px black solid;margin-top: 1%">
+                    <img ng-src="{{myCart.thumbnailImage}}">
                     <tt><span class="whiteFont">Name:</span> {{myCart.name}}</tt><br>
-                    <tt><span class="whiteFont">Item id:</span> {{myCart.Id}}</tt><br>
-                    <tt><span class="whiteFont">Our Price:</span> {{myCart.price| currency}}</tt><br>
+                    <tt><span class="whiteFont">Item id:</span> {{myCart.itemId}}</tt><br>
+                    <tt><span class="whiteFont">Our Price:</span> {{myCart.salePrice | currency}}</tt><br>
 
                 </div>
 
