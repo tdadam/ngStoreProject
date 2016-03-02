@@ -33,6 +33,11 @@
             $state.go("login");
         }
 
+        function removeItem(item) {
+            var profile2 = cC.profile;
+            cartService.removeItem(item, profile2);
+        }
+
         setProfile();
         loadItems();
 

@@ -13,7 +13,7 @@
         sc.walData=searchResult.data;
         sc.searchLim=12;
 
-        sc.selectedItem= function (name,name2) {
+        sc.selectedItem= function (name) {
             homeService.addSelected(name);
         };
         sc.clickEnter= function (keyEvent, search) {

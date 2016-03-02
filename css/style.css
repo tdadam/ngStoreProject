@@ -236,6 +236,7 @@ input[type=text] {
     cursor: pointer;
 }
 
-.searchResult:hover {
-
+.removeBtn {
+    float: right;
+    margin: -20px 5px;
 }

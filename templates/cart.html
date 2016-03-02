@@ -6,16 +6,16 @@
         <div class="alert featuredDiv featureName">
             <h2 class="whiteFont" style="margin-bottom: 40px">{{profile.name}}'s Cart</h2>
             <div class="centered">
-                <span class="description">You currently have {{cartC.items.length}} items in your cart.</span>
+                <span class="description">You currently have {{cartC.items.length}} item(s) in your cart.</span>
             </div>
 
             <div ng-repeat="myCart in cartC.items">
                 <div style="border: 3px black solid;margin-top: 1%">
-                    <img ng-src="{{myCart.image}}">
+                    <img ng-src="{{myCart.image}}" ng-click="sc.selectedItem(data)" ui-sref="select">
                     <tt><span class="whiteFont">Name:</span> {{myCart.name}}</tt><br>
                     <tt><span class="whiteFont">Item id:</span> {{myCart.Id}}</tt><br>
-                    <tt><span class="whiteFont">Our Price:</span> {{myCart.price| currency}}</tt><br>
-
+                    <tt><span class="whiteFont">Our Price:</span> {{myCart.price| currency}}</tt>
+                    <span><button class="btn profileBtns removeBtn" ng-click="removeItem(item);">Remove Item</button></span>
                 </div>
 
             </div>
