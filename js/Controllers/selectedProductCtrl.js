@@ -25,14 +25,14 @@
     //});
 
 
-    selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService','$sessionStorage','$localStorage'];
+    selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService', '$sessionStorage', '$localStorage'];
     // list everything
     function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService, $sessionStorage, $localStorage) {
         var se = this;
-        se.clickEnter= function (keyEvent, search) {
-            if (keyEvent.which=== 13){
+        se.clickEnter = function (keyEvent, search) {
+            if (keyEvent.which === 13) {
                 homeService.addSearch(search);
-                $localStorage.searchQuery=search;
+                $localStorage.searchQuery = search;
                 $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
 
             }
@@ -43,13 +43,11 @@
         se.newSearch = function () {
 
             homeService.addSearch(se.newSearchQuery);
-            $localStorage.searchQuery=se.newSearchQuery;
+            $localStorage.searchQuery = se.newSearchQuery;
             $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
         };
         se.search = homeService.storage.search;
-        se.selected=$sessionStorage.object;
-
-
+        se.selected = $sessionStorage.object;
 
 
         //se.small_image = se.selected.largeImage;
@@ -59,13 +57,11 @@
         console.log(se.selected);
 
 
+        se.profile = '';
 
-
-        var profile = '';
-
-        (function(){
-            if ($rootScope.loggedIn){
-                profile = $firebaseObject(fbutil.ref('users', user.uid));
+        (function () {
+            if ($rootScope.loggedIn) {
+                se.profile = $firebaseObject(fbutil.ref('users', user.uid));
             }
         }());
 
@@ -74,22 +70,20 @@
         };
 
         function addToCart(item) {
-            console.log(item);
+
             var name = item.name;
             var img = item.thumbnailImage;
             var price = item.salePrice;
             var itemID = item.itemId;
-            var user = profile.$id;
+            var profile = se.profile;
 
             var newItem = {
                 name: name,
                 image: img,
                 price: price,
-                Id: itemID,
-                user: user
+                Id: itemID
             };
-
-            cartService.addToCart(newItem);
+            cartService.addToCart(newItem, profile);
         }
     }
 }());

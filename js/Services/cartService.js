@@ -4,52 +4,25 @@
     angular.module('cartService', [])
         .service('cartService', cartService);
 
-    cartService.$inject = ['$rootScope', 'fbutil', '$firebaseObject', '$firebaseArray', 'authSetup', '$localStorage'];
+    cartService.$inject = ['$firebaseArray'];
 
-    function cartService($rootScope, fbutil, $firebaseObject, $firebaseArray, authSetup, $localStorage) {
-
+    function cartService($firebaseArray) {
         var cS = this;
         cS.addToCart = addToCart;
-        cS.checkUser = checkUser;
-
-        cS.storage = $localStorage.$default(getDefaultData());
-        cS.items = cS.storage.items;
-
-        function getDefaultData() {
-            return {
-                items: []
-            }
-        }
+        cS.loadItems = loadItems;
 
         var ref = new Firebase("https://store-project.firebaseio.com");
-        var cartRef = new Firebase(ref + "/cartItems");
-        var cartItems = new $firebaseArray(cartRef);
-        var profile = '';
 
-        cS.itemsInCart = $firebaseArray(fbutil.ref('cartItems'));
-        cS.items = [];
-
-        function addToCart(item) {
+        function addToCart(item, user) {
+            var cartRef = new Firebase(ref + "/cartItems/" + user.$id);
+            var cartItems = new $firebaseArray(cartRef);
             cartItems.$add(item);
-            cS.items.push(item);
         }
 
-        function checkUser() {
-            if ($rootScope.loggedIn) {
-                var authSet = authSetup.$waitForAuth().then(function (a) {
-                    profile = $firebaseObject(fbutil.ref('users', a.uid));
-                    cS.items = [];
-                    for (var i = 0; i < cS.itemsInCart.length; i++) {
-                        if (cS.itemsInCart[i].user === profile.$id) {
-
-                            cS.items.push(cS.itemsInCart[i]);
-                        }
-                    }
-                    $timeout(function () {
-                    });
-                });
-
-            }
+        function loadItems(user) {
+            var loadCart = new Firebase(ref + "/cartItems/" + user.$id);
+            var loadView = $firebaseArray(loadCart);
+            return loadView;
         }
     }
 }());
