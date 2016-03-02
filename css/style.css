@@ -238,7 +238,7 @@ input[type=text] {
 
 .removeBtn {
     float: right;
-    margin: -20px 5px;
+    margin: -40px 5px;
 }
 
 .searchResult:hover {
