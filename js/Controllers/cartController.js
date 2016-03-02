@@ -26,19 +26,8 @@
 
         cC.search = function() {
             homeService.addSearch(cC.newSearch);
-
-            cC.url="http://api.walmartlabs.com/v1/search?query="+cC.newSearch+"&format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
-
             $localStorage.searchQuery=cC.newSearch;
-
-            $http.jsonp(cC.url)
-                .success(function (data) {
-                    cC.walData = data;
-                    console.log(data);
-                });
-
-
-
+            $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
         };
 
 
