@@ -11,7 +11,7 @@
         </div>
     </div>
     <div>
-        <div class="alert featuredDiv" style="margin: 2% auto">
+        <div class="alert featuredDiv" style="margin: 1% auto">
             <h2 class="centered featured">Featured:</h2>
 
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -22,19 +22,18 @@
                     <li data-target="#myCarousel" data-slide-to="2"></li>
                     <li data-target="#myCarousel" data-slide-to="3"></li>
                 </ol>
-                <div class="carousel-inner">
+                <div class="carousel-inner" style="cursor: pointer">
                     <div class="item centered" ng-class="{active:!$index}"
                          ng-repeat=" dat in hc.carouselDat | limitTo:4" ng-click="hc.selectedItem(dat)"
                          ui-sref="select">
 
                         <!--<div class="carousel-caption" style="margin: 350px 80px;"></div>-->
-
+                        <div class="text-center">
+                            <h3 style="margin: 10px 80px 10px;"><span class="featureName">{{dat.name}}</span></h3>
+                        </div>
                         <img class="carImage" src="{{dat.largeImage}}">
-                        <div class="carousel-caption">
-                            <h3 class="whiteFont" style="margin: 0 80px 325px; background: rgba(255, 255, 255, 0.6);">
-                                <tt>{{dat.name}}</tt></h3>
-                            <h2 class="featureName" style="background: rgba(255, 255, 255, 0.6); margin: 0 80px 0">Our
-                                Low Price: {{dat.salePrice | currency}}</h2>
+                        <div class="text-center">
+                            <h2 class="whiteFont" style="margin: 10px 80px 20px; text-decoration: underline">Our Low Price: {{dat.salePrice | currency}}</h2>
                         </div>
                         <br>
                     </div>

@@ -3,24 +3,63 @@
 
     angular.module('select', [])
         .controller('selectCtrl', selectCtrl);
-    //apiCtrl.$inject = ['homeService'];
-    //function apiCtrl(homeService) {
+    //  .directive('ngElevateZoom', function() {
+    //    return {
+    //        restrict: 'A',
+    //        link: function(scope, element, attrs) {
+    //            element.attr('data-zoom-image',attrs.zoomImage);
+    //            $(element).elevateZoom({
+    //                //zoomType: "inner",
+    //                //cursor: "crosshair",
+    //                //zoomWindowFadeIn: 800,
+    //                //zoomWindowFadeOut:950,
+    //                ////zoomWindowFadeIn: 500,
+    //                ////zoomWindowFadeOut: 750,
+    //                scrollZoom:true,
+    //                zoomType: "lens",
+    //                lensShape: "round",
+    //                lensSize: 160
+    //            }).css("height","400px");
+    //        }
+    //    };
+    //});
 
-    selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService'];
+
+    selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService','$sessionStorage','$localStorage'];
     // list everything
-    function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService) {
+    function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService, $sessionStorage, $localStorage) {
         var se = this;
+        se.clickEnter= function (keyEvent, search) {
+            if (keyEvent.which=== 13){
+                homeService.addSearch(search);
+                $localStorage.searchQuery=search;
+                $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
+
+            }
+        };
 
         se.addToCart = addToCart;
 
         se.newSearch = function () {
 
             homeService.addSearch(se.newSearchQuery);
-            //console.log(se.newSearchQuery);
-            $state.go("SearchResult", {searchQuery: homeService.storage.search});
+            $localStorage.searchQuery=se.newSearchQuery;
+            $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
         };
         se.search = homeService.storage.search;
-        se.selected = homeService.selected;
+        se.selected=$sessionStorage.object;
+
+
+
+
+        //se.small_image = se.selected.largeImage;
+        se.small_image = se.selected.largeImage;
+        se.large_image = se.selected.largeImage;
+
+        console.log(se.selected);
+
+
+
 
         var profile = '';
 
@@ -31,8 +70,7 @@
         }());
 
         se.back = function () {
-            $state.go("SearchResult", {searchQuery: homeService.storage.search});
-            console.log(homeService.storage.search);
+            $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
         };
 
         function addToCart(item) {

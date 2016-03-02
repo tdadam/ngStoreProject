@@ -13,9 +13,11 @@
 
         // JASONP get function to get data from walmart.
         hc.search = function () {
-            homeService.addSearch(hc.searchQuery);
+            $localStorage.searchQuery=hc.searchQuery;
+
+            homeService.addSearch($localStorage.searchQuery);
             //$state.go("SearchResult", {searchQuery: $localStorage.search});
-            $state.go("SearchResult", {searchQuery: homeService.storage.search});
+            $state.go("SearchResult", {searchQuery:$localStorage.searchQuery});
             //console.log(homeService.storage.search);
 
         };
@@ -43,6 +45,8 @@
         hc.myFunc= function (keyEvent,search) {
             if (keyEvent.which=== 13){
                 homeService.addSearch(search);
+                $localStorage.searchQuery=hc.searchQuery;
+
                 $state.go("SearchResult", {searchQuery: homeService.storage.search});
 
             }

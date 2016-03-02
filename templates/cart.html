@@ -2,10 +2,25 @@
     <div class="centered alert titleDiv">
         <h1 class="title" ui-sref="home"><i class="fa fa-shopping-bag largerBag magicTitle"></i> Super-Duper Megastore</h1>
     </div>
-    <div class="jumbotron">
-        <h1>Welcome to your cart!</h1>
+    <div>
+        <div class="alert featuredDiv featureName">
+            <h2 class="whiteFont" style="margin-bottom: 40px">{{profile.name}}'s Cart</h2>
+            <div class="centered">
+                <span class="description">You currently have {{cartC.items.length}} items in your cart.</span>
+            </div>
+
+            <div ng-repeat="myCart in cartC.items">
+                <div style="border: 3px black solid;margin-top: 1%">
+                    <img ng-src="{{myCart.image}}">
+                    <tt><span class="whiteFont">Name:</span> {{myCart.name}}</tt><br>
+                    <tt><span class="whiteFont">Item id:</span> {{myCart.Id}}</tt><br>
+                    <tt><span class="whiteFont">Our Price:</span> {{myCart.price| currency}}</tt><br>
+
+                </div>
+
+            </div>
+
+        </div>
     </div>
-    <div ng-repeat="item in cartC.itemsInCart">
-        {{item.salePrice}}
-    </div>
+
 </div>
