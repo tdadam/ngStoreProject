@@ -25,7 +25,7 @@
                     <img class="searchResult" ng-src="{{myCart.mediumImage}}" ng-click="cartC.selectedItem(myCart)" ui-sref="select">
                     <tt class="lrgfont"><span class="whiteFont lrgfont">Item id:</span> {{myCart.itemId}}</tt>
                     <tt class="lrgfont"><span class="whiteFont lrgfont">Our Price:</span> {{myCart.salePrice | currency}}</tt><br>
-                    <span><button class="btn profileBtns removeBtn" ng-click="removeItem(item);">Remove Item</button></span>
+                    <span><button class="btn profileBtns removeBtn" ng-click="cartC.items.$remove(myCart)">Remove Item</button></span>
                 </div>
 
             </div>
