@@ -16,7 +16,6 @@
             "cartService",
             "accountController",
             "select",
-            "rating-widget",
             "toaster"
         ])
 
