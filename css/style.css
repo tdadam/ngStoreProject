@@ -132,6 +132,10 @@ input[type=text] {
     width: 60vw;
 }
 
+.resultsStyle {
+    margin: 0 0 20px;
+}
+
 .accentBlueBG {
     background: #567EBB;
 }
@@ -232,17 +236,18 @@ input[type=text] {
     margin-top:8%
 }
 
-.searchResult {
+.hoverBorder {
     cursor: pointer;
+    width: 200px;
+    height: 200px;
+}
+.hoverBorder:hover {
+    border: 5px ridge #2B4C7E;
 }
 
 .removeBtn {
     float: right;
     margin: -20px 10px;
-}
-
-.searchResult:hover {
-
 }
 /*zoom css*/
 .fond {
@@ -278,4 +283,8 @@ input[type=text] {
     transition: all 200ms ease-in;
     transform: scale(1.2);
     cursor: crosshair;
+}
+
+.cartItemInfo {
+    margin: 0 15px 10px 50px;
 }

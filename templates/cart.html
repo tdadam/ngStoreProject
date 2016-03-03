@@ -20,12 +20,14 @@
             </div>
 
             <div ng-repeat="myCart in cartC.items">
-                <div ng-click="cartC.selectedItem(myCart)" ui-sref="select" style="border: 3px black solid; margin-top: 1%">
-                    <img class="searchResult" ng-src="{{myCart.mediumImage}}" ng-click="cartC.selectedItem(myCart)" ui-sref="select">
-                    <tt class="description" style="margin: 0 0 0 50px;">{{myCart.name}}</tt><br>
-                    <tt class="lrgfont"><span class="whiteFont lrgfont">Item id:</span> {{myCart.itemId}}</tt><br>
-                    <tt class="lrgfont"><span class="whiteFont lrgfont">Our Price:</span> {{myCart.salePrice | currency}}</tt>
-                    <span><button class="btn profileBtns removeBtn" ng-click="removeItem(item);">Remove Item</button></span>
+                <div style="border: 3px black solid; margin-top: 1%">
+                    <img class="hoverBorder" style="margin: 15px 0 10px 15px" ng-src="{{myCart.largeImage || myCart.mediumImage || myCart.thumbnailImage}}" ng-click="cartC.selectedItem(myCart)" ui-sref="select">
+                    <span class="whiteFont description" style="margin: 0 50px;">{{myCart.name}}</span><br>
+                    <div class="lrgfont cartItemInfo">
+                        <span><span class="whiteFont lrgfont">Item id:</span> {{myCart.itemId}}</span><br>
+                        <span><span class="whiteFont lrgfont">Our Price:</span> {{myCart.salePrice | currency}}</span>
+                        <span><button class="btn profileBtns removeBtn" ng-click="removeItem(item);">Remove Item</button></span>
+                    </div>
                 </div>
             </div>
         </div>
