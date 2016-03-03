@@ -16,10 +16,8 @@
         function addToCart(item, user) {
             var cartRef = new Firebase(ref + "/cartItems/" + user.$id);
             var cartItems = new $firebaseArray(cartRef);
-
             cartItems.$add(item);
         }
-
 
         function loadItems(user) {
             var loadCart = new Firebase(ref + "/cartItems/" + user.$id);
