@@ -294,6 +294,10 @@ input[type=text] {
     cursor: crosshair;
 }
 
+.thumbNailCursor{
+    cursor: pointer;
+}
+
 .cartItemInfo {
     margin: 0 15px 10px 50px;
 }

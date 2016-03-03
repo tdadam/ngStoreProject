@@ -8,6 +8,11 @@
 
     function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService, $sessionStorage, $localStorage, toaster) {
         var se = this;
+        //get object from storage
+        se.search = homeService.storage.search;
+        se.selected = $sessionStorage.object;
+
+        // search by clicking enter key
         se.clickEnter = function (keyEvent, search) {
             if (keyEvent.which === 13) {
                 homeService.addSearch(search);
@@ -16,16 +21,21 @@
             }
         };
 
-        se.addToCart = addToCart;
+        se.defaultImageIndex = 0;
+        se.currentImage = se.selected.imageEntities[se.defaultImageIndex].largeImage;
 
+        se.sendIndex = function (index) {
+            se.currentImage = se.selected.imageEntities[index].largeImage;
+        };
+
+        se.addToCart = addToCart;
+        //search with search button
         se.newSearch = function () {
             homeService.addSearch(se.newSearchQuery);
             $localStorage.searchQuery = se.newSearchQuery;
             $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
         };
 
-        se.search = homeService.storage.search;
-        se.selected = $sessionStorage.object;
         se.profile = '';
 
         (function () {
