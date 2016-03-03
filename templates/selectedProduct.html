@@ -30,6 +30,7 @@
                             <div class="col-sm-12">
                             <div class="row">
                                 <toaster-container style="margin-top: 200px" toaster-options="{'time-out': 2300}"></toaster-container>
+                                <p style="margin: 20px" class="whiteFont descriptionSmall" ng-hide="loggedIn"><a class="linkStyle" ui-sref="login">Login/Register</a> to add items to your cart.</p>
                                 <button class="btn btn-success" style="margin-top: 4%" ng-show="loggedIn" ng-click="se.addToCart(se.selected)"><i
                                         class="fa fa-cart-plus fa-lg"></i> Add to Cart
                                 </button>
