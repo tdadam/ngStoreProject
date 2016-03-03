@@ -34,8 +34,10 @@
             .then(function() {
               $scope.msg = 'Password changed';
             }, function(err) {
-              $scope.err = err;
-            })
+              if (err.code === 'INVALID_PASSWORD') {
+                $scope.err = 'Incorrect Password';
+              }
+            });
         }
       };
 
@@ -54,7 +56,13 @@
           .then(function() {
             $scope.emailmsg = 'Email changed';
           }, function(err) {
-            $scope.emailerr = err;
+              if (err.code === 'EMAIL_TAKEN') {
+                  $scope.emailerr = 'The Email you entered has been taken.';
+              } else if( !oldEmail || !newEmail || !pass ) {
+                  $scope.emailerr = 'Please fill in all fields';
+              } else if (err.code === 'INVALID_PASSWORD') {
+                  $scope.emailerr = 'Incorrect Password';
+              }
           });
       };
 
