@@ -18,13 +18,13 @@
             "select",
             "rating-widget",
             "toaster"
-    ])
+        ])
 
         .config(["$stateProvider", "$urlRouterProvider",
             function ($stateProvider, $urlRouterProvider) {
 
                 // define all app states (pages)
-                    $stateProvider
+                $stateProvider
                     .state("home", {
                         url: "/home",
                         templateUrl: "templates/home.html",
@@ -33,22 +33,16 @@
                     .state("SearchResult", {
                         url: "/SearchResult",
                         params: {
-                            //searchQuery: $localStorage.searchQuery
                             searchQuery: "mouse"
-
                         },
-
                         templateUrl: "templates/SearchResult.html",
                         controller: "SearchResultController as sc",
                         resolve: {
                             searchResult: function ($http, $stateParams, $localStorage) {
-                                var url = "http://api.walmartlabs.com/v1/search?query=" + $localStorage.searchQuery+ "&format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
-                               // console.log($stateParams);
-
+                                var url = "http://api.walmartlabs.com/v1/search?query=" + $localStorage.searchQuery + "&format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
                                 return $http.jsonp(url)
                                     .success(function (data) {
                                         return data;
-
                                     });
                             }
                         }
@@ -77,16 +71,11 @@
                         templateUrl: "templates/cart.html",
                         controller: "cartController as cartC",
                         resolve: {
-
-
                             searchResult: function ($http, $stateParams, $localStorage) {
-                                var url = "http://api.walmartlabs.com/v1/search?query=" + $localStorage.searchQuery+ "&format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
-                                // console.log($stateParams);
-
+                                var url = "http://api.walmartlabs.com/v1/search?query=" + $localStorage.searchQuery + "&format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
                                 return $http.jsonp(url)
                                     .success(function (data) {
                                         return data;
-
                                     });
                             },
                             user: ['authSetup', function (authSetup) {
