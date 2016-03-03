@@ -3,11 +3,57 @@
 
     angular.module('select', [])
         .controller('selectCtrl', selectCtrl);
+    //  .directive('ngElevateZoom', function() {
 
-    selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService', '$sessionStorage', '$localStorage'];
+    //    return {
+    //        restrict: 'A',
+    //        link: function(scope, element, attrs) {
+    //            element.attr('data-zoom-image',attrs.zoomImage);
+    //            $(element).elevateZoom({
+    //                //zoomType: "inner",
+    //                //cursor: "crosshair",
+    //                //zoomWindowFadeIn: 800,
+    //                //zoomWindowFadeOut:950,
+    //                ////zoomWindowFadeIn: 500,
+    //                ////zoomWindowFadeOut: 750,
+    //                scrollZoom:true,
+    //                zoomType: "lens",
+
+    //                lensShape: "round",
+    //                lensSize: 160
+
+    //            }).css("height","400px");
+    //        }
+    //    };
+    //});
+
+        //.directive('toastr', function() {
+        //    toastr.options = {
+        //        "title": "Added Item Successfully",
+        //        "closeButton": false,
+        //        "debug": false,
+        //        "newestOnTop": false,
+        //        "progressBar": false,
+        //        "positionClass": "toast-top-right",
+        //        "preventDuplicates": false,
+        //        "onclick": null,
+        //        "showDuration": "300",
+        //        "hideDuration": "1000",
+        //        "timeOut": "5000",
+        //        "extendedTimeOut": "1000",
+        //        "showEasing": "swing",
+        //        "hideEasing": "linear",
+        //        "showMethod": "fadeIn",
+        //        "hideMethod": "fadeOut"
+        //    };
+        //});
+
+
+
+    selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService', '$sessionStorage', '$localStorage','toaster'];
 
     // list everything
-    function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService, $sessionStorage, $localStorage) {
+    function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService, $sessionStorage, $localStorage, toaster) {
         var se = this;
         se.clickEnter = function (keyEvent, search) {
             if (keyEvent.which === 13) {
@@ -44,6 +90,12 @@
         };
 
         function addToCart(item) {
+            toaster.pop('success', "Item Added to Cart:", item.name);
+            //
+            //var name = item.name;
+            //var img = item.thumbnailImage;
+            //var price = item.salePrice;
+            //var itemID = item.itemId;
             var profile = se.profile;
             cartService.addToCart(item, profile);
         }
