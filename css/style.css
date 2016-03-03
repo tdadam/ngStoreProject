@@ -274,3 +274,5 @@ input[type=text] {
     transform: scale(1.2);
     cursor: crosshair;
 }
+.thumbNailCursor{
+    cursor:pointer;}

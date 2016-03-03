@@ -15,6 +15,7 @@
         cC.selectedItem=selectedItem;
         cC.profile = '';
 
+
         cC.clickEnter= function (keyEvent, search) {
             if (keyEvent.which=== 13){
                 homeService.addSearch(search);
@@ -28,6 +29,7 @@
             homeService.addSearch(cC.newSearch);
             $localStorage.searchQuery=cC.newSearch;
             $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
+            console.log(cC.cartItemsNum);
         };
 
 
@@ -52,7 +54,6 @@
             $state.go("login");
         }
         function selectedItem(object){
-            console.log(object);
 
                 $sessionStorage.object=object;
 
