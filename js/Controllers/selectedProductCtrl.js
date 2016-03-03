@@ -10,10 +10,8 @@
         //get object from storage
         se.search = homeService.storage.search;
         se.selected = $sessionStorage.object;
-        // search by clicking enter key
-        se.search = homeService.storage.search;
-        se.selected = $sessionStorage.object;
 
+        // search by clicking enter key
         se.clickEnter = function (keyEvent, search) {
             if (keyEvent.which === 13) {
                 homeService.addSearch(search);
@@ -37,6 +35,7 @@
             $localStorage.searchQuery = se.newSearchQuery;
             $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
         };
+
         se.profile = '';
 
         (function () {
@@ -52,7 +51,6 @@
 
         function addToCart(item) {
             toaster.pop('success', "Item Added to Cart:", item.name);
-
 
             var profile = se.profile;
 

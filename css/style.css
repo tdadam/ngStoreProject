@@ -132,6 +132,10 @@ input[type=text] {
     width: 60vw;
 }
 
+.resultsStyle {
+    margin: 0 0 20px;
+}
+
 .accentBlueBG {
     background: #567EBB;
 }
@@ -232,19 +236,26 @@ input[type=text] {
     margin-top:8%
 }
 
-.searchResult {
+.hoverBorder {
     cursor: pointer;
+    width: 200px;
+    height: 200px;
+}
+.hoverBorder:hover {
+    border: 5px ridge #2B4C7E;
 }
 
-.searchResult:hover {
-
+.removeBtn {
+    float: right;
+    margin: -20px 10px;
 }
 /*zoom css*/
-.fond{position:absolute;padding-top:85px;top:0;left:0; right:0;bottom:0;
-    background-color:#00506b;}
+.fond {
+    position:absolute;padding-top:85px;top:0;left:0; right:0;bottom:0;
+    background-color:#00506b;
+}
 
-.style_prevu_kit
-{
+.style_prevu_kit {
     display:inline-block;
     border:0;
     width:370px;
@@ -260,9 +271,9 @@ input[type=text] {
     transform: scale(1);
 
 }
-.style_prevu_kit:hover
-{
-    box-shadow: 0px 0px 50px #000000;
+
+.style_prevu_kit:hover {
+    box-shadow: 0 0 50px #000000;
     z-index: 2;
     -webkit-transition: all 200ms ease-in;
     -webkit-transform: scale(1.5);
@@ -274,5 +285,11 @@ input[type=text] {
     transform: scale(1.2);
     cursor: crosshair;
 }
+
 .thumbNailCursor{
-    cursor:pointer;}
+    cursor: pointer;
+}
+
+.cartItemInfo {
+    margin: 0 15px 10px 50px;
+}
