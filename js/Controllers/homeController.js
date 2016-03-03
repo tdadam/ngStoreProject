@@ -3,14 +3,16 @@
 
     angular.module('home', [])
         .controller('homeController', homeController);
-    //apiCtrl.$inject = ['homeService'];
-    //function apiCtrl(homeService) {
 
     homeController.$inject = ['$http', '$state', '$localStorage', 'homeService','$templateCache'];
-    // list everything
+
     function homeController($http, $state, $localStorage, homeService, $templateCache) {
         var hc = this;
+<<<<<<< HEAD
         hc.loading=true;
+=======
+
+>>>>>>> master
         //------> trends not working from walmart side
         //hc.trendurl="http://api.walmartlabs.com/v1/trends?format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
         hc.trendUrl = "http://api.walmartlabs.com/v1/search?query=ferrari&format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
@@ -19,37 +21,44 @@
 
         // JASONP get function to get data from walmart.
         hc.search = function () {
-            $localStorage.searchQuery=hc.searchQuery;
+            $localStorage.searchQuery = hc.searchQuery;
             homeService.addSearch($localStorage.searchQuery);
-            $state.go("SearchResult", {searchQuery:$localStorage.searchQuery});
+            $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
         };
-        hc.trends = function () {
 
+        hc.trends = function () {
+            //------> trends not working from walmart side
+            //hc.trendurl="http://api.walmartlabs.com/v1/trends?format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
+            hc.trendUrl = "http://api.walmartlabs.com/v1/search?query=ferrari&format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
             $http.jsonp(hc.trendUrl)
                 .success(function (data) {
+<<<<<<< HEAD
                     hc.carouselDat=data.items;
                     hc.loading=false;
+=======
+                    hc.carouselDat = data.items;
+>>>>>>> master
                 });
         };
+
         hc.trends();
+
         // add searches to a service
         hc.selectedItem = function (name) {
             homeService.addSelected(name);
         };
+
         //bootstrap carousel
         $('.carousel').carousel({
             interval: 4000
         });
 
-        hc.myFunc= function (keyEvent,search) {
-            if (keyEvent.which=== 13){
+        hc.myFunc = function (keyEvent, search) {
+            if (keyEvent.which === 13){
                 homeService.addSearch(search);
-                $localStorage.searchQuery=hc.searchQuery;
-
+                $localStorage.searchQuery = hc.searchQuery;
                 $state.go("SearchResult", {searchQuery: homeService.storage.search});
-
             }
-
         };
     }
 }());

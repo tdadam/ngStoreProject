@@ -10,7 +10,6 @@
       var unbind;
       // create a 3-way binding with the user profile object in Firebase
       var profile = $firebaseObject(fbutil.ref('users', user.uid));
-      console.log(profile);
       profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
 
       // expose logout function to scope
