@@ -4,27 +4,25 @@
     angular.module('homeService', [])
         .service('homeService', homeService);
 
-    homeService.$inject = ['$state','$sessionStorage'];
+    homeService.$inject = ['$sessionStorage'];
 
-    function homeService($state, $sessionStorage) {
+    function homeService($sessionStorage) {
 
         //// list everything
         var hs = this;
         hs.storage = $sessionStorage;
-        hs.selected="";
+        hs.selected = "";
         hs.addSearch = search;
-        hs.addSelected= select;
+        hs.addSelected = select;
 
         // public functions
         function search(searchIn) {
-            hs.storage.search=searchIn;
+            hs.storage.search = searchIn;
         }
 
         function select(name){
-            $sessionStorage.object=name;
-            hs.selected=$sessionStorage.object;
+            $sessionStorage.object = name;
+            hs.selected = $sessionStorage.object;
         }
-
     }
-
 }());
