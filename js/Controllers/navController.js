@@ -4,10 +4,9 @@
     angular.module('navController', [])
         .controller('navController', navController);
 
-    navController.$inject = ["$filter", "$location"];
+    navController.$inject = ["$location"];
 
-    function navController($filter, $location)
-    {
+    function navController($location) {
         var nav = this;
         nav.isActive = isActive;
 
@@ -15,5 +14,4 @@
             return viewLocation === $location.path();
         }
     }
-
 }());

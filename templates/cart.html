@@ -11,14 +11,12 @@
             </div>
         </div>
     </div>
-
     <div>
         <div class="alert featuredDiv featureName">
             <h2 class="whiteFont" style="margin-bottom: 40px">{{profile.name}}'s Cart</h2>
             <div class="centered">
                 <span class="description">You currently have <span class="whiteFont">{{cartC.items.length}}</span> item(s) in your cart.</span>
             </div>
-
             <div ng-repeat="myCart in cartC.items">
                 <div style="border: 3px black solid; margin-top: 1%">
                     <span class="whiteFont description" style="margin: 50px;">{{myCart.name}}</span><br>
@@ -32,5 +30,4 @@
             </div>
         </div>
     </div>
-
 </div>
