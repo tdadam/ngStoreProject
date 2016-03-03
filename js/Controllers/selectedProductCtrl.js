@@ -4,8 +4,8 @@
     angular.module('select', [])
         .controller('selectCtrl', selectCtrl);
 
-    selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService', '$sessionStorage', '$localStorage','toaster','$scope'];
-    function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService, $sessionStorage, $localStorage, toaster, $scope) {
+    selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService', '$sessionStorage', '$localStorage','toaster'];
+    function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService, $sessionStorage, $localStorage, toaster) {
         var se = this;
         //get object from storage
         se.search = homeService.storage.search;
@@ -37,11 +37,6 @@
             $localStorage.searchQuery = se.newSearchQuery;
             $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
         };
-
-        se.showS= function() {
-            console.log(se.selected);
-        };
-
         se.profile = '';
 
         (function () {
