@@ -271,8 +271,9 @@ input[type=text] {
     transform: scale(1);
 
 }
+
 .style_prevu_kit:hover {
-    box-shadow: 0px 0px 50px #000000;
+    box-shadow: 0 0 50px #000000;
     z-index: 2;
     -webkit-transition: all 200ms ease-in;
     -webkit-transform: scale(1.5);
@@ -283,6 +284,10 @@ input[type=text] {
     transition: all 200ms ease-in;
     transform: scale(1.2);
     cursor: crosshair;
+}
+
+.thumbNailCursor{
+    cursor: pointer;
 }
 
 .cartItemInfo {
