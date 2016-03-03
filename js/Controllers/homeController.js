@@ -8,11 +8,7 @@
 
     function homeController($http, $state, $localStorage, homeService, $templateCache) {
         var hc = this;
-<<<<<<< HEAD
-        hc.loading=true;
-=======
 
->>>>>>> master
         //------> trends not working from walmart side
         //hc.trendurl="http://api.walmartlabs.com/v1/trends?format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
         hc.trendUrl = "http://api.walmartlabs.com/v1/search?query=ferrari&format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
@@ -32,12 +28,8 @@
             hc.trendUrl = "http://api.walmartlabs.com/v1/search?query=ferrari&format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
             $http.jsonp(hc.trendUrl)
                 .success(function (data) {
-<<<<<<< HEAD
-                    hc.carouselDat=data.items;
-                    hc.loading=false;
-=======
+
                     hc.carouselDat = data.items;
->>>>>>> master
                 });
         };
 
