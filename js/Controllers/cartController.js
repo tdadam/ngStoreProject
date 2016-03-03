@@ -12,7 +12,7 @@
 
         cC.setProfile = setProfile;
         cC.loadItems = loadItems;
-        cC.selectedItem=selectedItem;
+        cC.selectedItem = selectedItem;
         cC.profile = '';
         cC.total = 0;
         cC.cartTotal = 0;
@@ -63,11 +63,6 @@
 
                 $sessionStorage.object=object;
 
-        }
-
-        function removeItem(item) {
-            var profile2 = cC.profile;
-            cartService.removeItem(item, profile2);
         }
 
         setProfile();
