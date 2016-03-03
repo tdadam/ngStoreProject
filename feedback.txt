@@ -8,8 +8,10 @@
     The cart was easy to understand, would be awesome to have a confirmation of some sort when you add something to the cart. Do you have to make the  page go all the way to payment? Mine only went as far as to show items and prices in the cart.
     Hope that helps!
 
+
 2. Christina Monge, jcmonge12@gmail.com
     I thought it looked good! One button I was missing was just simply "Products". I like the search feature, but I wasn't sure how to get to the list of all products sold.
+
 
 3. Dave Adam, xactdave@hotmail.com
     Where is the fine print??  Any links to it and then some placeholder stuff maybe?
@@ -22,6 +24,7 @@
 
     Might consider anchoring the home - - - login bar at the top so it doesn't disappear when scrolling (hence the defn of anchor)
 
+
 4. Linda Adam, ladam3@gmail.com
     Home Page:
     The scrolling featured items go... remote, remote, model car, remote -- is it OCD to feel the order isn't quite right?
@@ -30,12 +33,15 @@
     Search Products:
     Is there a way to group similar products or name them so that the differences in price are easily understood...? I opened each of the frizz ease stuff to find that each was a different quantity.
 
+
 5. Elizabeth Adam, teadam2010@gmail.com
     Item Description overlaps pictures, not sure if items were added to my cart
+
 
 6. Justin Monge, jcmonge12@gmail.com
     Looks good. I tried several different searches, all returned the results I expected. I also created a profile without complication or confusion. I like the attention-grabbing featured items cycling on the home page. It was easy to navigate to any part of the app I wanted.
 
     Good work!
+
 
 7.
