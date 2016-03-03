@@ -16,20 +16,20 @@
         <div class="alert featuredDiv featureName">
             <h2 class="whiteFont" style="margin-bottom: 40px">{{profile.name}}'s Cart</h2>
             <div class="centered">
-                <span class="description">You currently have {{cartC.items.length}} item(s) in your cart.</span>
+                <span class="description">You currently have <span class="whiteFont">{{cartC.items.length}}</span> item(s) in your cart.</span>
             </div>
 
             <div ng-repeat="myCart in cartC.items">
-                <div style="border: 3px black solid;margin-top: 1%">
-                    <tt class="lrgfont"><span class="whiteFont lrgfont" style="margin: 0 50px 0 0">Name:</span> {{myCart.name}}</tt><br>
-                    <img class="searchResult" ng-src="{{myCart.mediumImage}}" ng-click="cartC.selectedItem(myCart)" ui-sref="select">
-                    <tt class="lrgfont"><span class="whiteFont lrgfont">Item id:</span> {{myCart.itemId}}</tt>
-                    <tt class="lrgfont"><span class="whiteFont lrgfont">Our Price:</span> {{myCart.salePrice | currency}}</tt><br>
-                    <span><button class="btn profileBtns removeBtn" ng-click="removeItem(item);">Remove Item</button></span>
+                <div style="border: 3px black solid; margin-top: 1%">
+                    <img class="hoverBorder" style="margin: 15px 0 10px 15px" ng-src="{{myCart.largeImage || myCart.mediumImage || myCart.thumbnailImage}}" ng-click="cartC.selectedItem(myCart)" ui-sref="select">
+                    <span class="whiteFont description" style="margin: 0 50px;">{{myCart.name}}</span><br>
+                    <div class="lrgfont cartItemInfo">
+                        <span><span class="whiteFont lrgfont">Item id:</span> {{myCart.itemId}}</span><br>
+                        <span><span class="whiteFont lrgfont">Our Price:</span> {{myCart.salePrice | currency}}</span>
+                        <span><button class="btn profileBtns removeBtn" ng-click="cartC.items.$remove(myCart)">Remove Item</button></span>
+                    </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 

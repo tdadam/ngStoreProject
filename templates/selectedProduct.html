@@ -4,14 +4,10 @@
             <h1 class="title" ui-sref="home"><i class="fa fa-shopping-bag largerBag magicTitle"></i> Super-Duper
                 Megastore</h1>
             <div class="row">
-                <div class="col-sm-6 left">
-                    <button class="btn" ng-click="se.back()"><i class="fa fa-arrow-left fa-lg"></i> Go Back</button>
-                </div>
-                <div class="col-sm-6 right">
-                    <input placeholder="Search" type="text" width="200" name="newSearch" ng-model="se.newSearchQuery"
-                           ng-keypress="se.clickEnter($event, se.newSearchQuery)" >
-                    <button class="btn searchBtn" id="searchBtn" ng-click="se.newSearch()"><i
-                            class="fa fa-search largeIcon magicTitle"></i> Search Our Products
+                <div class="col-sm-12 right">
+                    <input placeholder="Search" type="text" width="200"  name="newSearchInput" ng-model="cartC.newSearch" ng-keypress="cartC.clickEnter($event, cartC.newSearch)">
+                    <button class="btn searchBtn" id="searchBtn" ng-click="cartC.search()"><i class="fa fa-search largeIcon magicTitle"></i>
+                        Search Our Products
                     </button>
                 </div>
             </div>
@@ -32,6 +28,7 @@
                            </div>
                             <div class="col-sm-12">
                             <div class="row">
+                                <toaster-container toaster-options="{'time-out': 2000}"></toaster-container>
                                 <button class="btn btn-success" style="margin-top: 4%" ng-show="loggedIn" ng-click="se.addToCart(se.selected)"><i
                                         class="fa fa-cart-plus fa-lg"></i> Add to Cart
                                 </button>
