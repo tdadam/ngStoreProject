@@ -23,7 +23,6 @@
             var loadCart = new Firebase(ref + "/cartItems/" + user.$id);
             var loadView = $firebaseArray(loadCart);
             return loadView;
-
         }
     }
 }());
