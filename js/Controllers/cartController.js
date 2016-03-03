@@ -12,7 +12,7 @@
         cC.setProfile = setProfile;
         cC.loadItems = loadItems;
         cC.selectedItem = selectedItem;
-        cC.profile = '';
+        cC.profile = {};
         cC.total = 0;
         cC.cartTotal = 0;
         cC.items = [];
@@ -50,7 +50,7 @@
                 for (var i = 0; i < cC.items.length; i++) {
                     cC.cartTotal += cC.items[i].salePrice;
                 }
-            }, 1500);
+            }, 750);
         }
 
         if (!$rootScope.loggedIn) {

@@ -4,13 +4,14 @@
   angular.module('accountController', [])
       .controller('accountController', accountController);
 
-  accountController.$inject = ['$scope', 'authSetup', 'fbutil', 'user', '$location', '$firebaseObject'];
+  accountController.$inject = ['$scope', 'authSetup', 'fbutil', 'user', '$location', '$firebaseObject', 'facebookService'];
 
-    function accountController($scope, authSetup, fbutil, user, $location, $firebaseObject) {
+    function accountController($scope, authSetup, fbutil, user, $location, $firebaseObject, facebookService) {
       var unbind;
       // create a 3-way binding with the user profile object in Firebase
       var profile = $firebaseObject(fbutil.ref('users', user.uid));
       profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
+      //var fbData = facebookService.fbData;
 
       // expose logout function to scope
       $scope.logout = function() {
