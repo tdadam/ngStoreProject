@@ -4,9 +4,9 @@
   angular.module('accountController', [])
       .controller('accountController', accountController);
 
-  accountController.$inject = ['$scope', 'authSetup', 'fbutil', 'user', '$location', '$firebaseObject','toaster'];
+  accountController.$inject = ['$scope', 'authSetup', 'fbutil', 'user', '$location', '$firebaseObject', 'toaster', 'facebookService'];
 
-    function accountController($scope, authSetup, fbutil, user, $location, $firebaseObject,toaster) {
+    function accountController($scope, authSetup, fbutil, user, $location, $firebaseObject, toaster, facebookService) {
       var unbind;
       // create a 3-way binding with the user profile object in Firebase
       var profile = $firebaseObject(fbutil.ref('users', user.uid));
@@ -28,9 +28,9 @@
         $( "#in1" ).focus();
       };
       profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
-      $scope.change= function () {
-        $scope.saveBtn=true;
 
+      $scope.change = function () {
+        $scope.saveBt = true;
       };
 
       // expose logout function to scope
@@ -54,8 +54,10 @@
             .then(function() {
               $scope.msg = 'Password changed';
             }, function(err) {
-              $scope.err = err;
-            })
+              if (err.code === 'INVALID_PASSWORD') {
+                $scope.err = 'Incorrect Password';
+              }
+            });
         }
       };
 
@@ -74,7 +76,15 @@
           .then(function() {
             $scope.emailmsg = 'Email changed';
           }, function(err) {
-            $scope.emailerr = err;
+              if (err.code === 'EMAIL_TAKEN') {
+                  $scope.emailerr = 'The Email you entered has been taken.';
+              }
+              else if( !oldEmail || !newEmail || !pass ) {
+                  $scope.emailerr = 'Please fill in all fields';
+              }
+              else if (err.code === 'INVALID_PASSWORD') {
+                  $scope.emailerr = 'Incorrect Password';
+              }
           });
       };
 

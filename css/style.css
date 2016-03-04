@@ -249,8 +249,7 @@ input[type=text] {
 }
 
 .removeBtn {
-    float: right;
-    margin: -20px 10px;
+    margin: -10px -5px;
 }
 
 /*zoom css*/
@@ -307,7 +306,7 @@ input[type=text] {
 }
 .white{
     background-color: transparent;
-    border: 0px solid;
+    border: 0 solid;
     font-size: large;
 
 }
