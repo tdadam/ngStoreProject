@@ -31,7 +31,7 @@
       profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
 
       $scope.change = function () {
-        $scope.saveBt = true;
+        $scope.saveBtn = true;
       };
 
       // expose logout function to scope
