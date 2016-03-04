@@ -1,21 +1,30 @@
 <div>
+
     <div class="centered alert titleDiv">
         <h1 class="title" ui-sref="home"><i class="fa fa-shopping-bag largerBag magicTitle"></i> Super-Duper Megastore
         </h1>
     </div>
     <div class="alert featuredDiv featureName">
+
         <h2 class="whiteFont" style="margin-bottom: 40px">Profile</h2>
         <form>
+            <toaster-container style="margin-top: 200px" toaster-options="{'time-out': 4000}"></toaster-container>
+
+
             <fieldset>
                 <legend class="featureName" style="font-size: 25px;">Account</legend>
                 <div>
                     <label>
                         <span class="label featureName lrgfont">Name:</span>
-                        <input type="text" name="name" ng-model="profile.name"/>
+                        <input id="in1" ng-class="color" type="text" ng-change="change()" ng-readonly="readChanged" name="name" ng-model="profile.name"/>
+                        <button ng-show="changeBtn" id="btn1" class="btn btn-warning" ng-click="readChange()"><i class="fa fa-pencil    "></i>
+                            Change Name</button>
+                        <button ng-show="saveBtn" ng-click="saveName()" class="btn btn-success"><i class="fa fa-plus"></i> Save Name</button>
+
                     </label>
                 </div>
                 <div>
-                    <label style="margin-bottom: 30px">
+                    <label style="margin-bottom: 30px"><span class=""></span>
                         <span class="label featureName lrgfont">Email:</span>
                         <span class="lrgfont">{{profile.email}}</span>
                     </label>
@@ -42,8 +51,8 @@
                         <input type="password" ng-keypress="clear()" ng-model="confirm"/>
                     </label>
                 </div>
-                <button class="btn profileBtns" ng-click="changePassword(oldpass, newpass, confirm)">change
-                    password
+                <button class="btn btn-warning" ng-click="changePassword(oldpass, newpass, confirm)"><i class="fa fa-pencil"></i>Change
+                    Password
                 </button>
 
                 <p class="error whiteFont lrgfont" ng-show="err">{{err}}</p>
@@ -68,7 +77,7 @@
                     </label>
                 </div>
 
-                <button class="btn profileBtns" ng-click="changeEmail(pass, newEmail)">update email</button>
+                <button class="btn btn-warning" ng-click="changeEmail(pass, newEmail)"><i class="fa fa-pencil"></i> Update Email</button>
 
                 <p class="error whiteFont lrgfont" ng-show="emailerr">{{emailerr}}</p>
                 <p class="good whiteFont lrgfont" ng-show="emailmsg">{{emailmsg}}</p>

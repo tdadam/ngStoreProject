@@ -16,8 +16,9 @@
             "cartService",
             "accountController",
             "select",
+            "facebookService",
             "toaster"
-        ])
+    ])
 
         .config(["$stateProvider", "$urlRouterProvider",
             function ($stateProvider, $urlRouterProvider) {
