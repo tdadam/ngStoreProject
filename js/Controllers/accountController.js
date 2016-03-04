@@ -14,6 +14,7 @@
       $scope.changeBtn=true;
       $scope.readChanged=true;
       $scope.color="white";
+
       $scope.saveName= function () {
         $scope.color="white";
         toaster.pop('success', "Successfully Changed Your User Name: ", profile.name);
