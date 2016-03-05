@@ -1,7 +1,7 @@
 <div>
 
     <div class="centered alert titleDiv">
-        <h1 class="title" ui-sref="home"><i class="fa fa-shopping-bag largerBag magicTitle"></i> Super-Duper Megastore
+        <h1 class="title" ui-sref="home"><i class="fa fa-shopping-bag largerBag magicTitle"></i> Super Duper Megastore
         </h1>
     </div>
     <div class="alert featuredDiv featureName">
@@ -44,11 +44,11 @@
                 <div>
                     <label style="margin-right: 30px">
                         <span class="label featureName lrgfont">New Password:</span>
-                        <input type="password" ng-keypress="clear()" ng-model="newpass"/>
+                        <input type="password"  ng-keypress="clear()" ng-model="newpass"/>
                     </label>
                     <label style="margin-bottom: 20px">
                         <span class="featureName lrgfont centered">Confirm New Password: </span>
-                        <input type="password" ng-keypress="clear()" ng-model="confirm"/>
+                        <input type="password"  ng-keypress="clear()" ng-model="confirm" ng-change="passwordCheck()"/>
                     </label>
                 </div>
                 <button class="btn btn-warning" ng-click="changePassword(oldpass, newpass, confirm)"><i class="fa fa-pencil"></i>Change
