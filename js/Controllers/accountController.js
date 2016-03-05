@@ -17,7 +17,7 @@
 
       $scope.saveName= function () {
         $scope.color="white";
-        toaster.pop('success', "Successfully Changed Your User Name: ",profile.name);
+        toaster.pop('success', "Successfully Changed Your User Name: ", profile.name);
         $scope.saveBtn=false;
         $scope.changeBtn=true;
 
@@ -31,7 +31,7 @@
       profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
 
       $scope.change = function () {
-        $scope.saveBt = true;
+        $scope.saveBtn = true;
       };
 
       // expose logout function to scope
