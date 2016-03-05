@@ -293,21 +293,26 @@ input[type=text] {
     cursor: crosshair;
 }
 
-.thumbNailCursor{
+.thumbNailCursor {
     cursor: pointer;
 }
 
 .cartItemInfo {
     margin: 0 15px 10px 50px;
 }
-.yellow{
+
+.yellow {
     background-color: #f8e5a3;
     font-size: large;
 }
-.white{
+
+.white {
     background-color: transparent;
     border: 0 solid;
     font-size: large;
 
 }
-.green{background-color: springgreen}
+
+.green {
+    background-color: springgreen
+}
