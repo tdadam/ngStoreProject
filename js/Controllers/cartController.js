@@ -47,6 +47,7 @@
             cC.items = cartService.loadItems(profile);
 
             $timeout(function () {
+                cC.cartTotal = 0;
                 for (var i = 0; i < cC.items.length; i++) {
                     cC.cartTotal += cC.items[i].salePrice;
                 }
