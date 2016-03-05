@@ -249,8 +249,7 @@ input[type=text] {
 }
 
 .removeBtn {
-    float: right;
-    margin: -20px 10px;
+    margin: -10px -5px;
 }
 
 /*zoom css*/
@@ -301,3 +300,14 @@ input[type=text] {
 .cartItemInfo {
     margin: 0 15px 10px 50px;
 }
+.yellow{
+    background-color: #f8e5a3;
+    font-size: large;
+}
+.white{
+    background-color: transparent;
+    border: 0 solid;
+    font-size: large;
+
+}
+.green{background-color: springgreen}
