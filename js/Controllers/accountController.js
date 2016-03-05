@@ -10,27 +10,28 @@
       var unbind;
       // create a 3-way binding with the user profile object in Firebase
       var profile = $firebaseObject(fbutil.ref('users', user.uid));
-      $scope.saveBtn=false;
-      $scope.changeBtn=true;
-      $scope.readChanged=true;
-      $scope.color="white";
-      $scope.saveName= function () {
-        $scope.color="white";
-        toaster.pop('success', "Successfully Changed Your User Name: ",profile.name);
-        $scope.saveBtn=false;
-        $scope.changeBtn=true;
+      $scope.saveBtn = false;
+      $scope.changeBtn = true;
+      $scope.readChanged = true;
+      $scope.color = "white";
+
+      $scope.saveName = function () {
+        $scope.color = "white";
+        toaster.pop('success', "Successfully Changed Your User Name: ", profile.name);
+        $scope.saveBtn = false;
+        $scope.changeBtn = true;
 
       };
-      $scope.readChange= function () {
-        $scope.changeBtn=false;
-        $scope.readChanged=false;
-        $scope.color="yellow";
+      $scope.readChange = function () {
+        $scope.changeBtn = false;
+        $scope.readChanged = false;
+        $scope.color = "yellow";
         $( "#in1" ).focus();
       };
       profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
 
       $scope.change = function () {
-        $scope.saveBt = true;
+        $scope.saveBtn = true;
       };
 
       // expose logout function to scope

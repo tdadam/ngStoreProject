@@ -7,8 +7,28 @@
     <div class="alert featuredDiv featureName">
 
         <h2 class="whiteFont" style="margin-bottom: 40px">Profile</h2>
-        <form>
-            <toaster-container style="margin-top: 200px" toaster-options="{'time-out': 4000}"></toaster-container>
+
+        <form ng-if="profile.provider == 'facebook'">
+
+            <fieldset>
+                <legend class="featureName" style="font-size: 25px;">Account</legend>
+                <div>
+                    <label>
+                        <span class="label featureName lrgfont">Profile Name:</span>
+                        <span ng-class="color" ng-bind="profile.name"></span>
+                    </label>
+                </div>
+                <div>
+                    <label style="margin-bottom: 30px"><span class=""></span>
+                        <span class="label featureName lrgfont">Profile Pic:</span>
+                        <img ng-src="{{profile.email}}"/>
+                    </label>
+                </div>
+            </fieldset>
+        </form>
+
+        <form ng-if="profile.provider == 'email'">
+            <toaster-container style="margin: 0 auto" toaster-options="{'time-out': 4000}"></toaster-container>
 
 
             <fieldset>
@@ -32,7 +52,7 @@
             </fieldset>
         </form>
 
-        <form>
+        <form ng-if="profile.provider == 'email'">
             <fieldset>
                 <legend class="featureName" style="font-size: 25px;">Change Password</legend>
                 <div>
@@ -44,11 +64,11 @@
                 <div>
                     <label style="margin-right: 30px">
                         <span class="label featureName lrgfont">New Password:</span>
-                        <input type="password" ng-keypress="clear()" ng-model="newpass"/>
+                        <input type="password"  ng-keypress="clear()" ng-model="newpass"/>
                     </label>
                     <label style="margin-bottom: 20px">
                         <span class="featureName lrgfont centered">Confirm New Password: </span>
-                        <input type="password" ng-keypress="clear()" ng-model="confirm"/>
+                        <input type="password"  ng-keypress="clear()" ng-model="confirm" ng-change="passwordCheck()"/>
                     </label>
                 </div>
                 <button class="btn btn-warning" ng-click="changePassword(oldpass, newpass, confirm)"><i class="fa fa-pencil"></i>Change
@@ -61,7 +81,7 @@
             </fieldset>
         </form>
 
-        <form>
+        <form ng-if="profile.provider == 'email'">
             <fieldset>
                 <legend class="featureName" style="font-size: 25px;">Change Email</legend>
                 <div>

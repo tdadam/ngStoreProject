@@ -27,9 +27,9 @@
 
         $scope.login = function (email, pass) {
             $scope.err = null;
-            authSetup.$authWithPassword({ email: email, password: pass }, {rememberMe: true})
+            authSetup.$authWithPassword({ email: email, password: pass, provider: 'email' }, {rememberMe: true})
                 .then(function (/* user */) {
-                    $location.path('/account');
+                    $location.path('/home');
                 }, function (err) {
                     $scope.err = errMessage(err);
                 });
@@ -52,7 +52,7 @@
                         //var ref = fbutil.ref('users', user.uid);
                         var ref = fbutil.ref('users', user.uid);
                         return fbutil.handler(function (cb) {
-                            ref.set({email: email, name: name || firstPartOfEmail(email) }, cb);
+                            ref.set({email: email, name: name || firstPartOfEmail(email), provider: 'email' }, cb);
                         });
                     })
                     .then(function (/* user */) {
@@ -99,8 +99,13 @@
                     authC.message = 'Log in to Facebook Failed. ' + error;
                 } else {
                     $timeout(function() { // invokes $scope.$apply()
-                        //facebookService.saveData();
-                        authC.fbData = authData;
+                        console.log(authData.uid);
+                        var image = authData.facebook.profileImageURL;
+                        var name = authData.facebook.displayName;
+                        var ref = fbutil.ref('users', authData.uid);
+                        fbutil.handler(function (cb) {
+                            ref.set({email: image, name: name || firstPartOfEmail(email), provider: 'facebook' }, cb);
+                        });
                     });
                     $location.path('/home');
                 }
