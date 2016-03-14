@@ -1,0 +1,37 @@
+// Example program
+#include <iostream>
+#include <string>
+
+int index_of(
+  const std::string &s,
+  const std::string &t,
+  const size_t index)
+{
+  int len2  = t.length();
+
+  if ((s.length() - index) < t.length())
+    return -1;
+  else if (s.substr(index,len2) == t)
+    return index;
+  else
+    return index_of(s,t,index + 1);
+  return -1;
+}
+
+/** Overloading, so you can call index_of with just
+    two arguments */
+int index_of(const std::string &s, const std::string &t)
+{
+  return index_of(s,t,0);
+}
+
+/** Some test cases. */
+int main()
+{
+  std::cout << index_of("hello","ello") << std::endl;
+  std::cout << index_of("nothing","jax") << std::endl;
+  std::cout << index_of("hello","llo") << std::endl;
+  std::cout << index_of("hello","lo") << std::endl;
+  std::cout << index_of("hello","o") << std::endl;
+  std::cout << index_of("hello","hel") << std::endl;
+}
