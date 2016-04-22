@@ -4,18 +4,19 @@
    angular.module('authController', [])
        .controller('authController', authController);
 
-    authController.$inject = ['$scope', 'authSetup', '$localStorage', '$timeout', '$location', 'fbutil'];
+    authController.$inject = ['$scope', 'authSetup', '$localStorage', '$timeout', '$location', 'fbutil', 'facebookService'];
 
-    function authController($scope, authSetup, $localStorage, $timeout, $location, fbutil) {
+    function authController($scope, authSetup, $localStorage, $timeout, $location, fbutil, facebookService) {
 
         var authC = this;
         var url = 'https://store-project.firebaseio.com';
         authC.facebookLogin = facebookLogin;
-        authC.deleteFacebookData = deleteFacebookData;
+        //authC.deleteFacebookData = deleteFacebookData;
 
         authC.fbData = $localStorage['firebase:session::store-project'];
         // if facebook data is found in local storage, use it
         authC.message = authC.fbData && authC.fbData.facebook ? "Logged in to Facebook." : "No Facebook data found.";
+        authC.fbData = {};
 
         $scope.email = null;
         $scope.pass = null;
@@ -26,9 +27,9 @@
 
         $scope.login = function (email, pass) {
             $scope.err = null;
-            authSetup.$authWithPassword({ email: email, password: pass }, {rememberMe: true})
+            authSetup.$authWithPassword({ email: email, password: pass, provider: 'email' }, {rememberMe: true})
                 .then(function (/* user */) {
-                    $location.path('/account');
+                    $location.path('/home');
                 }, function (err) {
                     $scope.err = errMessage(err);
                 });
@@ -51,12 +52,12 @@
                         //var ref = fbutil.ref('users', user.uid);
                         var ref = fbutil.ref('users', user.uid);
                         return fbutil.handler(function (cb) {
-                            ref.set({email: email, name: name || firstPartOfEmail(email) }, cb);
+                            ref.set({email: email, name: name || firstPartOfEmail(email), provider: 'email' }, cb);
                         });
                     })
                     .then(function (/* user */) {
                         // redirect to the account page
-                        $location.path('/account');
+                        $location.path('/home');
                     }, function (err) {
                         $scope.err = errMessage(err);
                     });
@@ -95,22 +96,26 @@
         function facebookLogin() {
             ref.authWithOAuthPopup('facebook', function (error, authData) {
                 if (error) {
-                    console.log('Log in to Facebook Failed', error);
                     authC.message = 'Log in to Facebook Failed. ' + error;
                 } else {
-                    console.log('Logged in to Facebook');
-                    authC.message = 'Logged in to Facebook.';
                     $timeout(function() { // invokes $scope.$apply()
-                        authC.fbData = authData;
+                        console.log(authData.uid);
+                        var image = authData.facebook.profileImageURL;
+                        var name = authData.facebook.displayName;
+                        var ref = fbutil.ref('users', authData.uid);
+                        fbutil.handler(function (cb) {
+                            ref.set({email: image, name: name || firstPartOfEmail(email), provider: 'facebook' }, cb);
+                        });
                     });
+                    $location.path('/home');
                 }
             });
         }
     //    TODO: Need a logout option
-        function deleteFacebookData() {
-            $localStorage.$reset();
-            authC.fbData = {};
-            authC.message = 'Facebook data deleted.'
-        }
+    //    function deleteFacebookData() {
+    //        $localStorage.$reset();
+    //        authC.fbData = {};
+    //        authC.message = 'Facebook data deleted.'
+    //    }
     }
 }());

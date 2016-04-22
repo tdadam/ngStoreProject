@@ -249,8 +249,7 @@ input[type=text] {
 }
 
 .removeBtn {
-    float: right;
-    margin: -20px 10px;
+    margin: -10px -5px;
 }
 
 /*zoom css*/
@@ -294,21 +293,26 @@ input[type=text] {
     cursor: crosshair;
 }
 
-.thumbNailCursor{
+.thumbNailCursor {
     cursor: pointer;
 }
 
 .cartItemInfo {
     margin: 0 15px 10px 50px;
 }
-.yellow{
+
+.yellow {
     background-color: #f8e5a3;
     font-size: large;
 }
-.white{
+
+.white {
     background-color: transparent;
-    border: 0px solid;
+    border: 0 solid;
     font-size: large;
 
 }
-.green{background-color: springgreen}
+
+.green {
+    background-color: springgreen
+}
