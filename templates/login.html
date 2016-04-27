@@ -41,7 +41,7 @@
             <div>
                 <button class="btn profileBtns" ng-click="login(email, pass)" ng-hide="createMode">Log In</button>
                 <button class="btn profileBtns" ng-click="createMode = true" ng-hide="createMode">Register</button>
-                <button class="btn profileBtns pull-right" ng-click="authC.facebookLogin()" ng-hide="createMode"><i class="fa fa-facebook-official"></i> Log In with Facebook</button>
+                <a href="/auth/facebook" class="btn profileBtns pull-right fbLogin" ng-hide="createMode"><i class="fa fa-facebook-official"></i> Log In with Facebook</a>
                 <button class="btn profileBtns" ng-cloak ng-show="createMode" ng-click="createAccount()">Create Account</button>
                 <button class="btn profileBtns" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
                 <p ng-show="err" class="error">{{err}}</p>
