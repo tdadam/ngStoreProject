@@ -4,11 +4,12 @@
    angular.module('authController', [])
        .controller('authController', authController);
 
-    authController.$inject = ['$scope', 'authSetup', '$localStorage', '$timeout', '$location', 'fbutil', 'facebookService'];
+    authController.$inject = ['$http', '$scope', 'authSetup', '$localStorage', '$timeout', '$location', 'fbutil', 'facebookService'];
 
-    function authController($scope, authSetup, $localStorage, $timeout, $location, fbutil, facebookService) {
+    function authController($http, $scope, authSetup, $localStorage, $timeout, $location, fbutil, facebookService) {
 
         var authC = this;
+        this.$http = $http;
         var url = 'https://store-project.firebaseio.com';
         authC.facebookLogin = facebookLogin;
         //authC.deleteFacebookData = deleteFacebookData;
@@ -26,13 +27,21 @@
         $scope.createMode = false;
 
         $scope.login = function (email, pass) {
-            $scope.err = null;
-            authSetup.$authWithPassword({ email: email, password: pass, provider: 'email' }, {rememberMe: true})
-                .then(function (/* user */) {
-                    $location.path('/home');
-                }, function (err) {
-                    $scope.err = errMessage(err);
-                });
+            console.log(email);
+            console.log(pass);
+            $http.post('/api/login', {
+                email: email,
+                pass: pass
+            }).then(function(data){
+                $location.path('home');
+            });
+            //$scope.err = null;
+            //authSetup.$authWithPassword({ email: email, password: pass, provider: 'email' }, {rememberMe: true})
+            //    .then(function (/* user */) {
+            //        $location.path('/home');
+            //    }, function (err) {
+            //        $scope.err = errMessage(err);
+            //    });
         };
 
         $scope.createAccount = function () {
@@ -49,7 +58,6 @@
                     })
                     .then(function (user) {
                         // create a user profile in our data store
-                        //var ref = fbutil.ref('users', user.uid);
                         var ref = fbutil.ref('users', user.uid);
                         return fbutil.handler(function (cb) {
                             ref.set({email: email, name: name || firstPartOfEmail(email), provider: 'email' }, cb);
