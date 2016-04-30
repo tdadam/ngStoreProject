@@ -92,12 +92,19 @@ app.post('/api/login',
 app.post('/api/adduser', function (req, res, err) {
     MongoClient.connect(url, function (err, db) {
         //if (!db.collection('users').findOne({"email": req.body.email})) {
-            db.collection('users').insert({"email": req.body.email, "password": req.body.pass, "user": req.body.user})
-            res.end();
-        //}
-        //else {
-        //    res.send('User already exists');
-        //}
+        db.collection('users').insert({
+            "_id": req.body.email,
+            "password": req.body.pass,
+            "user": req.body.user
+        }, function (err, result) {
+            if (err != null && err.errmsg == 'E11000 duplicate key error collection: store-test.users index: _id_ dup key: { : "' + req.body.email + '" }') {
+                res.send('Email already registered');
+            }
+            else {
+                res.end();
+            }
+
+        });
     });
 });
 
