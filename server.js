@@ -8,7 +8,7 @@ var passport = require('passport')
 
 var MongoClient = require('mongodb').MongoClient;
 
-var url = 'mongodb://localhost:27017/store-test';
+var url = 'mongodb://localhost/store-test';
 //var url = 'mongodb://admin:admin@ds032319.mlab.com:32319/matc-project';
 
 app.use(bodyParser.json());
@@ -45,17 +45,17 @@ function add(email, pass) {
 }
 
 passport.use(new LocalStrategy({
-        usernameField: 'email',
+        email: 'email',
         passwordField: 'pass'
     },
-    function (usernameField, passwordField, done) {
+    function (email, passwordField, done) {
         //    done(null, {
         //        username: usernameField,
         //        password: passwordField
         //    });
 
         MongoClient.connect(url, function (err, db) {
-            db.collection('users').findOne({username: usernameField}, function (err, user) {
+            db.collection('users').findOne({email: email}, function (err, user) {
                 if (err) {
                     return done(err);
                 }
@@ -89,14 +89,18 @@ app.post('/api/login',
         res.json(req.user);
     });
 
-app.post('/api/adduser', function (data) {
-    //console.log(email);
+app.post('/api/adduser', function (req, res, err) {
     MongoClient.connect(url, function (err, db) {
-        db.collection('users').insert({"email": data.email, "password": data.pass, "user": data.name} )
-
+        //if (!db.collection('users').findOne({"email": req.body.email})) {
+            db.collection('users').insert({"email": req.body.email, "password": req.body.pass, "user": req.body.user})
+            res.end();
+        //}
+        //else {
+        //    res.send('User already exists');
+        //}
     });
 });
 
-    app.listen(3000, function () {
-        console.log('App listening on port 3000...');
-    });
+app.listen(3000, function () {
+    console.log('App listening on port 3000...');
+});
