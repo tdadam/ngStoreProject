@@ -10,9 +10,7 @@
 
         var authC = this;
         this.$http = $http;
-        var url = 'https://store-project.firebaseio.com';
-        authC.facebookLogin = facebookLogin;
-        //authC.deleteFacebookData = deleteFacebookData;
+        //var url = 'https://store-project.firebaseio.com';
 
         authC.fbData = $localStorage['firebase:session::store-project'];
         // if facebook data is found in local storage, use it
@@ -33,15 +31,8 @@
                 email: email,
                 pass: pass
             }).then(function(data){
-                $location.path('home');
+                $location.path('/home');
             });
-            //$scope.err = null;
-            //authSetup.$authWithPassword({ email: email, password: pass, provider: 'email' }, {rememberMe: true})
-            //    .then(function (/* user */) {
-            //        $location.path('/home');
-            //    }, function (err) {
-            //        $scope.err = errMessage(err);
-            //    });
         };
 
         $scope.createAccount = function () {
@@ -99,31 +90,5 @@
             var f = str.charAt(0).toUpperCase();
             return f + str.substr(1);
         }
-
-        var ref = new Firebase(url);
-        function facebookLogin() {
-            ref.authWithOAuthPopup('facebook', function (error, authData) {
-                if (error) {
-                    authC.message = 'Log in to Facebook Failed. ' + error;
-                } else {
-                    $timeout(function() { // invokes $scope.$apply()
-                        console.log(authData.uid);
-                        var image = authData.facebook.profileImageURL;
-                        var name = authData.facebook.displayName;
-                        var ref = fbutil.ref('users', authData.uid);
-                        fbutil.handler(function (cb) {
-                            ref.set({email: image, name: name || firstPartOfEmail(email), provider: 'facebook' }, cb);
-                        });
-                    });
-                    $location.path('/home');
-                }
-            });
-        }
-    //    TODO: Need a logout option
-    //    function deleteFacebookData() {
-    //        $localStorage.$reset();
-    //        authC.fbData = {};
-    //        authC.message = 'Facebook data deleted.'
-    //    }
     }
 }());
