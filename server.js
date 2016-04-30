@@ -8,7 +8,8 @@ var passport = require('passport')
 
 var MongoClient = require('mongodb').MongoClient;
 
-var url = 'mongodb://admin:admin@ds032319.mlab.com:32319/matc-project';
+var url = 'mongodb://localhost:27017/store-test';
+//var url = 'mongodb://admin:admin@ds032319.mlab.com:32319/matc-project';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -39,7 +40,7 @@ passport.use('facebook', new FacebookStrategy({
     }
 ));
 
-function add(email, pass){
+function add(email, pass) {
 
 }
 
@@ -48,10 +49,10 @@ passport.use(new LocalStrategy({
         passwordField: 'pass'
     },
     function (usernameField, passwordField, done) {
-    //    done(null, {
-    //        username: usernameField,
-    //        password: passwordField
-    //    });
+        //    done(null, {
+        //        username: usernameField,
+        //        password: passwordField
+        //    });
 
         MongoClient.connect(url, function (err, db) {
             db.collection('users').findOne({username: usernameField}, function (err, user) {
@@ -88,7 +89,14 @@ app.post('/api/login',
         res.json(req.user);
     });
 
+app.post('/api/adduser', function (data) {
+    //console.log(email);
+    MongoClient.connect(url, function (err, db) {
+        db.collection('users').insert({"email": data.email, "password": data.pass, "user": data.name} )
 
-app.listen(3000, function () {
-    console.log('App listening on port 3000...');
+    });
 });
+
+    app.listen(3000, function () {
+        console.log('App listening on port 3000...');
+    });
