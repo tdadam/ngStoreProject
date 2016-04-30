@@ -4,11 +4,10 @@
     angular.module('authController', [])
         .controller('authController', authController);
 
-    authController.$inject = ['$http', '$scope', 'authSetup', '$localStorage', '$timeout', '$location', 'fbutil', 'facebookService'];
+    authController.$inject = ['$http', '$scope', '$location'];
 
-    function authController($http, $scope, authSetup, $localStorage, $timeout, $location, fbutil, facebookService) {
+    function authController($http, $scope, $location) {
 
-        var authC = this;
         this.$http = $http;
 
         $scope.email = null;
@@ -29,12 +28,25 @@
             });
         };
 
+//This has been converted and connected to Mongo
         $scope.createAccount = function () {
             $scope.err = null;
             if (assertValidAccountProps()) {
                 var email = $scope.email;
                 var pass = $scope.pass;
-                var name = $scope.firstName + ' ' + $scope.lastName;
+                var name = '';
+                if($scope.firstName == null && $scope.lastName == null){
+                    name = ucfirst(email.substr(0, email.indexOf('@')) || '');
+                }
+                else if ($scope.lastName == null){
+                    name = $scope.firstName;
+                }
+                else if ($scope.firstName == null){
+                    name = $scope.lastName;
+                }
+                else {
+                    name = $scope.firstName + ' ' + $scope.lastName;
+                }
                 $http.post('/api/adduser', {
                     email: email,
                     pass: pass,
@@ -49,6 +61,7 @@
             }
         };
 
+//No need to change, should function same as before
         function assertValidAccountProps() {
             if (!$scope.email) {
                 $scope.err = 'Please enter an email address';
@@ -62,12 +75,9 @@
             return !$scope.err;
         }
 
+//Necessary? Might delete
         function errMessage(err) {
             return angular.isObject(err) && err.code ? err.code : err + '';
-        }
-
-        function firstPartOfEmail(email) {
-            return ucfirst(email.substr(0, email.indexOf('@')) || '');
         }
 
         function ucfirst(str) {

@@ -39,20 +39,16 @@ passport.use('facebook', new FacebookStrategy({
         cb(null, profile);
     }
 ));
-
-function add(email, pass) {
-
-}
+//
+//function add(email, pass) {
+//
+//}
 
 passport.use(new LocalStrategy({
         email: 'email',
         passwordField: 'pass'
     },
     function (email, passwordField, done) {
-        //    done(null, {
-        //        username: usernameField,
-        //        password: passwordField
-        //    });
 
         MongoClient.connect(url, function (err, db) {
             db.collection('users').findOne({email: email}, function (err, user) {
@@ -91,7 +87,6 @@ app.post('/api/login',
 
 app.post('/api/adduser', function (req, res, err) {
     MongoClient.connect(url, function (err, db) {
-        //if (!db.collection('users').findOne({"email": req.body.email})) {
         db.collection('users').insert({
             "_id": req.body.email,
             "password": req.body.pass,
