@@ -44,28 +44,40 @@ passport.use('facebook', new FacebookStrategy({
 //
 //}
 
+//passport.use(new LocalStrategy({
+//        usernameField: 'email',
+//        passwordField: 'pass',
+//        session: false
+//    },
+//    function(username, password, done) {
+//        User.findOne({ email: username }, function (err, user) {
+//            if (err) { return done(err); }
+//            if (!user) { return done(null, false); }
+//            if (!user.verifyPassword(password)) { return done(null, false); }
+//            return done(null, user);
+//        });
+//    }
+//));
+
 passport.use(new LocalStrategy({
-        email: 'email',
+        usernameField: '_id',
         passwordField: 'pass'
     },
-    function (email, passwordField, done) {
-
+    function (username, password, done) {
+console.log(username);
+        console.log(password);
         MongoClient.connect(url, function (err, db) {
-            db.collection('users').findOne({email: email}, function (err, user) {
-                if (err) {
-                    return done(err);
-                }
-                if (!user) {
-                    return done(null, false, {message: 'Incorrect username.'});
-                }
-                if (!user.validPassword(passwordField)) {
-                    return done(null, false, {message: 'Incorrect password.'});
-                }
+            console.log(db.collection('users').findOne({_id:username}));
+            db.collection('users').findOne({ _id: username }, function (err, user) {
+                console.log(err);
+                console.log(user);
+                console.log(password);
+                if (err) { return done(err); }
+                if (!user) { return done(null, false); }
+                if (user.password != password) { return done(null, false); }
                 return done(null, user);
-
             });
         });
-
     }
 ));
 
@@ -80,10 +92,11 @@ app.get('/auth/facebook/callback',
     });
 
 app.post('/api/login',
-    passport.authenticate('local'),
-    function (req, res, next) {
-        res.json(req.user);
-    });
+    passport.authenticate('local', {successRedirect: '/#', failureRedirect: '/#/login'})
+    //,function (req, res) {
+    //    res.redirect('/');
+    //}
+);
 
 app.post('/api/adduser', function (req, res, err) {
     MongoClient.connect(url, function (err, db) {

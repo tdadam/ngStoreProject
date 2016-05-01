@@ -21,10 +21,10 @@
             console.log(email);
             console.log(pass);
             $http.post('/api/login', {
-                email: email,
+                _id: email,
                 pass: pass
             }).then(function (data) {
-                $location.path('/home');
+                console.log(data);
             });
         };
 
