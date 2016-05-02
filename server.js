@@ -1,13 +1,18 @@
 var express = require('express');
 var app = express();
-var bodyParse = require('body-parser');
+var bodyParser = require('body-parser');
 var fs = require('fs');
 var passport = require('passport')
     , FacebookStrategy = require('passport-facebook').Strategy,
     LocalStrategy = require('passport-local').Strategy;
 
-app.use(bodyParse.json());
-app.use(bodyParse.urlencoded({
+var MongoClient = require('mongodb').MongoClient;
+
+var url = 'mongodb://localhost/store-test';
+//var url = 'mongodb://admin:admin@ds032319.mlab.com:32319/matc-project';
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
     extended: true
 }));
 
@@ -16,11 +21,11 @@ app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
     done(null, user);
 });
 
-passport.deserializeUser(function(obj, done){
+passport.deserializeUser(function (obj, done) {
     done(null, obj);
 });
 
@@ -29,9 +34,50 @@ passport.use('facebook', new FacebookStrategy({
         clientSecret: '4084a4ffb47ccace28b52570ca12719d',
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
-    function(accessToken, refreshToken, profile, cb) {
+    function (accessToken, refreshToken, profile, cb) {
         console.log(profile);
         cb(null, profile);
+    }
+));
+//
+//function add(email, pass) {
+//
+//}
+
+//passport.use(new LocalStrategy({
+//        usernameField: 'email',
+//        passwordField: 'pass',
+//        session: false
+//    },
+//    function(username, password, done) {
+//        User.findOne({ email: username }, function (err, user) {
+//            if (err) { return done(err); }
+//            if (!user) { return done(null, false); }
+//            if (!user.verifyPassword(password)) { return done(null, false); }
+//            return done(null, user);
+//        });
+//    }
+//));
+
+passport.use(new LocalStrategy({
+        usernameField: '_id',
+        passwordField: 'pass'
+    },
+    function (username, password, done) {
+console.log(username);
+        console.log(password);
+        MongoClient.connect(url, function (err, db) {
+            console.log(db.collection('users').findOne({_id:username}));
+            db.collection('users').findOne({ _id: username }, function (err, user) {
+                console.log(err);
+                console.log(user);
+                console.log(password);
+                if (err) { return done(err); }
+                if (!user) { return done(null, false); }
+                if (user.password != password) { return done(null, false); }
+                return done(null, user);
+            });
+        });
     }
 ));
 
@@ -39,17 +85,35 @@ app.get('/auth/facebook',
     passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { failureRedirect: '/fail' }),
-    function(req, res) {
+    passport.authenticate('facebook', {failureRedirect: '/fail'}),
+    function (req, res) {
         // Successful authentication, redirect home.
         res.redirect('/');
     });
 
-app.post('/api/login', function (req, res, next) {
-    passport.authenticate('local', function (err, user, info) {
-        console.log(err, user, info);
-        res.json(user);
-    })(req, res, next);
+app.post('/api/login',
+    passport.authenticate('local', {successRedirect: '/#', failureRedirect: '/#/login'})
+    //,function (req, res) {
+    //    res.redirect('/');
+    //}
+);
+
+app.post('/api/adduser', function (req, res, err) {
+    MongoClient.connect(url, function (err, db) {
+        db.collection('users').insert({
+            "_id": req.body.email,
+            "password": req.body.pass,
+            "user": req.body.user
+        }, function (err, result) {
+            if (err != null && err.errmsg == 'E11000 duplicate key error collection: store-test.users index: _id_ dup key: { : "' + req.body.email + '" }') {
+                res.send('Email already registered');
+            }
+            else {
+                res.end();
+            }
+
+        });
+    });
 });
 
 app.listen(3000, function () {
