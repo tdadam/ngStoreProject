@@ -35,7 +35,7 @@ passport.use('facebook', new FacebookStrategy({
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     function (accessToken, refreshToken, profile, cb) {
-        console.log(profile);
+        //console.log(profile);
         cb(null, profile);
     }
 ));
@@ -64,11 +64,8 @@ passport.use(new LocalStrategy({
         passwordField: 'pass'
     },
     function (username, password, done) {
-console.log(username);
-        console.log(password);
-        //MongoClient.connect(url, function (err, db) {
-        //    console.log(db.collection('users').findOne({_id:username}));
-        //    db.collection('users').findOne({ _id: username }, function (err, user) {
+        MongoClient.connect(url, function (err, db) {
+            db.collection('users').findOne({ _id: username }, function (err, user) {
                 //console.log(err);
                 //console.log(user);
                 //console.log(password);
@@ -76,8 +73,8 @@ console.log(username);
                 if (!user) { return done(null, false, { message: 'Incorrect username.' }); }
                 if (user.password != password) { return done(null, false, { message: 'Incorrect password.' }); }
                 return done(null, user);
-            //});
-        //});
+            });
+        });
     }
 ));
 
@@ -99,17 +96,18 @@ app.post('/api/login', function(req, res, next) {
         db.collection('users').findOne({_id: req.body._id}, function (err, user) {
             if (user) {
                 passport.authenticate('local', function (err, user, info) {
+                    console.log(user);
                     if (err) {
                         return next(err);
                     }
-                    if (!user) {
-                        return res.redirect('/#/login');
+                    if (user == false) {
+                        return res.send('Incorrect password');
                     }
                     req.logIn(user, function (err) {
                         if (err) {
                             return next(err);
                         }
-                        return res.redirect('/');
+                        return res.json(user);
                     });
                 })(req, res, next);
             }
