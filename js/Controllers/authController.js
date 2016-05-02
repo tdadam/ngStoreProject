@@ -4,9 +4,9 @@
     angular.module('authController', [])
         .controller('authController', authController);
 
-    authController.$inject = ['$http', '$scope', '$location'];
+    authController.$inject = ['$http', '$scope', '$location', 'authSetup'];
 
-    function authController($http, $scope, $location) {
+    function authController($http, $scope, $location, authSetup) {
 
         this.$http = $http;
 
@@ -25,8 +25,20 @@
                 pass: pass
             }).then(function (data) {
                 console.log(data);
+                if( data.data == 'Incorrect password'){
+                    $scope.err = 'Incorrect Password';
+                }
+                else if (data.data == 'User does not exist'){
+                    $scope.err = 'User does not exist';
+                }
+                else{
+                    authSetup.user = data.data._id;
+                    $location.path('/');
+                }
+
             });
         };
+
 
 //This has been converted and connected to Mongo
         $scope.createAccount = function () {

@@ -4,9 +4,12 @@
     angular.module('authSetup', [])
         .factory('authSetup', authSetup);
 
-    authSetup.$inject = ['$firebaseAuth', 'fbutil'];
+    //authSetup.$inject = ['$firebaseAuth', 'fbutil'];
 
-    function authSetup($firebaseAuth, fbutil) {
-        return $firebaseAuth(fbutil.ref());
+    function authSetup() {
+        return {user: ''}
     }
+
+
+
 }());
