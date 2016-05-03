@@ -12,6 +12,14 @@
         se.search = homeService.storage.search;
         se.selected = $sessionStorage.object;
 
+        se.profile = {};
+        se.loggedIn = false;
+
+        if(authSetup != {}){
+            se.loggedIn = true;
+            se.profile = authSetup;
+        }
+
         // search by clicking enter key
         se.clickEnter = function (keyEvent, search) {
             if (keyEvent.which === 13) {
@@ -35,14 +43,6 @@
             $localStorage.searchQuery = se.newSearchQuery;
             $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
         };
-
-        se.profile = '';
-
-        (function () {
-            if (authSetup != {}) {
-                se.profile = authSetup;
-            }
-        }());
 
         se.back = function () {
             $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
