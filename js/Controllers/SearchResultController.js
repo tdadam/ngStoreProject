@@ -5,9 +5,10 @@
 
         .controller('SearchResultController', SearchResultController);
 
-    function SearchResultController($state, searchResult, $http, homeService, $localStorage) {
+    function SearchResultController($state, searchResult, $http, homeService, $localStorage, authSetup) {
 
-       var sc = this;
+      var sc = this;
+        console.log(authSetup.user);
         sc.walData = searchResult.data;
         sc.searchLim = 9;
 

@@ -20,6 +20,8 @@
             se.profile = authSetup.user;
         }
 
+        console.log(se.profile);
+
         // search by clicking enter key
         se.clickEnter = function(keyEvent, search) {
             if (keyEvent.which === 13) {

@@ -110,10 +110,11 @@ app.post('/api/adduser', function(req, res) {
     db.collection('users').insert({
         "email": req.body.email,
         "password": req.body.pass,
-        "user": req.body.user
-    }, function(err, result) {
+        "user": req.body.user,
+        "provider": "email"
+    }, function (err, result) {
         //TODO: changed the _id to email to allow update on profile page, not sure how this check is affected
-        if (err != null && err.errmsg == 'E11000 duplicate key error collection: store-test.users index: email_ dup key: { : "' + req.body.email + '" }') {
+        if (err != null && err.errmsg == 'E11000 duplicate key error collection: store-test.users index: email dup key: { : "' + req.body.email + '" }') {
             res.send('Email already registered');
         } else {
             res.end();

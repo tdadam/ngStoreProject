@@ -15,7 +15,7 @@
                 <div>
                     <label>
                         <span class="label featureName lrgfont">Profile Name:</span>
-                        <span ng-class="color" ng-bind="profile.name"></span>
+                        <span ng-class="color" ng-bind="profile.user"></span>
                     </label>
                 </div>
                 <div>
@@ -36,7 +36,7 @@
                 <div>
                     <label>
                         <span class="label featureName lrgfont">Name:</span>
-                        <input id="in1" ng-class="color" type="text" ng-change="change()" ng-readonly="readChanged" name="name" ng-model="profile.name"/>
+                        <input id="in1" ng-class="color" type="text" ng-change="change()" ng-readonly="readChanged" name="name" ng-model="profile.user"/>
                         <button ng-show="changeBtn" id="btn1" class="btn btn-warning" ng-click="readChange()"><i class="fa fa-pencil    "></i>
                             Change Name</button>
                         <button ng-show="saveBtn" ng-click="saveName()" class="btn btn-success"><i class="fa fa-plus"></i> Save Name</button>
