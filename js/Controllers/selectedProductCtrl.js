@@ -4,13 +4,21 @@
     angular.module('select', [])
         .controller('selectCtrl', selectCtrl);
 
-    selectCtrl.$inject = ['$rootScope', 'fbutil', 'user', '$state', '$firebaseObject', 'homeService', 'cartService', '$sessionStorage', '$localStorage', 'toaster'];
+    selectCtrl.$inject = ['$state', 'homeService', 'cartService', '$sessionStorage', '$localStorage', 'toaster', 'authSetup'];
 
-    function selectCtrl($rootScope, fbutil, user, $state, $firebaseObject, homeService, cartService, $sessionStorage, $localStorage, toaster) {
+    function selectCtrl($state, homeService, cartService, $sessionStorage, $localStorage, toaster, authSetup) {
         var se = this;
         //get object from storage
         se.search = homeService.storage.search;
         se.selected = $sessionStorage.object;
+
+        se.profile = {};
+        se.loggedIn = false;
+
+        if(authSetup != {}){
+            se.loggedIn = true;
+            se.profile = authSetup.user;
+        }
 
         // search by clicking enter key
         se.clickEnter = function (keyEvent, search) {
@@ -35,14 +43,6 @@
             $localStorage.searchQuery = se.newSearchQuery;
             $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
         };
-
-        se.profile = '';
-
-        (function () {
-            if ($rootScope.loggedIn) {
-                se.profile = $firebaseObject(fbutil.ref('users', user.uid));
-            }
-        }());
 
         se.back = function () {
             $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
