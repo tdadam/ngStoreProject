@@ -7,7 +7,7 @@
     //authSetup.$inject = ['$firebaseAuth', 'fbutil'];
 
     function authSetup() {
-        return {user: ''}
+        return {}
     }
 
 

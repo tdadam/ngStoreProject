@@ -32,8 +32,8 @@
                     $scope.err = 'User does not exist';
                 }
                 else{
-                    authSetup.user = data.data._id;
-                    $location.path('/');
+                    authSetup.user = data.data;
+                    $location.path('/home');
                 }
 
             });
