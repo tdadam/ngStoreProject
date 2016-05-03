@@ -14,7 +14,8 @@
       if(authSetup != {}){
         $scope.loggedIn = true;
         $scope.profile = authSetup.user;
-      }
+      };
+      console.log($scope.profile);
 
       //TODO: This entire file will need massive updates for PUT calls
       $scope.saveBtn = false;
@@ -36,7 +37,7 @@
         $( "#in1" ).focus();
       };
 
-      profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
+      //profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
 
       $scope.change = function () {
         $scope.saveBtn = true;
@@ -44,9 +45,7 @@
 
       //TODO: This was the logout, not sure how passport does this
       $scope.logout = function() {
-        if( unbind ) { unbind(); }
-        profile.$destroy();
-        authSetup.$unauth();
+        authSetup.user = {};
         $location.path('/login');
       };
 
