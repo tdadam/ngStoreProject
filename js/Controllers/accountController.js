@@ -4,12 +4,19 @@
   angular.module('accountController', [])
       .controller('accountController', accountController);
 
-  accountController.$inject = ['$scope', 'authSetup', 'fbutil', 'user', '$location', '$firebaseObject', 'toaster', 'facebookService'];
+  accountController.$inject = ['$scope', 'authSetup', 'fbutil', 'user', '$location', 'toaster'];
 
-    function accountController($scope, authSetup, fbutil, user, $location, $firebaseObject, toaster, facebookService) {
+    function accountController($scope, authSetup, fbutil, user, $location, toaster) {
       var unbind;
-      // create a 3-way binding with the user profile object in Firebase
-      var profile = $firebaseObject(fbutil.ref('users', user.uid));
+      $scope.profile = {};
+      $scope.loggedIn = false;
+
+      if(authSetup != {}){
+        $scope.loggedIn = true;
+        $scope.profile = authSetup.user;
+      }
+
+      //TODO: This entire file will need massive updates for PUT calls
       $scope.saveBtn = false;
       $scope.changeBtn = true;
       $scope.readChanged = true;
@@ -28,13 +35,14 @@
         $scope.color = "yellow";
         $( "#in1" ).focus();
       };
+
       profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
 
       $scope.change = function () {
         $scope.saveBtn = true;
       };
 
-      // expose logout function to scope
+      //TODO: This was the logout, not sure how passport does this
       $scope.logout = function() {
         if( unbind ) { unbind(); }
         profile.$destroy();
@@ -42,6 +50,7 @@
         $location.path('/login');
       };
 
+      //TODO: This needs to be changed to a PUT call in the server.js
       $scope.changePassword = function(pass, confirm, newPass) {
         resetMessages();
         if( !pass || !confirm || !newPass ) {
@@ -64,6 +73,14 @@
 
       $scope.clear = resetMessages;
 
+      function resetMessages() {
+        $scope.err = null;
+        $scope.msg = null;
+        $scope.emailerr = null;
+        $scope.emailmsg = null;
+      }
+
+      //TODO: Again, this needs to be updated to a PUT
       $scope.changeEmail = function(pass, newEmail) {
         resetMessages();
         var oldEmail = profile.email;
@@ -88,12 +105,5 @@
               }
           });
       };
-
-      function resetMessages() {
-        $scope.err = null;
-        $scope.msg = null;
-        $scope.emailerr = null;
-        $scope.emailmsg = null;
-      }
     }
 }());
