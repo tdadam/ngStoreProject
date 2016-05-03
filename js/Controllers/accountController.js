@@ -37,8 +37,6 @@
         $( "#in1" ).focus();
       };
 
-      //profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
-
       $scope.change = function () {
         $scope.saveBtn = true;
       };

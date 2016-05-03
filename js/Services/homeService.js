@@ -1,4 +1,4 @@
-(function(){
+(function() {
     'use strict';
 
     angular.module('homeService', [])
@@ -20,7 +20,7 @@
             hs.storage.search = searchIn;
         }
 
-        function select(name){
+        function select(name) {
             $sessionStorage.object = name;
             hs.selected = $sessionStorage.object;
         }
