@@ -21,22 +21,18 @@
             console.log(email);
             console.log(pass);
             $http.post('/api/login', {
-                _id: email,
+                email: email,
                 pass: pass
                 //TODO: Not getting back the data I want to see, unable to return helpful info to user
             }).then(function (data) {
-                console.log(data);
-                if( data.data == 'Incorrect password'){
-                    $scope.err = 'Incorrect Password';
-                }
-                else if (data.data == 'User does not exist'){
-                    $scope.err = 'User does not exist';
-                }
-                else{
+                console.log(authSetup.user);
+                console.log(data.data);
                     authSetup.user = data.data;
+                console.log(authSetup.user);
                     $location.path('/home');
-                }
 
+            }, function(data){
+                $scope.err = "Invalid username / password"
             });
         };
 

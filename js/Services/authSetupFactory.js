@@ -2,10 +2,13 @@
     'use strict';
 
     angular.module('authSetup', [])
-        .factory('authSetup', authSetup);
+        .service('authSetup', authSetup);
+
+    authSetup.$inject = [];
 
     function authSetup() {
-        return {}
+        var auth = this;
+        auth.user = {};
     }
 
 }());

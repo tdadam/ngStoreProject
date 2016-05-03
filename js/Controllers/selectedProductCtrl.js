@@ -17,7 +17,7 @@
 
         if(authSetup != {}){
             se.loggedIn = true;
-            se.profile = authSetup;
+            se.profile = authSetup.user;
         }
 
         // search by clicking enter key
