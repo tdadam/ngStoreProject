@@ -64,10 +64,10 @@ passport.use(new LocalStrategy({
                 return done(err);
             }
             else if (!user) {
-                return done(401, { success : false, message : 'authentication failed' });
+                return done(401, { success : false, message : 'User not found' });
             }
             else if (user.password != password) {
-                return done(401, {success:false, message: 'Incorrect password.'});
+                return done(418, { success : false, message : 'Incorrect password' });
             }
             else {
                 return done(null, user);
@@ -92,7 +92,8 @@ app.get('/auth/facebook/callback',
 app.post('/api/login',
     passport.authenticate('local', {
         successRedirect: '/',
-        failureRedirect: '/#/login'
+        failureRedirect: '/#/login',
+        failureFlash: true
     })
 );
 
