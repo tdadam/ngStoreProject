@@ -4,9 +4,9 @@
     angular.module('cartController', [])
         .controller('cartController', cartController);
 
-    cartController.$inject = ['$state', 'cartService', '$timeout', '$localStorage', 'homeService', '$sessionStorage'];
+    cartController.$inject = ['$state', 'cartService', '$timeout', '$localStorage', 'homeService', '$sessionStorage', "authSetup"];
 
-    function cartController($state, cartService, $timeout, $localStorage, homeService, $sessionStorage) {
+    function cartController($state, cartService, $timeout, $localStorage, homeService, $sessionStorage, authSetup) {
         var cC = this;
 
         cC.loadItems = loadItems;
@@ -17,7 +17,7 @@
 
         if(authSetup != {}){
             cC.loggedIn = true;
-            cC.profile = authSetup;
+            cC.profile = authSetup.user;
         }
 
         cC.total = 0;

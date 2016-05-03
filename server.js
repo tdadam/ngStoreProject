@@ -60,14 +60,17 @@ passport.use(new LocalStrategy({
     },
     function (username, password, done) {
         db.collection('users').findOne({"email": username, "password": password}, function (err, user) {
+            console.log(user);
             if (err) {
                 return done(err);
             }
             if (!user) {
-                return done(401, false, {message: 'User not found'});
+                return done(null, false);
+                //return done(401, false, {message: 'User not found'});
             }
             if (user.password != password) {
-                return done(418, {success: false, message: 'Incorrect password'});
+                return done(null,false);
+                //return done(418, {success: false, message: 'Incorrect password'});
             }
             return done(null, user);
         });
@@ -89,11 +92,12 @@ app.get('/auth/facebook/callback',
 //Work in progress...not quite getting through to database
 app.post('/api/login',
     passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/#/login',
-        failureFlash: true
-    })
-);
+        //successRedirect: '/',
+        //failureRedirect: '/#/login'
+        //failureFlash: true
+    }),function(req,res){
+        res.json(req.user);
+    });
 
 //adds the new user to the database, returning message to client if email already used
 app.post('/api/adduser', function (req, res) {

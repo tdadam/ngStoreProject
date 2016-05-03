@@ -13,7 +13,7 @@
 
       if(authSetup != {}){
         $scope.loggedIn = true;
-        $scope.profile = authSetup;
+        $scope.profile = authSetup.user;
       }
 
       //TODO: This entire file will need massive updates for PUT calls

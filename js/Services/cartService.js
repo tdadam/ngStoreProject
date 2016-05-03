@@ -4,9 +4,9 @@
     angular.module('cartService', [])
         .service('cartService', cartService);
 
-    cartService.$inject = ['$firebaseArray'];
+    cartService.$inject = [];
 
-    function cartService($firebaseArray) {
+    function cartService() {
         var cS = this;
         cS.addToCart = addToCart;
         cS.loadItems = loadItems;
