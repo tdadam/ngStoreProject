@@ -39,11 +39,8 @@
         se.profile = '';
 
         (function () {
-            //if ($rootScope.loggedIn) {
-            //    se.profile = $firebaseObject(fbutil.ref('users', user.uid));
-            //}
-            if (authSetup.user != '') {
-                se.profile = authSetup.user;
+            if (authSetup != {}) {
+                se.profile = authSetup;
             }
         }());
 
