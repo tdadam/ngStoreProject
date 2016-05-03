@@ -1,4 +1,5 @@
 var express = require('express');
+var mongodb = require('mongodb');
 var app = express();
 var bodyParser = require('body-parser');
 var fs = require('fs');
@@ -7,9 +8,23 @@ var passport = require('passport')
     LocalStrategy = require('passport-local').Strategy;
 
 var MongoClient = require('mongodb').MongoClient;
+var db;
 
-var url = 'mongodb://localhost/store-test';
-//var url = 'mongodb://admin:admin@ds032319.mlab.com:32319/matc-project';
+//The uri is the mongo connection info, comment out first line and uncomment the second to connect to mlab
+var uri = 'mongodb://localhost/store-test';
+//var uri = 'mongodb://admin:admin@ds032319.mlab.com:32319/matc-project';
+
+// Initialize connection once
+MongoClient.connect(uri, function (err, database) {
+    if (err) throw err;
+
+    db = database;
+
+    // Start the application after the database connection is ready
+    app.listen(3000);
+    console.log("Listening on port 3000");
+});
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -35,55 +50,38 @@ passport.use('facebook', new FacebookStrategy({
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     function (accessToken, refreshToken, profile, cb) {
-        console.log(profile);
         cb(null, profile);
     }
 ));
-//
-//function add(email, pass) {
-//
-//}
-
-//passport.use(new LocalStrategy({
-//        usernameField: 'email',
-//        passwordField: 'pass',
-//        session: false
-//    },
-//    function(username, password, done) {
-//        User.findOne({ email: username }, function (err, user) {
-//            if (err) { return done(err); }
-//            if (!user) { return done(null, false); }
-//            if (!user.verifyPassword(password)) { return done(null, false); }
-//            return done(null, user);
-//        });
-//    }
-//));
 
 passport.use(new LocalStrategy({
-        usernameField: '_id',
+        usernameField: 'email',
         passwordField: 'pass'
     },
     function (username, password, done) {
-console.log(username);
-        console.log(password);
-        MongoClient.connect(url, function (err, db) {
-            console.log(db.collection('users').findOne({_id:username}));
-            db.collection('users').findOne({ _id: username }, function (err, user) {
-                console.log(err);
-                console.log(user);
-                console.log(password);
-                if (err) { return done(err); }
-                if (!user) { return done(null, false); }
-                if (user.password != password) { return done(null, false); }
-                return done(null, user);
-            });
+        db.collection('users').findOne({"email": username, "password": password}, function (err, user) {
+            console.log(user);
+            if (err) {
+                return done(err);
+            }
+            if (!user) {
+                return done(null, false);
+                //return done(401, false, {message: 'User not found'});
+            }
+            if (user.password != password) {
+                return done(null,false);
+                //return done(418, {success: false, message: 'Incorrect password'});
+            }
+            return done(null, user);
         });
     }
 ));
 
+//Not started, attempting local first
 app.get('/auth/facebook',
     passport.authenticate('facebook'));
 
+//Not started, attempting local first
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {failureRedirect: '/fail'}),
     function (req, res) {
@@ -91,31 +89,29 @@ app.get('/auth/facebook/callback',
         res.redirect('/');
     });
 
+//Work in progress...not quite getting through to database
 app.post('/api/login',
-    passport.authenticate('local', {successRedirect: '/#', failureRedirect: '/#/login'})
-    //,function (req, res) {
-    //    res.redirect('/');
-    //}
-);
-
-app.post('/api/adduser', function (req, res, err) {
-    MongoClient.connect(url, function (err, db) {
-        db.collection('users').insert({
-            "_id": req.body.email,
-            "password": req.body.pass,
-            "user": req.body.user
-        }, function (err, result) {
-            if (err != null && err.errmsg == 'E11000 duplicate key error collection: store-test.users index: _id_ dup key: { : "' + req.body.email + '" }') {
-                res.send('Email already registered');
-            }
-            else {
-                res.end();
-            }
-
-        });
+    passport.authenticate('local', {
+        //successRedirect: '/',
+        //failureRedirect: '/#/login'
+        //failureFlash: true
+    }),function(req,res){
+        res.json(req.user);
     });
-});
 
-app.listen(3000, function () {
-    console.log('App listening on port 3000...');
+//adds the new user to the database, returning message to client if email already used
+app.post('/api/adduser', function (req, res) {
+    db.collection('users').insert({
+        "email": req.body.email,
+        "password": req.body.pass,
+        "user": req.body.user
+    }, function (err, result) {
+        //TODO: changed the _id to email to allow update on profile page, not sure how this check is affected
+        if (err != null && err.errmsg == 'E11000 duplicate key error collection: store-test.users index: email_ dup key: { : "' + req.body.email + '" }') {
+            res.send('Email already registered');
+        }
+        else {
+            res.end();
+        }
+    });
 });

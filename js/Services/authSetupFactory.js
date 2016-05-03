@@ -2,11 +2,13 @@
     'use strict';
 
     angular.module('authSetup', [])
-        .factory('authSetup', authSetup);
+        .service('authSetup', authSetup);
 
-    authSetup.$inject = ['$firebaseAuth', 'fbutil'];
+    authSetup.$inject = [];
 
-    function authSetup($firebaseAuth, fbutil) {
-        return $firebaseAuth(fbutil.ref());
+    function authSetup() {
+        var auth = this;
+        auth.user = {};
     }
+
 }());

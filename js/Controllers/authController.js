@@ -4,9 +4,9 @@
     angular.module('authController', [])
         .controller('authController', authController);
 
-    authController.$inject = ['$http', '$scope', '$location'];
+    authController.$inject = ['$http', '$scope', '$location', 'authSetup'];
 
-    function authController($http, $scope, $location) {
+    function authController($http, $scope, $location, authSetup) {
 
         this.$http = $http;
 
@@ -21,14 +21,24 @@
             console.log(email);
             console.log(pass);
             $http.post('/api/login', {
-                _id: email,
+                email: email,
                 pass: pass
+                //TODO: Not getting back the data I want to see, unable to return helpful info to user
             }).then(function (data) {
-                console.log(data);
+                console.log(authSetup.user);
+                console.log(data.data);
+                    authSetup.user = data.data;
+                console.log(authSetup.user);
+                    $location.path('/home');
+
+            }, function(data){
+                $scope.err = "Invalid username / password"
             });
         };
 
+
 //This has been converted and connected to Mongo
+        //TODO: I think I broke this again, email is no longer the _id and is harder to check uniqueness
         $scope.createAccount = function () {
             $scope.err = null;
             if (assertValidAccountProps()) {
