@@ -4,14 +4,22 @@
     angular.module('cartController', [])
         .controller('cartController', cartController);
 
-    cartController.$inject = ['$rootScope', '$state', 'cartService', '$timeout', '$localStorage', 'homeService', '$sessionStorage'];
+    cartController.$inject = ['$state', 'cartService', '$timeout', '$localStorage', 'homeService', '$sessionStorage'];
 
-    function cartController($rootScope, $state, cartService, $timeout, $localStorage, homeService, $sessionStorage) {
+    function cartController($state, cartService, $timeout, $localStorage, homeService, $sessionStorage) {
         var cC = this;
 
         cC.loadItems = loadItems;
         cC.selectedItem = selectedItem;
-        cC.profile = authSetup;
+
+        cC.profile = {};
+        cC.loggedIn = false;
+
+        if(authSetup != {}){
+            cC.loggedIn = true;
+            cC.profile = authSetup;
+        }
+
         cC.total = 0;
         cC.cartTotal = 0;
         cC.items = [];

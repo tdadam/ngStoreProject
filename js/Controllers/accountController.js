@@ -8,9 +8,15 @@
 
     function accountController($scope, authSetup, fbutil, user, $location, toaster) {
       var unbind;
+      $scope.profile = {};
+      $scope.loggedIn = false;
+
+      if(authSetup != {}){
+        $scope.loggedIn = true;
+        $scope.profile = authSetup;
+      }
 
       //TODO: This entire file will need massive updates for PUT calls
-      var profile = authSetup;
       $scope.saveBtn = false;
       $scope.changeBtn = true;
       $scope.readChanged = true;

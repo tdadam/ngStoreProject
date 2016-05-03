@@ -8,6 +8,15 @@
 
     function navController($location) {
         var nav = this;
+
+        nav.profile = {};
+        nav.loggedIn = false;
+
+        if(authSetup != {}){
+            nav.loggedIn = true;
+            nav.profile = authSetup;
+        }
+
         nav.isActive = isActive;
 
         function isActive(viewLocation) {
