@@ -4,9 +4,9 @@
     angular.module('home', [])
         .controller('homeController', homeController);
 
-    homeController.$inject = ['$http', '$state', '$localStorage', 'homeService','$templateCache'];
+    homeController.$inject = ['$http', '$state', '$localStorage', 'homeService'];
 
-    function homeController($http, $state, $localStorage, homeService, $templateCache) {
+    function homeController($http, $state, $localStorage, homeService) {
         var hc = this;
 
         //------> trends not working from walmart side

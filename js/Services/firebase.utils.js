@@ -1,3 +1,5 @@
+//TODO: Does this file even need to exist anymore?
+
 // a simple wrapper on Firebase and AngularFire to simplify deps and keep things DRY
 angular.module('firebase.utils', ['firebase'])
     .factory('fbutil', ['$window', '$q', function ($window, $q) {

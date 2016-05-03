@@ -55,23 +55,21 @@ passport.use('facebook', new FacebookStrategy({
 ));
 
 passport.use(new LocalStrategy({
-        usernameField: '_id',
+        usernameField: 'email',
         passwordField: 'pass'
     },
     function (username, password, done) {
-        db.collection('users').findOne({"_id": username, "password": password}, function (err, user) {
+        db.collection('users').findOne({"email": username, "password": password}, function (err, user) {
             if (err) {
                 return done(err);
             }
-            else if (!user) {
-                return done(401, { success : false, message : 'User not found' });
+            if (!user) {
+                return done(401, false, {message: 'User not found'});
             }
-            else if (user.password != password) {
-                return done(418, { success : false, message : 'Incorrect password' });
+            if (user.password != password) {
+                return done(418, {success: false, message: 'Incorrect password'});
             }
-            else {
-                return done(null, user);
-            }
+            return done(null, user);
         });
     }
 ));
@@ -100,11 +98,12 @@ app.post('/api/login',
 //adds the new user to the database, returning message to client if email already used
 app.post('/api/adduser', function (req, res) {
     db.collection('users').insert({
-        "_id": req.body.email,
+        "email": req.body.email,
         "password": req.body.pass,
         "user": req.body.user
     }, function (err, result) {
-        if (err != null && err.errmsg == 'E11000 duplicate key error collection: store-test.users index: _id_ dup key: { : "' + req.body.email + '" }') {
+        //TODO: changed the _id to email to allow update on profile page, not sure how this check is affected
+        if (err != null && err.errmsg == 'E11000 duplicate key error collection: store-test.users index: email_ dup key: { : "' + req.body.email + '" }') {
             res.send('Email already registered');
         }
         else {

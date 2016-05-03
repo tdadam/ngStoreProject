@@ -4,15 +4,14 @@
     angular.module('cartController', [])
         .controller('cartController', cartController);
 
-    cartController.$inject = ['$scope', '$rootScope', '$state', 'user', 'fbutil', 'cartService', '$firebaseObject', '$timeout', '$localStorage', 'homeService', '$sessionStorage'];
+    cartController.$inject = ['$rootScope', '$state', 'cartService', '$timeout', '$localStorage', 'homeService', '$sessionStorage'];
 
-    function cartController($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject, $timeout, $localStorage, homeService, $sessionStorage) {
+    function cartController($rootScope, $state, cartService, $timeout, $localStorage, homeService, $sessionStorage) {
         var cC = this;
 
-        cC.setProfile = setProfile;
         cC.loadItems = loadItems;
         cC.selectedItem = selectedItem;
-        cC.profile = {};
+        cC.profile = authSetup;
         cC.total = 0;
         cC.cartTotal = 0;
         cC.items = [];
@@ -32,16 +31,7 @@
             console.log(cC.cartItemsNum);
         };
 
-        function setProfile() {
-            if ($rootScope.loggedIn) {
-                var unbind;
-                cC.profile = $firebaseObject(fbutil.ref('users', user.uid));
-                cC.profile.$bindTo($scope, 'profile').then(function (ub) {
-                    unbind = ub;
-                });
-            }
-        }
-
+        //TODO: When we get items, this is going to be an api call as well
         function loadItems() {
             var profile = cC.profile;
             cC.items = cartService.loadItems(profile);
@@ -54,7 +44,7 @@
             }, 750);
         }
 
-        if (!$rootScope.loggedIn) {
+        if (authSetup == {}) {
             $state.go("login");
         }
 
@@ -62,7 +52,6 @@
             $sessionStorage.object = object;
         }
 
-        setProfile();
         loadItems();
 
     }
