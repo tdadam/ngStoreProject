@@ -36,7 +36,7 @@
         $( "#in1" ).focus();
       };
 
-      profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
+      // profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
 
       $scope.change = function () {
         $scope.saveBtn = true;
@@ -44,9 +44,7 @@
 
       //TODO: This was the logout, not sure how passport does this
       $scope.logout = function() {
-        if( unbind ) { unbind(); }
-        profile.$destroy();
-        authSetup.$unauth();
+        authSetup.user = {};
         $location.path('/login');
       };
 
