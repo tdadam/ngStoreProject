@@ -14,7 +14,8 @@
       if(authSetup != {}){
         $scope.loggedIn = true;
         $scope.profile = authSetup.user;
-      }
+      };
+      console.log($scope.profile);
 
       //TODO: This entire file will need massive updates for PUT calls
       $scope.saveBtn = false;
@@ -35,8 +36,6 @@
         $scope.color = "yellow";
         $( "#in1" ).focus();
       };
-
-      // profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
 
       $scope.change = function () {
         $scope.saveBtn = true;
