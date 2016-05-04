@@ -2,19 +2,18 @@
 
 // a simple wrapper on Firebase and AngularFire to simplify deps and keep things DRY
 angular.module('firebase.utils', ['firebase'])
-    .factory('fbutil', ['$window', '$q', function ($window, $q) {
+    .factory('fbutil', ['$window', '$q', function($window, $q) {
         "use strict";
 
         var FBURL = "https://store-project.firebaseio.com";
         var utils = {
             // convert a node or Firebase style callback to a future
-            handler: function (fn, context) {
-                return utils.defer(function (def) {
-                    fn.call(context, function (err, result) {
+            handler: function(fn, context) {
+                return utils.defer(function(def) {
+                    fn.call(context, function(err, result) {
                         if (err !== null) {
                             def.reject(err);
-                        }
-                        else {
+                        } else {
                             def.resolve(result);
                         }
                     });
@@ -22,7 +21,7 @@ angular.module('firebase.utils', ['firebase'])
             },
 
             // abstract the process of creating a future/promise
-            defer: function (fn, context) {
+            defer: function(fn, context) {
                 var def = $q.defer();
                 fn.call(context, def);
                 return def.promise;
@@ -37,8 +36,7 @@ angular.module('firebase.utils', ['firebase'])
             for (var i = 0; i < args.length; i++) {
                 if (angular.isArray(args[i])) {
                     args[i] = pathRef(args[i]);
-                }
-                else if (typeof args[i] !== 'string') {
+                } else if (typeof args[i] !== 'string') {
                     throw new Error('Argument ' + i + ' to firebaseRef is not a string: ' + args[i]);
                 }
             }

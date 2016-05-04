@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('select', [])
@@ -12,50 +12,53 @@
         se.search = homeService.storage.search;
         se.selected = $sessionStorage.object;
 
-        se.profile = {};
-        se.loggedIn = false;
-
-        if(authSetup != {}){
-            se.loggedIn = true;
-            se.profile = authSetup.user;
-        }
+        se.profile = $sessionStorage.user;
+        //console.log(se.profile);
+        se.loggedIn = $sessionStorage.loggedIn;
 
         // search by clicking enter key
-        se.clickEnter = function (keyEvent, search) {
+        se.clickEnter = function(keyEvent, search) {
             if (keyEvent.which === 13) {
                 homeService.addSearch(search);
                 $localStorage.searchQuery = search;
-                $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
+                $state.go("SearchResult", {
+                    searchQuery: $localStorage.searchQuery
+                });
             }
         };
 
         se.defaultImageIndex = 0;
         se.currentImage = se.selected.imageEntities[se.defaultImageIndex].largeImage;
 
-        se.sendIndex = function (index) {
+        se.sendIndex = function(index) {
             se.currentImage = se.selected.imageEntities[index].largeImage;
         };
 
         se.addToCart = addToCart;
+
         //search with search button
-        se.newSearch = function () {
+        se.newSearch = function() {
             homeService.addSearch(se.newSearchQuery);
             $localStorage.searchQuery = se.newSearchQuery;
-            $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
+            $state.go("SearchResult", {
+                searchQuery: $localStorage.searchQuery
+            });
         };
 
-        se.back = function () {
-            $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
+        se.back = function() {
+            $state.go("SearchResult", {
+                searchQuery: $localStorage.searchQuery
+            });
         };
 
         function addToCart(item) {
             toaster.pop('success', "Item Added to Cart:", item.name);
-            var profile = se.profile;
+            //var profile = se.profile;
             //cartService.addToCart(item, profile);
-            console.log(authSetup.user._id);
-            if(authSetup.user!=undefined) {
-                $http.post('/api/add-item', {
-                    userId: authSetup.user._id,
+            console.log(se.profile._id);
+            console.log(item);
+                $http.post('/api/additem', {
+                    userId: se.profile._id,
                     itemName: item.name,
                     item:item
 
@@ -67,10 +70,8 @@
                     //        $location.path('/home');
                     //}
                 });
-            }
-            else{
-                console.log("have to make add to cart button only visible if logged in");
-            }
+
+
         }
     }
 }());
