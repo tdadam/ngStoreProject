@@ -12,8 +12,8 @@ var MongoClient = require('mongodb').MongoClient;
 var db;
 
 //The uri is the mongo connection info, comment out first line and uncomment the second to connect to mlab
-var uri = 'mongodb://localhost/store-test';
-//var uri = 'mongodb://localhost/People';
+//var uri = 'mongodb://localhost/store-test';
+var uri = 'mongodb://localhost/People';
 //var uri = 'mongodb://admin:admin@ds032319.mlab.com:32319/matc-project';
 
 app.use('/', express.static(__dirname));
@@ -34,7 +34,7 @@ MongoClient.connect(uri, function (err, database) {
     console.log("Listening on port 3000");
 });
 passport.serializeUser(function (user, done) {
-    done(null, user._id)
+    done(null, user._id);
 });
 
 passport.deserializeUser(function (obj, done) {
@@ -109,8 +109,8 @@ app.post('/api/adduser', function (req, res) {
 
 app.post('/api/additem', function (req, res) {
     db.collection('items').insert({
+        "userName": req.body.userName,
         "userId": req.body.userId,
-        "itemName": req.body.itemName,
         "itemObject": req.body.item
 
     }, function (err, result) {
@@ -122,6 +122,29 @@ app.post('/api/additem', function (req, res) {
         }
     });
 });
+app.get('/api/getitems', function (req, res) {
+    //db.collection('items').find({ "userName": req.body.userName},
+    var cursor=db.collection('items').find();
+    cursor.each(function(err, doc) {
+        assert.equal(err, null);
+        if (doc != null) {
+            console.log(doc.name);
+
+
+        } else {
+        }
+    });
+        //function (err, result) {
+        //if (err) {
+        //    res.send('could not add item');
+        //}
+        //else {
+        //    console.log(res);
+        //
+        //    res.end();
+        //}
+    //});
+});
 
 //profile information
 app.put('/api/profile',
@@ -132,5 +155,5 @@ app.put('/api/profile',
             "email": req.body.email,
             "password": req.body.pass,
             "user": req.body.user
-        })
+        });
     });
