@@ -19,25 +19,31 @@ var uri = 'mongodb://localhost/store-test';
 app.use('/', express.static(__dirname));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
-app.use(session({secret: 'randomSecret', resave: false, saveUninitialized: true}));
+app.use(session({
+    secret: 'randomSecret',
+    resave: false,
+    saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Initialize connection once
-MongoClient.connect(uri, function (err, database) {
+MongoClient.connect(uri, function(err, database) {
     if (err) throw err;
     db = database;
     // Start the application after the database connection is ready
     app.listen(3000);
     console.log("Listening on port 3000");
 });
-passport.serializeUser(function (user, done) {
+passport.serializeUser(function(user, done) {
     done(null, user._id)
 });
 
-passport.deserializeUser(function (obj, done) {
+passport.deserializeUser(function(obj, done) {
     done(null, obj);
 });
 
@@ -46,7 +52,7 @@ passport.use('facebook', new FacebookStrategy({
         clientSecret: '4084a4ffb47ccace28b52570ca12719d',
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
-    function (accessToken, refreshToken, profile, cb) {
+    function(accessToken, refreshToken, profile, cb) {
         cb(null, profile);
     }
 ));
@@ -55,8 +61,11 @@ passport.use(new LocalStrategy({
         usernameField: 'email',
         passwordField: 'pass'
     },
-    function (username, password, done) {
-        db.collection('users').findOne({"email": username, "password": password}, function (err, user) {
+    function(username, password, done) {
+        db.collection('users').findOne({
+            "email": username,
+            "password": password
+        }, function(err, user) {
             if (err) {
                 return done(err);
             }
@@ -80,25 +89,26 @@ app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
         failureRedirect: '/fail'
     }),
-    function (req, res) {
+    function(req, res) {
         // Successful authentication, redirect home.
         res.redirect('/');
     });
 
 //Work in progress...not quite getting through to database
 app.post('/api/login',
-    passport.authenticate('local', {}), function (req, res) {
+    passport.authenticate('local', {}),
+    function(req, res) {
         res.json(req.user);
     });
 
 //adds the new user to the database, returning message to client if email already used
-app.post('/api/adduser', function (req, res) {
+app.post('/api/adduser', function(req, res) {
     db.collection('users').insert({
         "email": req.body.email,
         "password": req.body.pass,
         "user": req.body.user,
         "provider": "email"
-    }, function (err, result) {
+    }, function(err, result) {
         if (err != null && err.errmsg == 'E11000 duplicate key error collection: store-test.users index: email dup key: { : "' + req.body.email + '" }') {
             res.send('Email already registered');
         } else {
@@ -107,17 +117,16 @@ app.post('/api/adduser', function (req, res) {
     });
 });
 
-app.post('/api/add-item', function (req, res) {
+app.post('/api/add-item', function(req, res) {
     db.collection('items').insert({
         userId: req.body.userId,
         itemName: req.body.itemName,
         itemObject: req.body.item
 
-    }, function (err) {
+    }, function(err) {
         if (err) {
             res.send('could not add item');
-        }
-        else {
+        } else {
             res.end();
         }
     });
@@ -125,27 +134,36 @@ app.post('/api/add-item', function (req, res) {
 
 //profile information
 app.put('/api/profile/user',
- function(req, res) {
-   db.collection('users').update({
-     '_id': req.body._id
-   },{
-     "user": req.body.user
-   })
- })
-app.put('/api/profile/pass',
-  function(req, res) {
-    db.collection('users').update({
-      '_id': req.body._id
-    },{
-      "password": req.body.pass
-    })
-  })
-app.put('/api/profile/email',
     function(req, res) {
-      db.collection('users').update({
-        '_id': req.body._id
-      },{
-        "password": req.body.email
-      })
-    })
-});
+        db.collection('users').update({
+            '_id': req.body._id
+        }, {
+            $set: {
+                "user": req.body.user
+            },
+            function(err, result) {
+                if (err) {
+                    res.send("There was an error");
+                } else {
+                    res.json(req.body);
+                }
+            }
+        });
+    });
+// app.put('/api/profile/pass',
+//   function(req, res) {
+//     db.collection('users').update({
+//       '_id': req.body._id
+//     },{
+//       "password": req.body.pass
+//     })
+//   })
+// app.put('/api/profile/email',
+//     function(req, res) {
+//       db.collection('users').update({
+//         '_id': req.body._id
+//       },{
+//         "password": req.body.email
+//       })
+//     })
+// });
