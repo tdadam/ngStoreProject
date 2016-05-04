@@ -37,6 +37,7 @@ passport.serializeUser( function(user, done){
 });
 
 passport.deserializeUser(function (obj, done){
+    console.log(obj);
         done(null, obj);
 });
 
@@ -88,6 +89,7 @@ app.get('/auth/facebook/callback',
 app.post('/api/login',
     passport.authenticate('local', {
     }), function (req, res) {
+        //console.log(req.session.passport.user);
         res.json(req.user);
     });
 
