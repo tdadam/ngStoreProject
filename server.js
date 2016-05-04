@@ -121,14 +121,28 @@ app.post('/api/adduser', function(req, res) {
         }
     });
 //profile information
-app.put('/api/profile',
+app.put('/api/profile/user',
  function(req, res) {
    db.collection('users').update({
      '_id': req.body._id
    },{
-     "email": req.body.email,
-     "password": req.body.pass,
      "user": req.body.user
    })
  })
+app.put('/api/profile/pass',
+  function(req, res) {
+    db.collection('users').update({
+      '_id': req.body._id
+    },{
+      "password": req.body.pass
+    })
+  })
+app.put('/api/profile/email',
+    function(req, res) {
+      db.collection('users').update({
+        '_id': req.body._id
+      },{
+        "password": req.body.email
+      })
+    })
 });
