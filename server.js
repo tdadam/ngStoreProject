@@ -4,8 +4,8 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var mongodb = require('mongodb');
 var fs = require('fs');
-var passport = require('passport')
-    , FacebookStrategy = require('passport-facebook').Strategy,
+var passport = require('passport'),
+    FacebookStrategy = require('passport-facebook').Strategy,
     LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
 var MongoClient = require('mongodb').MongoClient;
@@ -25,14 +25,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Initialize connection once
-MongoClient.connect(uri, function (err, database) {
+MongoClient.connect(uri, function(err, database) {
     if (err) throw err;
     db = database;
     // Start the application after the database connection is ready
     app.listen(3000);
     console.log("Listening on port 3000");
 });
-
 passport.serializeUser( function(user, done){
     done(null, user._id)
 });
@@ -46,7 +45,7 @@ passport.use('facebook', new FacebookStrategy({
         clientSecret: '4084a4ffb47ccace28b52570ca12719d',
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
-    function (accessToken, refreshToken, profile, cb) {
+    function(accessToken, refreshToken, profile, cb) {
         cb(null, profile);
     }
 ));
@@ -77,8 +76,10 @@ app.get('/auth/facebook',
 
 //Not started, attempting local first
 app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {failureRedirect: '/fail'}),
-    function (req, res) {
+    passport.authenticate('facebook', {
+        failureRedirect: '/fail'
+    }),
+    function(req, res) {
         // Successful authentication, redirect home.
         res.redirect('/');
     });
@@ -91,7 +92,7 @@ app.post('/api/login',
     });
 
 //adds the new user to the database, returning message to client if email already used
-app.post('/api/adduser', function (req, res) {
+app.post('/api/adduser', function(req, res) {
     db.collection('users').insert({
         "email": req.body.email,
         "password": req.body.pass,
@@ -100,9 +101,19 @@ app.post('/api/adduser', function (req, res) {
     }, function (err, result) {
         if (err != null && err.errmsg == 'E11000 duplicate key error collection: store-test.users index: email dup key: { : "' + req.body.email + '" }') {
             res.send('Email already registered');
-        }
-        else {
+        } else {
             res.end();
         }
     });
+//profile information
+app.put('/api/profile',
+ function(req, res) {
+   db.collection('users').update({
+     '_id': req.body._id
+   },{
+     "email": req.body.email,
+     "password": req.body.pass,
+     "user": req.body.user
+   })
+ })
 });

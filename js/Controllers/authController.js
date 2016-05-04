@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('authController', [])
@@ -21,7 +21,6 @@
             $http.post('/api/login', {
                 email: email,
                 pass: pass
-                //TODO: Not getting back the data I want to see, unable to return helpful info to user
             }).then(function (data) {
                 $sessionStorage.user = data.data;
                 $sessionStorage.loggedIn = true;
@@ -31,9 +30,8 @@
             });
         };
 
-//This has been converted and connected to Mongo
-        //TODO: I think I broke this again, email is no longer the _id and is harder to check uniqueness
-        $scope.createAccount = function () {
+        //This has been converted and connected to Mongo
+        $scope.createAccount = function() {
             $scope.err = null;
             if (assertValidAccountProps()) {
                 var email = $scope.email;
@@ -47,15 +45,14 @@
                 }
                 else if ($scope.firstName == null) {
                     name = $scope.lastName;
-                }
-                else {
+                } else {
                     name = $scope.firstName + ' ' + $scope.lastName;
                 }
                 $http.post('/api/adduser', {
                     email: email,
                     pass: pass,
                     user: name
-                }).then(function (data) {
+                }).then(function(data) {
                     if (data.data == 'Email already registered') {
                         $scope.err = data.data;
                     } else {
@@ -65,21 +62,19 @@
             }
         };
 
-//No need to change, should function same as before
+        //No need to change, should function same as before
         function assertValidAccountProps() {
             if (!$scope.email) {
                 $scope.err = 'Please enter an email address';
-            }
-            else if (!$scope.pass || !$scope.confirm) {
+            } else if (!$scope.pass || !$scope.confirm) {
                 $scope.err = 'Please enter a password';
-            }
-            else if ($scope.createMode && $scope.pass !== $scope.confirm) {
+            } else if ($scope.createMode && $scope.pass !== $scope.confirm) {
                 $scope.err = 'Passwords do not match';
             }
             return !$scope.err;
         }
 
-//Necessary? Might delete
+        //Necessary? Might delete
         function errMessage(err) {
             return angular.isObject(err) && err.code ? err.code : err + '';
         }
