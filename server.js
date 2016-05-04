@@ -13,6 +13,7 @@ var db;
 
 //The uri is the mongo connection info, comment out first line and uncomment the second to connect to mlab
 var uri = 'mongodb://localhost/store-test';
+//var uri = 'mongodb://localhost/People';
 //var uri = 'mongodb://admin:admin@ds032319.mlab.com:32319/matc-project';
 
 app.use('/', express.static(__dirname));
@@ -25,19 +26,19 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Initialize connection once
-MongoClient.connect(uri, function(err, database) {
+MongoClient.connect(uri, function (err, database) {
     if (err) throw err;
     db = database;
     // Start the application after the database connection is ready
     app.listen(3000);
     console.log("Listening on port 3000");
 });
-passport.serializeUser( function(user, done){
+passport.serializeUser(function (user, done) {
     done(null, user._id)
 });
 
-passport.deserializeUser(function (obj, done){
-        done(null, obj);
+passport.deserializeUser(function (obj, done) {
+    done(null, obj);
 });
 
 passport.use('facebook', new FacebookStrategy({
@@ -45,7 +46,7 @@ passport.use('facebook', new FacebookStrategy({
         clientSecret: '4084a4ffb47ccace28b52570ca12719d',
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
-    function(accessToken, refreshToken, profile, cb) {
+    function (accessToken, refreshToken, profile, cb) {
         cb(null, profile);
     }
 ));
@@ -79,20 +80,19 @@ app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
         failureRedirect: '/fail'
     }),
-    function(req, res) {
+    function (req, res) {
         // Successful authentication, redirect home.
         res.redirect('/');
     });
 
 //Work in progress...not quite getting through to database
 app.post('/api/login',
-    passport.authenticate('local', {
-    }), function (req, res) {
+    passport.authenticate('local', {}), function (req, res) {
         res.json(req.user);
     });
 
 //adds the new user to the database, returning message to client if email already used
-app.post('/api/adduser', function(req, res) {
+app.post('/api/adduser', function (req, res) {
     db.collection('users').insert({
         "email": req.body.email,
         "password": req.body.pass,
@@ -105,15 +105,32 @@ app.post('/api/adduser', function(req, res) {
             res.end();
         }
     });
+});
+
+app.post('/api/add-item', function (req, res) {
+    db.collection('items').insert({
+        userId: req.body.userId,
+        itemName: req.body.itemName,
+        itemObject: req.body.item
+
+    }, function (err) {
+        if (err) {
+            res.send('could not add item');
+        }
+        else {
+            res.end();
+        }
+    });
+});
+
 //profile information
 app.put('/api/profile',
- function(req, res) {
-   db.collection('users').update({
-     '_id': req.body._id
-   },{
-     "email": req.body.email,
-     "password": req.body.pass,
-     "user": req.body.user
-   })
- })
-});
+    function (req, res) {
+        db.collection('users').update({
+            '_id': req.body._id
+        }, {
+            "email": req.body.email,
+            "password": req.body.pass,
+            "user": req.body.user
+        })
+    });
