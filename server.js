@@ -12,8 +12,8 @@ var MongoClient = require('mongodb').MongoClient;
 var db;
 
 //The uri is the mongo connection info, comment out first line and uncomment the second to connect to mlab
-//var uri = 'mongodb://localhost/store-test';
-var uri = 'mongodb://localhost/People';
+var uri = 'mongodb://localhost/store-test';
+//var uri = 'mongodb://localhost/People';
 //var uri = 'mongodb://admin:admin@ds032319.mlab.com:32319/matc-project';
 
 app.use('/', express.static(__dirname));
