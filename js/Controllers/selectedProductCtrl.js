@@ -12,15 +12,8 @@
         se.search = homeService.storage.search;
         se.selected = $sessionStorage.object;
 
-        se.profile = {};
-        se.loggedIn = false;
-
-        if (authSetup != {}) {
-            se.loggedIn = true;
-            se.profile = authSetup.user;
-        }
-
-        console.log(se.profile);
+        se.profile = $sessionStorage.user;
+        se.loggedIn = $sessionStorage.loggedIn;
 
         // search by clicking enter key
         se.clickEnter = function(keyEvent, search) {
