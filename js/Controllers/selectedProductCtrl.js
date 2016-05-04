@@ -13,6 +13,7 @@
         se.selected = $sessionStorage.object;
 
         se.profile = $sessionStorage.user;
+        //console.log(se.profile);
         se.loggedIn = $sessionStorage.loggedIn;
 
         // search by clicking enter key
@@ -34,6 +35,7 @@
         };
 
         se.addToCart = addToCart;
+
         //search with search button
         se.newSearch = function() {
             homeService.addSearch(se.newSearchQuery);
@@ -51,12 +53,12 @@
 
         function addToCart(item) {
             toaster.pop('success', "Item Added to Cart:", item.name);
-            var profile = se.profile;
+            //var profile = se.profile;
             //cartService.addToCart(item, profile);
-            console.log(authSetup.user._id);
-            if(authSetup.user!=undefined) {
-                $http.post('/api/add-item', {
-                    userId: authSetup.user._id,
+            console.log(se.profile._id);
+            console.log(item);
+                $http.post('/api/additem', {
+                    userId: se.profile._id,
                     itemName: item.name,
                     item:item
 
@@ -68,10 +70,8 @@
                     //        $location.path('/home');
                     //}
                 });
-            }
-            else{
-                console.log("have to make add to cart button only visible if logged in");
-            }
+
+
         }
     }
 }());

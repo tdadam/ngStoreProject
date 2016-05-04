@@ -107,13 +107,13 @@ app.post('/api/adduser', function (req, res) {
     });
 });
 
-app.post('/api/add-item', function (req, res) {
+app.post('/api/additem', function (req, res) {
     db.collection('items').insert({
-        userId: req.body.userId,
-        itemName: req.body.itemName,
-        itemObject: req.body.item
+        "userId": req.body.userId,
+        "itemName": req.body.itemName,
+        "itemObject": req.body.item
 
-    }, function (err) {
+    }, function (err, result) {
         if (err) {
             res.send('could not add item');
         }
