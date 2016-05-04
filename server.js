@@ -11,7 +11,7 @@ var MongoClient = require('mongodb').MongoClient;
 var db;
 
 //The uri is the mongo connection info, comment out first line and uncomment the second to connect to mlab
-var uri = 'mongodb://localhost/store-test';
+var uri = 'mongodb://localhost/People';
 //var uri = 'mongodb://admin:admin@ds032319.mlab.com:32319/matc-project';
 
 // Initialize connection once
@@ -109,6 +109,21 @@ app.post('/api/adduser', function (req, res) {
         //TODO: changed the _id to email to allow update on profile page, not sure how this check is affected
         if (err != null && err.errmsg == 'E11000 duplicate key error collection: store-test.users index: email_ dup key: { : "' + req.body.email + '" }') {
             res.send('Email already registered');
+        }
+        else {
+            res.end();
+        }
+    });
+});
+app.post('/api/add-item', function (req, res) {
+    db.collection('items').insert({
+        userId:req.body.userId,
+        itemName:req.body.itemName,
+        itemObject: req.body.item
+
+    }, function (err) {
+        if (err) {
+            res.send('could not add item');
         }
         else {
             res.end();

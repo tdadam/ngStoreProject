@@ -32,7 +32,7 @@
                     $location.path('/home');
 
             }, function(data){
-                $scope.err = "Invalid username / password"
+                $scope.err = "Invalid username / password";
             });
         };
 
@@ -67,7 +67,7 @@
                     } else {
                         $location.path('/home');
                     }
-                })
+                });
             }
         };
 
