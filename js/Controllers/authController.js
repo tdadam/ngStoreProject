@@ -4,9 +4,9 @@
     angular.module('authController', [])
         .controller('authController', authController);
 
-    authController.$inject = ['$http', '$scope', '$location', 'authSetup'];
+    authController.$inject = ['$http', '$scope', '$location', 'authSetup', '$sessionStorage'];
 
-    function authController($http, $scope, $location, authSetup) {
+    function authController($http, $scope, $location, authSetup, $sessionStorage) {
 
         this.$http = $http;
 
@@ -17,28 +17,20 @@
         $scope.lastName = null;
         $scope.createMode = false;
 
-        $scope.login = function(email, pass) {
-            console.log(email);
-            console.log(pass);
+        $scope.login = function (email, pass) {
             $http.post('/api/login', {
                 email: email,
                 pass: pass
-                    //TODO: Not getting back the data I want to see, unable to return helpful info to user
-            }).then(function(data) {
-                console.log(authSetup.user);
-                console.log(data.data);
-                authSetup.user = data.data;
-                console.log(authSetup.user);
+            }).then(function (data) {
+                $sessionStorage.user = data.data;
+                $sessionStorage.loggedIn = true;
                 $location.path('/home');
-
-            }, function(data) {
+            }, function (data) {
                 $scope.err = "Invalid username / password"
             });
         };
 
-
         //This has been converted and connected to Mongo
-        //TODO: I think I broke this again, email is no longer the _id and is harder to check uniqueness
         $scope.createAccount = function() {
             $scope.err = null;
             if (assertValidAccountProps()) {
@@ -47,9 +39,11 @@
                 var name = '';
                 if ($scope.firstName == null && $scope.lastName == null) {
                     name = ucfirst(email.substr(0, email.indexOf('@')) || '');
-                } else if ($scope.lastName == null) {
+                }
+                else if ($scope.lastName == null) {
                     name = $scope.firstName;
-                } else if ($scope.firstName == null) {
+                }
+                else if ($scope.firstName == null) {
                     name = $scope.lastName;
                 } else {
                     name = $scope.firstName + ' ' + $scope.lastName;
@@ -64,7 +58,7 @@
                     } else {
                         $location.path('/home');
                     }
-                })
+                });
             }
         };
 

@@ -4,23 +4,16 @@
     angular.module('select', [])
         .controller('selectCtrl', selectCtrl);
 
-    selectCtrl.$inject = ['$state', 'homeService', 'cartService', '$sessionStorage', '$localStorage', 'toaster', 'authSetup'];
+    selectCtrl.$inject = ['$state', 'homeService', 'cartService', '$sessionStorage', '$localStorage', 'toaster', 'authSetup','$http'];
 
-    function selectCtrl($state, homeService, cartService, $sessionStorage, $localStorage, toaster, authSetup) {
+    function selectCtrl($state, homeService, cartService, $sessionStorage, $localStorage, toaster, authSetup,$http) {
         var se = this;
         //get object from storage
         se.search = homeService.storage.search;
         se.selected = $sessionStorage.object;
 
-        se.profile = {};
-        se.loggedIn = false;
-
-        if (authSetup != {}) {
-            se.loggedIn = true;
-            se.profile = authSetup.user;
-        }
-
-        console.log(se.profile);
+        se.profile = $sessionStorage.user;
+        se.loggedIn = $sessionStorage.loggedIn;
 
         // search by clicking enter key
         se.clickEnter = function(keyEvent, search) {
@@ -59,7 +52,26 @@
         function addToCart(item) {
             toaster.pop('success', "Item Added to Cart:", item.name);
             var profile = se.profile;
-            cartService.addToCart(item, profile);
+            //cartService.addToCart(item, profile);
+            console.log(authSetup.user._id);
+            if(authSetup.user!=undefined) {
+                $http.post('/api/add-item', {
+                    userId: authSetup.user._id,
+                    itemName: item.name,
+                    item:item
+
+
+                    //}).then(function (data) {
+                    //    if (data.data == 'Email already registered') {
+                    //        $scope.err = data.data;
+                    //    } else {
+                    //        $location.path('/home');
+                    //}
+                });
+            }
+            else{
+                console.log("have to make add to cart button only visible if logged in");
+            }
         }
     }
 }());
