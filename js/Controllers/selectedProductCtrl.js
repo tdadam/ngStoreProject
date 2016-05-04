@@ -55,11 +55,11 @@
             toaster.pop('success', "Item Added to Cart:", item.name);
             //var profile = se.profile;
             //cartService.addToCart(item, profile);
-            console.log(se.profile._id);
+            console.log(se.profile.user);
             console.log(item);
                 $http.post('/api/additem', {
+                    userName:se.profile.user,
                     userId: se.profile._id,
-                    itemName: item.name,
                     item:item
 
 
