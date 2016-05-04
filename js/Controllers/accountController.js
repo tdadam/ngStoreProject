@@ -4,17 +4,12 @@
   angular.module('accountController', [])
       .controller('accountController', accountController);
 
-  accountController.$inject = ['$scope', 'authSetup', 'fbutil', 'user', '$location', 'toaster'];
+  accountController.$inject = ['$scope', 'authSetup', 'fbutil', 'user', '$location', 'toaster', '$sessionStorage'];
 
-    function accountController($scope, authSetup, fbutil, user, $location, toaster) {
-      var unbind;
-      $scope.profile = {};
-      $scope.loggedIn = false;
+    function accountController($scope, authSetup, fbutil, user, $location, toaster, $sessionStorage) {
 
-      if(authSetup != {}){
-        $scope.loggedIn = true;
-        $scope.profile = authSetup.user;
-      }
+      $scope.profile = $sessionStorage.user;
+      $scope.loggedIn = $sessionStorage.loggedIn;
 
       //TODO: This entire file will need massive updates for PUT calls
       $scope.saveBtn = false;
@@ -36,17 +31,13 @@
         $( "#in1" ).focus();
       };
 
-      profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
-
       $scope.change = function () {
         $scope.saveBtn = true;
       };
 
       //TODO: This was the logout, not sure how passport does this
       $scope.logout = function() {
-        if( unbind ) { unbind(); }
-        profile.$destroy();
-        authSetup.$unauth();
+        $sessionStorage.loggedIn = false;
         $location.path('/login');
       };
 

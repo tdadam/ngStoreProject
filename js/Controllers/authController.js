@@ -1,12 +1,12 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('authController', [])
         .controller('authController', authController);
 
-    authController.$inject = ['$http', '$scope', '$location', 'authSetup'];
+    authController.$inject = ['$http', '$scope', '$location', 'authSetup', '$sessionStorage'];
 
-    function authController($http, $scope, $location, authSetup) {
+    function authController($http, $scope, $location, authSetup, $sessionStorage) {
 
         this.$http = $http;
 
@@ -18,50 +18,41 @@
         $scope.createMode = false;
 
         $scope.login = function (email, pass) {
-            console.log(email);
-            console.log(pass);
             $http.post('/api/login', {
                 email: email,
                 pass: pass
-                //TODO: Not getting back the data I want to see, unable to return helpful info to user
             }).then(function (data) {
-                console.log(authSetup.user);
-                console.log(data.data);
-                    authSetup.user = data.data;
-                console.log(authSetup.user);
-                    $location.path('/home');
-
-            }, function(data){
-                $scope.err = "Invalid username / password";
+                $sessionStorage.user = data.data;
+                $sessionStorage.loggedIn = true;
+                $location.path('/home');
+            }, function (data) {
+                $scope.err = "Invalid username / password"
             });
         };
 
-
-//This has been converted and connected to Mongo
-        //TODO: I think I broke this again, email is no longer the _id and is harder to check uniqueness
-        $scope.createAccount = function () {
+        //This has been converted and connected to Mongo
+        $scope.createAccount = function() {
             $scope.err = null;
             if (assertValidAccountProps()) {
                 var email = $scope.email;
                 var pass = $scope.pass;
                 var name = '';
-                if($scope.firstName == null && $scope.lastName == null){
+                if ($scope.firstName == null && $scope.lastName == null) {
                     name = ucfirst(email.substr(0, email.indexOf('@')) || '');
                 }
-                else if ($scope.lastName == null){
+                else if ($scope.lastName == null) {
                     name = $scope.firstName;
                 }
-                else if ($scope.firstName == null){
+                else if ($scope.firstName == null) {
                     name = $scope.lastName;
-                }
-                else {
+                } else {
                     name = $scope.firstName + ' ' + $scope.lastName;
                 }
                 $http.post('/api/adduser', {
                     email: email,
                     pass: pass,
                     user: name
-                }).then(function (data) {
+                }).then(function(data) {
                     if (data.data == 'Email already registered') {
                         $scope.err = data.data;
                     } else {
@@ -71,21 +62,19 @@
             }
         };
 
-//No need to change, should function same as before
+        //No need to change, should function same as before
         function assertValidAccountProps() {
             if (!$scope.email) {
                 $scope.err = 'Please enter an email address';
-            }
-            else if (!$scope.pass || !$scope.confirm) {
+            } else if (!$scope.pass || !$scope.confirm) {
                 $scope.err = 'Please enter a password';
-            }
-            else if ($scope.createMode && $scope.pass !== $scope.confirm) {
+            } else if ($scope.createMode && $scope.pass !== $scope.confirm) {
                 $scope.err = 'Passwords do not match';
             }
             return !$scope.err;
         }
 
-//Necessary? Might delete
+        //Necessary? Might delete
         function errMessage(err) {
             return angular.isObject(err) && err.code ? err.code : err + '';
         }
