@@ -4,22 +4,13 @@
     angular.module('navController', [])
         .controller('navController', navController);
 
-    navController.$inject = ['$scope', "$location", '$sessionStorage'];
+    navController.$inject = ["$location", '$sessionStorage'];
 
-    function navController($scope, $location, $sessionStorage) {
+    function navController($location, $sessionStorage) {
         var nav = this;
 
         nav.profile = $sessionStorage.user;
         nav.loggedIn = $sessionStorage.loggedIn;
-
-        //TODO: FIX THIS!!! Not getting the ctrl to update when var changes
-        //$scope.$watch(function () {
-        //    console.log("Changed");
-        //    return nav.loggedIn = $sessionStorage.loggedIn;
-        //}, function (newVal, oldVal) {
-        //    console.log("Changed");
-        //    //nav.loggedIn = $sessionStorage.loggedIn;
-        //}, true);
 
         nav.isActive = isActive;
 
