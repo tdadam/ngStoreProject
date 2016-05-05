@@ -20,7 +20,8 @@
           "user": $scope.profile.user,
           "password": $scope.profile.password,
           "email": $scope.profile.email,
-          "provider": $scope.profile.provider
+          "provider": $scope.profile.provider,
+          "oldEmail": $sessionStorage.user.email
         }).then (function(data) {
             console.log(data.data);
           $sessionStorage.user = data.data;
@@ -43,15 +44,25 @@
         else if( newPass !== confirm ) {
           $scope.err = 'New pass and confirm do not match';
         }
-        else {
-          //authSetup.$changePassword({email: profile.email, oldPassword: pass, newPassword: newPass})
-          //  .then(function() {
-          //    $scope.msg = 'Password changed';
-          //  }, function(err) {
-          //    if (err.code === 'INVALID_PASSWORD') {
-          //      $scope.err = 'Incorrect Password';
-          //    }
-          //  });
+        else if (pass != $sessionStorage.user.password) {
+          $scope.err = 'Incorrect Password';
+        }
+        else{
+          console.log($scope.newpass);
+          console.log(newPass);
+          $http.put('/api/profile/pass', {
+          "_id": $scope.profile._id,
+          "user": $scope.profile.user,
+          "password": newPass,
+          "email": $scope.profile.email,
+          "provider": $scope.profile.provider,
+          "oldEmail": $sessionStorage.user.email
+        }).then (function(data) {
+          console.log(data.data);
+          $sessionStorage.user = data.data;
+          $scope.profile = $sessionStorage.user;
+          toaster.pop('success', "Successfully Changed Your Password");
+        });
         }
       };
 
