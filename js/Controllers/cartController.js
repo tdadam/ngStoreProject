@@ -37,11 +37,11 @@
         //TODO: When we get items, this is going to be an api call as well
         function loadItems() {
 
-
-            $http.get('/api/getitems', {
-
-                }).then(function (data) {
-                   console.log(data);
+            $http.get('/api/getitems')
+                .then(function(data) {
+                    cC.items=data.data;
+                   console.log(data.data);
+                   console.log(data.data.userName);
             });
             //var profile = cC.profile;
             //cC.items = cartService.loadItems(profile);

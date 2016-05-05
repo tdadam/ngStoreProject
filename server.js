@@ -9,6 +9,7 @@ var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
 var MongoClient = require('mongodb').MongoClient;
+var assert = require('assert');
 var db;
 
 //The uri is the mongo connection info, comment out first line and uncomment the second to connect to mlab
@@ -137,10 +138,11 @@ app.get('/api/getitems', function(req, res) {
     cursor.each(function(err, doc) {
         assert.equal(err, null);
         if (doc != null) {
-            console.log(doc.name);
-
-
-        } else {}
+            console.log(doc);
+            res.json(doc);
+        } else {
+            console.log(err);
+        }
     });
     //function (err, result) {
     //if (err) {
@@ -153,6 +155,7 @@ app.get('/api/getitems', function(req, res) {
     //}
     //});
 });
+
 
 //profile information
 //db.users.update({"_id":ObjectId("5728ae16b23af6e701c9664e")}, {$set:{"user":"Liz"}})
@@ -178,6 +181,7 @@ app.put('/api/profile/user',
                 }
             });
     });
+
 app.put('/api/profile/pass',
     function(req, res) {
         db.collection('users').findOneAndUpdate({
