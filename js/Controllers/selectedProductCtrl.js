@@ -4,9 +4,10 @@
     angular.module('select', [])
         .controller('selectCtrl', selectCtrl);
 
-    selectCtrl.$inject = ['$state', 'homeService', 'cartService', '$sessionStorage', '$localStorage', 'toaster', 'authSetup','$http'];
+    selectCtrl.$inject = ['$state', 'homeService', '$sessionStorage', '$localStorage', 'toaster', '$http'];
 
-    function selectCtrl($state, homeService, cartService, $sessionStorage, $localStorage, toaster, authSetup,$http) {
+    function selectCtrl($state, homeService, $sessionStorage, $localStorage, toaster, $http) {
+
         var se = this;
         //get object from storage
         se.search = homeService.storage.search;
@@ -53,8 +54,6 @@
 
         function addToCart(item) {
             toaster.pop('success', "Item Added to Cart:", item.name);
-            //var profile = se.profile;
-            //cartService.addToCart(item, profile);
             console.log(se.profile.user);
             console.log(item);
                 $http.post('/api/additem', {
