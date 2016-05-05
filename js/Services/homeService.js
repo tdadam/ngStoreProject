@@ -14,7 +14,6 @@
         hs.selected = "";
         hs.addSearch = search;
         hs.addSelected = select;
-        //hs.loggedIn=$sessionStorage.loggedIn;
 
         // public functions
         function search(searchIn) {
