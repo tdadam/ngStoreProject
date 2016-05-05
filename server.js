@@ -9,6 +9,7 @@ var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
 var MongoClient = require('mongodb').MongoClient;
+var assert = require('assert');
 var db;
 
 //The uri is the mongo connection info, comment out first line and uncomment the second to connect to mlab
@@ -122,29 +123,7 @@ app.post('/api/additem', function (req, res) {
         }
     });
 });
-app.get('/api/getitems', function (req, res) {
-    //db.collection('items').find({ "userName": req.body.userName},
-    var cursor=db.collection('items').find();
-    cursor.each(function(err, doc) {
-        assert.equal(err, null);
-        if (doc != null) {
-            console.log(doc.name);
 
-
-        } else {
-        }
-    });
-        //function (err, result) {
-        //if (err) {
-        //    res.send('could not add item');
-        //}
-        //else {
-        //    console.log(res);
-        //
-        //    res.end();
-        //}
-    //});
-});
 
 //profile information
 app.put('/api/profile',
@@ -157,3 +136,4 @@ app.put('/api/profile',
             "user": req.body.user
         });
     });
+

@@ -41,10 +41,8 @@
         //TODO: When we get items, this is going to be an api call as well
         function loadItems() {
 
-
-            $http.get('/api/getitems', {
-
-                }).then(function (data) {
+            $http.get('/api/getitems')
+                .then(function(data) {
                    console.log(data);
             });
             //var profile = cC.profile;
