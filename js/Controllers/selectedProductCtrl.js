@@ -4,15 +4,17 @@
     angular.module('select', [])
         .controller('selectCtrl', selectCtrl);
 
-    selectCtrl.$inject = ['$state', 'homeService', 'cartService', '$sessionStorage', '$localStorage', 'toaster', '$http'];
+    selectCtrl.$inject = ['$state', 'homeService', '$sessionStorage', '$localStorage', 'toaster', '$http'];
 
-    function selectCtrl($state, homeService, cartService, $sessionStorage, $localStorage, toaster, $http) {
+    function selectCtrl($state, homeService, $sessionStorage, $localStorage, toaster, $http) {
+
         var se = this;
         //get object from storage
         se.search = homeService.storage.search;
         se.selected = $sessionStorage.object;
 
         se.profile = $sessionStorage.user;
+        //console.log(se.profile);
         se.loggedIn = $sessionStorage.loggedIn;
 
         // search by clicking enter key
@@ -34,6 +36,7 @@
         };
 
         se.addToCart = addToCart;
+
         //search with search button
         se.newSearch = function() {
             homeService.addSearch(se.newSearchQuery);
@@ -51,8 +54,23 @@
 
         function addToCart(item) {
             toaster.pop('success', "Item Added to Cart:", item.name);
-            var profile = se.profile;
-            cartService.addToCart(item, profile);
+            console.log(se.profile.user);
+            console.log(item);
+                $http.post('/api/additem', {
+                    userName:se.profile.user,
+                    userId: se.profile._id,
+                    item:item
+
+
+                    //}).then(function (data) {
+                    //    if (data.data == 'Email already registered') {
+                    //        $scope.err = data.data;
+                    //    } else {
+                    //        $location.path('/home');
+                    //}
+                });
+
+
         }
     }
 }());

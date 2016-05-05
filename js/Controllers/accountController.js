@@ -18,12 +18,22 @@
       $scope.color = "white";
 
       $scope.saveName = function () {
-        $scope.color = "white";
-        toaster.pop('success', "Successfully Changed Your User Name: ", profile.name);
-        $scope.saveBtn = false;
-        $scope.changeBtn = true;
-
+        $http.put('/api/profile/user', {
+          "_id": $scope.profile._id,
+          "user": $scope.profile.user,
+          "password": $scope.profile.password,
+          "email": $scope.profile.email,
+          "provider": $scope.profile.provider
+        }).then (function(data) {
+          $sessionStorage.user = data.data;
+          $scope.profile = $sessionStorage.user;
+          $scope.color = "white";
+          toaster.pop('success', "Successfully Changed Your User Name: ", $scope.profile.user);
+          $scope.saveBtn = false;
+          $scope.changeBtn = true;
+        });
       };
+
       $scope.readChange = function () {
         $scope.changeBtn = false;
         $scope.readChanged = false;
