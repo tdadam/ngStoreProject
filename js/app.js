@@ -10,7 +10,6 @@
         "ngStorage",
         "authController",
         "navController",
-        "firebase.utils",
         "cartController",
         "cartService",
         "accountController",

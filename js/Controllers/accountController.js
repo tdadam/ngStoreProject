@@ -12,12 +12,9 @@
       $scope.loggedIn = $sessionStorage.loggedIn;
 
       //TODO: This entire file will need massive updates for PUT calls
-      $scope.saveBtn = false;
-      $scope.changeBtn = true;
-      $scope.readChanged = true;
-      $scope.color = "white";
 
       $scope.saveName = function () {
+          console.log($scope.profile.user);
         $http.put('/api/profile/user', {
           "_id": $scope.profile._id,
           "user": $scope.profile.user,
@@ -25,24 +22,11 @@
           "email": $scope.profile.email,
           "provider": $scope.profile.provider
         }).then (function(data) {
+            console.log(data.data);
           $sessionStorage.user = data.data;
           $scope.profile = $sessionStorage.user;
-          $scope.color = "white";
-          toaster.pop('success', "Successfully Changed Your User Name: ", $scope.profile.user);
-          $scope.saveBtn = false;
-          $scope.changeBtn = true;
+            toaster.pop('success', "Successfully Changed Your User Name: ", $scope.profile.user);
         });
-      };
-
-      $scope.readChange = function () {
-        $scope.changeBtn = false;
-        $scope.readChanged = false;
-        $scope.color = "yellow";
-        $( "#in1" ).focus();
-      };
-
-      $scope.change = function () {
-        $scope.saveBtn = true;
       };
 
       $scope.logout = function() {
