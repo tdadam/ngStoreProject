@@ -19,9 +19,15 @@ var uri = 'mongodb://localhost/store-test';
 app.use('/', express.static(__dirname));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
-app.use(session({secret: 'randomSecret', resave: false, saveUninitialized: true}));
+app.use(session({
+    secret: 'randomSecret',
+    resave: false,
+    saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -56,7 +62,10 @@ passport.use(new LocalStrategy({
         passwordField: 'pass'
     },
     function (username, password, done) {
-        db.collection('users').findOne({"email": username, "password": password}, function (err, user) {
+        db.collection('users').findOne({
+            "email": username,
+            "password": password
+        }, function (err, user) {
             if (err) {
                 return done(err);
             }
@@ -87,7 +96,8 @@ app.get('/auth/facebook/callback',
 
 //Work in progress...not quite getting through to database
 app.post('/api/login',
-    passport.authenticate('local', {}), function (req, res) {
+    passport.authenticate('local', {}),
+    function (req, res) {
         res.json(req.user);
     });
 
@@ -112,20 +122,19 @@ app.post('/api/additem', function (req, res) {
         "userName": req.body.userName,
         "userId": req.body.userId,
         "itemObject": req.body.item
-
     }, function (err, result) {
         if (err) {
             res.send('could not add item');
-        }
-        else {
+        } else {
             res.end();
         }
     });
 });
+
 app.get('/api/getitems', function (req, res) {
     //db.collection('items').find({ "userName": req.body.userName},
-    var cursor=db.collection('items').find();
-    cursor.each(function(err, doc) {
+    var cursor = db.collection('items').find();
+    cursor.each(function (err, doc) {
         assert.equal(err, null);
         if (doc != null) {
             console.log(doc.name);
@@ -134,26 +143,50 @@ app.get('/api/getitems', function (req, res) {
         } else {
         }
     });
-        //function (err, result) {
-        //if (err) {
-        //    res.send('could not add item');
-        //}
-        //else {
-        //    console.log(res);
-        //
-        //    res.end();
-        //}
+    //function (err, result) {
+    //if (err) {
+    //    res.send('could not add item');
+    //}
+    //else {
+    //    console.log(res);
+    //
+    //    res.end();
+    //}
     //});
 });
 
 //profile information
-app.put('/api/profile',
+app.put('/api/profile/user',
     function (req, res) {
         db.collection('users').update({
-            '_id': req.body._id
-        }, {
-            "email": req.body.email,
-            "password": req.body.pass,
-            "user": req.body.user
-        });
+                '_id': req.body._id
+            }, {
+                $set: {
+                    "user": req.body.user
+                }
+            },
+            function (err, result) {
+                if (err) {
+                    res.send("There was an error");
+                } else {
+                    res.json(req.body);
+                }
+            });
     });
+// app.put('/api/profile/pass',
+//   function(req, res) {
+//     db.collection('users').update({
+//       '_id': req.body._id
+//     },{
+//       "password": req.body.pass
+//     })
+//   })
+// app.put('/api/profile/email',
+//     function(req, res) {
+//       db.collection('users').update({
+//         '_id': req.body._id
+//       },{
+//         "password": req.body.email
+//       })
+//     })
+// });
