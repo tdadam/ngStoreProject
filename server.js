@@ -13,7 +13,7 @@ var assert = require('assert');
 var db;
 
 //The uri is the mongo connection info, comment out first line and uncomment the second to connect to mlab
-var uri = 'mongodb://localhost/store-test';
+var uri = 'mongodb://localhost/People';
 //var uri = 'mongodb://localhost/People';
 //var uri = 'mongodb://admin:admin@ds032319.mlab.com:32319/matc-project';
 
@@ -139,11 +139,13 @@ app.get('/api/getitems', function (req, res) {
     cursor.each(function (err, doc) {
         assert.equal(err, null);
         if (doc != null) {
-            console.log(doc.name);
-
+            console.log(doc);
+            res.json(doc);
 
         } else {
+            console.log(err);
         }
+
     });
     //function (err, result) {
     //if (err) {

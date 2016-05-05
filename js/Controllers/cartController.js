@@ -39,7 +39,9 @@
 
             $http.get('/api/getitems')
                 .then(function(data) {
-                   console.log(data);
+                    cC.items=data.data;
+                   console.log(data.data);
+                   console.log(data.data.userName);
             });
             //var profile = cC.profile;
             //cC.items = cartService.loadItems(profile);
