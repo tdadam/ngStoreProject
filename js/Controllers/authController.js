@@ -4,9 +4,9 @@
     angular.module('authController', [])
         .controller('authController', authController);
 
-    authController.$inject = ['$http', '$scope', '$location', 'authSetup', '$sessionStorage'];
+    authController.$inject = ['$http', '$scope', '$location', '$sessionStorage'];
 
-    function authController($http, $scope, $location, authSetup, $sessionStorage) {
+    function authController($http, $scope, $location, $sessionStorage) {
 
         this.$http = $http;
 
@@ -72,11 +72,6 @@
                 $scope.err = 'Passwords do not match';
             }
             return !$scope.err;
-        }
-
-        //Necessary? Might delete
-        function errMessage(err) {
-            return angular.isObject(err) && err.code ? err.code : err + '';
         }
 
         function ucfirst(str) {

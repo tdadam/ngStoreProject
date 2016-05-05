@@ -32,6 +32,7 @@ MongoClient.connect(uri, function (err, database) {
     app.listen(3000);
     console.log("Listening on port 3000");
 });
+
 passport.serializeUser(function (user, done) {
     done(null, user._id)
 });
@@ -84,7 +85,6 @@ app.get('/auth/facebook/callback',
         res.redirect('/');
     });
 
-//Work in progress...not quite getting through to database
 app.post('/api/login',
     passport.authenticate('local', {}), function (req, res) {
         res.json(req.user);
@@ -104,6 +104,7 @@ app.post('/api/adduser', function (req, res) {
             res.end();
         }
     });
+
 //profile information
     app.put('/api/profile',
         function (req, res) {

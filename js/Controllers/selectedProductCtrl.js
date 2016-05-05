@@ -4,9 +4,9 @@
     angular.module('select', [])
         .controller('selectCtrl', selectCtrl);
 
-    selectCtrl.$inject = ['$state', 'homeService', 'cartService', '$sessionStorage', '$localStorage', 'toaster', 'authSetup'];
+    selectCtrl.$inject = ['$state', 'homeService', 'cartService', '$sessionStorage', '$localStorage', 'toaster', '$http'];
 
-    function selectCtrl($state, homeService, cartService, $sessionStorage, $localStorage, toaster, authSetup) {
+    function selectCtrl($state, homeService, cartService, $sessionStorage, $localStorage, toaster, $http) {
         var se = this;
         //get object from storage
         se.search = homeService.storage.search;
