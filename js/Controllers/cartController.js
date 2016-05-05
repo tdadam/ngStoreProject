@@ -4,20 +4,16 @@
     angular.module('cartController', [])
         .controller('cartController', cartController);
 
-    cartController.$inject = ['$state', 'cartService', '$timeout', '$localStorage', 'homeService', '$sessionStorage', "authSetup","$http"];
+    cartController.$inject = ['$state', 'cartService', '$timeout', '$localStorage', 'homeService', '$sessionStorage', '$http'];
 
-    function cartController($state, cartService, $timeout, $localStorage, homeService, $sessionStorage, authSetup,$http) {
+    function cartController($state, cartService, $timeout, $localStorage, homeService, $sessionStorage, $http) {
         var cC = this;
 
         cC.loadItems = loadItems;
         cC.selectedItem = selectedItem;
-        cC.profile = {};
-        cC.loggedIn = false;
 
-        if(authSetup != {}){
-            cC.loggedIn = true;
-            cC.profile = authSetup.user;
-        }
+        cC.profile = $sessionStorage.user;
+        cC.loggedIn = $sessionStorage.loggedIn;
 
         cC.total = 0;
         cC.cartTotal = 0;
@@ -56,7 +52,7 @@
             //}, 750);
         }
 
-        if (authSetup == {}) {
+        if (cC.loggedIn == null || cC.loggedIn == false) {
             $state.go("login");
         }
 
@@ -65,6 +61,5 @@
         }
 
         loadItems();
-
     }
 }());
