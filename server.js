@@ -132,17 +132,26 @@ app.post('/api/additem', function(req, res) {
     });
 });
 
-app.get('/api/getitems', function(req, res) {
-    //db.collection('items').find({ "userName": req.body.userName},
-    var cursor = db.collection('items').find();
-    cursor.each(function(err, doc) {
-        assert.equal(err, null);
-        if (doc != null) {
-            console.log(doc);
-            res.json(doc);
-        } else {
-            console.log(err);
-        }
+
+
+app.get('/api/getitems/:id', function (req, res) {
+    console.log(req.params.id);
+    db.collection('items').find({"userId":req.params.id}).toArray(function(err, doc) {
+        if (err) throw error;
+        console.log(doc);
+        res.send(doc);
+
+    //var collection = db.collection('items').find();
+    //collection.each(function (err, doc) {
+    //    assert.equal(err, null);
+    //    if (doc != null) {
+    //        console.log(doc.data);
+    //        res.json(doc);
+    //
+    //    } else {
+    //        console.log(err);
+    //    }
+
     });
     //function (err, result) {
     //if (err) {
