@@ -156,18 +156,17 @@ app.get('/api/getitems', function (req, res) {
 });
 
 //profile information
+//db.users.update({"_id":ObjectId("5728ae16b23af6e701c9664e")}, {$set:{"user":"Liz"}})
 app.put('/api/profile/user',
     function (req, res) {
-        db.collection('users').update({
-                '_id': req.body._id
-            }, {
-                $set: {
-                    "user": req.body.user
-                }
-            },
+        console.log('ObjectId("' + req.body._id + '")');
+        console.log('"'+req.body.user+'"');
+        db.collection('users').update({"_id":req.body._id}, {$set:{"user":'"'+req.body.user+'"'}},
             function (err, result) {
+                console.log(err);
+                console.log(result.result.nModified);
                 if (err) {
-                    res.send("There was an error");
+                    res.send("There was an error: " + err);
                 } else {
                     res.json(req.body);
                 }
