@@ -160,11 +160,12 @@ app.get('/api/getitems', function (req, res) {
 app.put('/api/profile/user',
     function (req, res) {
         console.log('ObjectId("' + req.body._id + '")');
-        console.log('"'+req.body.user+'"');
-        db.collection('users').update({"_id":req.body._id}, {$set:{"user":'"'+req.body.user+'"'}},
+        console.log('"' + req.body.user + '"');
+        //db.collection('users').findOneAndUpdate({"_id":'ObjectId("' + req.body._id + '")'}, {$set:{"user":req.body.user}}, {upsert:true, new: false},
+        db.collection('users').findOneAndUpdate({"email": req.body.oldEmail}, {$set: {"user": req.body.user}},
             function (err, result) {
                 console.log(err);
-                console.log(result.result.nModified);
+                console.log(result);
                 if (err) {
                     res.send("There was an error: " + err);
                 } else {
@@ -172,14 +173,20 @@ app.put('/api/profile/user',
                 }
             });
     });
-// app.put('/api/profile/pass',
-//   function(req, res) {
-//     db.collection('users').update({
-//       '_id': req.body._id
-//     },{
-//       "password": req.body.pass
-//     })
-//   })
+app.put('/api/profile/pass',
+    function (req, res) {
+        db.collection('users').findOneAndUpdate({'email': req.body.oldEmail}, {$set: {"password": req.body.password}},
+            function (err, result) {
+                //console.log(err);
+                //console.log(result);
+                if (err) {
+                    res.send("There was an error: " + err);
+                } else {
+                    res.json(req.body);
+                }
+            });
+    });
+
 // app.put('/api/profile/email',
 //     function(req, res) {
 //       db.collection('users').update({
