@@ -11,7 +11,7 @@
 
         cC.loadItems = loadItems;
         cC.selectedItem = selectedItem;
-        cC.removeItem = removeItem;
+        cC.deleteItem = deleteItem;
 
         cC.profile = $sessionStorage.user;
         cC.loggedIn = $sessionStorage.loggedIn;
@@ -32,11 +32,9 @@
             homeService.addSearch(cC.newSearch);
             $localStorage.searchQuery = cC.newSearch;
             $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
-            console.log(cC.cartItemsNum);
         };
 
         function loadItems() {
-            console.log(cC.profile._id);
             $http.get('/api/getitems/' + cC.profile._id)
                 .then(function (data) {
                     cC.items = data.data;
@@ -58,8 +56,11 @@
         }
 
         //TODO: add call to remove items from the DB and reload page
-        function removeItem(item){
-            $http.delete().then(loadItems);
+        function deleteItem(item) {
+            $http.delete('/api/deleteItem/' + item._id)
+                .then(function (data) {
+                    loadItems();
+                });
         }
 
         loadItems();

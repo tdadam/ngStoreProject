@@ -53,8 +53,6 @@
 
         function addToCart(item) {
             toaster.pop('success', "Item Added to Cart:", item.name);
-            console.log(se.profile.user);
-            console.log(item);
             $http.post('/api/additem', {
                 userId: se.profile._id,
                 item: item

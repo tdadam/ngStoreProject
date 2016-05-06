@@ -12,16 +12,13 @@
         $scope.loggedIn = $sessionStorage.loggedIn;
 
         $scope.saveName = function () {
-            console.log($scope.profile.user);
             $http.put('/api/profile/user', {
                 "_id": $scope.profile._id,
                 "user": $scope.profile.user,
                 "password": $scope.profile.password,
                 "email": $scope.profile.email,
-                "provider": $scope.profile.provider,
-                "oldEmail": $sessionStorage.user.email
+                "provider": $scope.profile.provider
             }).then(function (data) {
-                console.log(data.data);
                 $sessionStorage.user = data.data;
                 $scope.profile = $sessionStorage.user;
                 toaster.pop('success', "Successfully Changed Your User Name: ", $scope.profile.user);
@@ -42,17 +39,13 @@
             } else if (pass != $sessionStorage.user.password) {
                 $scope.err = 'Incorrect Password';
             } else {
-                console.log($scope.newpass);
-                console.log(newPass);
                 $http.put('/api/profile/pass', {
                     "_id": $scope.profile._id,
                     "user": $scope.profile.user,
                     "password": newPass,
                     "email": $scope.profile.email,
-                    "provider": $scope.profile.provider,
-                    "oldEmail": $sessionStorage.user.email
+                    "provider": $scope.profile.provider
                 }).then(function (data) {
-                    console.log(data.data);
                     $sessionStorage.user = data.data;
                     $scope.profile = $sessionStorage.user;
                     toaster.pop('success', "Successfully Changed Your Password");
@@ -81,13 +74,11 @@
                     "user": $scope.profile.user,
                     "password": $scope.profile.password,
                     "email": newEmail,
-                    "provider": $scope.profile.provider,
-                    "oldEmail": $sessionStorage.user.email
+                    "provider": $scope.profile.provider
                 }).then(function (data) {
                     if (data.data == 'Email already registered') {
                         $scope.emailerr = data.data;
                     } else {
-                        console.log(data.data);
                         $sessionStorage.user = data.data;
                         $scope.profile = $sessionStorage.user;
                         toaster.pop('success', "Successfully Changed Your Email: " + $scope.profile.email);

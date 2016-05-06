@@ -31,7 +31,6 @@
             $http.jsonp(sc.url)
                 .success(function (data) {
                     sc.walData = data;
-                    console.log(data);
                 });
         };
     }
