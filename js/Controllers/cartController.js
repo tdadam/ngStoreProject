@@ -4,13 +4,14 @@
     angular.module('cartController', [])
         .controller('cartController', cartController);
 
-    cartController.$inject = ['$state', 'cartService', '$timeout', '$localStorage', 'homeService', '$sessionStorage', '$http'];
+    cartController.$inject = ['$state', '$timeout', '$localStorage', 'homeService', '$sessionStorage', '$http'];
 
-    function cartController($state, cartService, $timeout, $localStorage, homeService, $sessionStorage, $http) {
+    function cartController($state, $timeout, $localStorage, homeService, $sessionStorage, $http) {
         var cC = this;
 
         cC.loadItems = loadItems;
         cC.selectedItem = selectedItem;
+        cC.removeItem = removeItem;
 
         cC.profile = $sessionStorage.user;
         cC.loggedIn = $sessionStorage.loggedIn;
@@ -34,7 +35,6 @@
             console.log(cC.cartItemsNum);
         };
 
-        //TODO: When we get items, this is going to be an api call as well
         function loadItems() {
             console.log(cC.profile._id);
             $http.get('/api/getitems/' + cC.profile._id)
@@ -55,6 +55,11 @@
 
         function selectedItem(object) {
             $sessionStorage.object = object;
+        }
+
+        //TODO: add call to remove items from the DB and reload page
+        function removeItem(item){
+            $http.delete().then(loadItems);
         }
 
         loadItems();
