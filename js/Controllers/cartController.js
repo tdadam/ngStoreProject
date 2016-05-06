@@ -4,13 +4,14 @@
     angular.module('cartController', [])
         .controller('cartController', cartController);
 
-    cartController.$inject = ['$state', 'cartService', '$timeout', '$localStorage', 'homeService', '$sessionStorage', '$http'];
+    cartController.$inject = ['$state', '$timeout', '$localStorage', 'homeService', '$sessionStorage', '$http'];
 
-    function cartController($state, cartService, $timeout, $localStorage, homeService, $sessionStorage, $http) {
+    function cartController($state, $timeout, $localStorage, homeService, $sessionStorage, $http) {
         var cC = this;
 
         cC.loadItems = loadItems;
         cC.selectedItem = selectedItem;
+        cC.deleteItem = deleteItem;
 
         cC.profile = $sessionStorage.user;
         cC.loggedIn = $sessionStorage.loggedIn;
@@ -31,25 +32,19 @@
             homeService.addSearch(cC.newSearch);
             $localStorage.searchQuery = cC.newSearch;
             $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
-            console.log(cC.cartItemsNum);
         };
 
-        //TODO: When we get items, this is going to be an api call as well
         function loadItems() {
-            console.log(cC.profile._id);
-            $http.get('/api/getitems/'+cC.profile._id)
-                .then(function(data) {
-                   console.log(data.data);
-            });
-            //var profile = cC.profile;
-            //cC.items = cartService.loadItems(profile);
-            //
-            //$timeout(function () {
-            //    cC.cartTotal = 0;
-            //    for (var i = 0; i < cC.items.length; i++) {
-            //        cC.cartTotal += cC.items[i].salePrice;
-            //    }
-            //}, 750);
+            $http.get('/api/getitems/' + cC.profile._id)
+                .then(function (data) {
+                    cC.items = data.data;
+                    $timeout(function () {
+                        cC.cartTotal = 0;
+                        for (var i = 0; i < cC.items.length; i++) {
+                            cC.cartTotal += cC.items[i].itemObject.salePrice;
+                        }
+                    }, 750);
+                });
         }
 
         if (cC.loggedIn == null || cC.loggedIn == false) {
@@ -58,6 +53,14 @@
 
         function selectedItem(object) {
             $sessionStorage.object = object;
+        }
+
+        //TODO: add call to remove items from the DB and reload page
+        function deleteItem(item) {
+            $http.delete('/api/deleteItem/' + item._id)
+                .then(function (data) {
+                    loadItems();
+                });
         }
 
         loadItems();

@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular.module('select', [])
@@ -14,11 +14,10 @@
         se.selected = $sessionStorage.object;
 
         se.profile = $sessionStorage.user;
-        //console.log(se.profile);
         se.loggedIn = $sessionStorage.loggedIn;
 
         // search by clicking enter key
-        se.clickEnter = function(keyEvent, search) {
+        se.clickEnter = function (keyEvent, search) {
             if (keyEvent.which === 13) {
                 homeService.addSearch(search);
                 $localStorage.searchQuery = search;
@@ -31,14 +30,14 @@
         se.defaultImageIndex = 0;
         se.currentImage = se.selected.imageEntities[se.defaultImageIndex].largeImage;
 
-        se.sendIndex = function(index) {
+        se.sendIndex = function (index) {
             se.currentImage = se.selected.imageEntities[index].largeImage;
         };
 
         se.addToCart = addToCart;
 
         //search with search button
-        se.newSearch = function() {
+        se.newSearch = function () {
             homeService.addSearch(se.newSearchQuery);
             $localStorage.searchQuery = se.newSearchQuery;
             $state.go("SearchResult", {
@@ -46,7 +45,7 @@
             });
         };
 
-        se.back = function() {
+        se.back = function () {
             $state.go("SearchResult", {
                 searchQuery: $localStorage.searchQuery
             });
@@ -54,23 +53,10 @@
 
         function addToCart(item) {
             toaster.pop('success', "Item Added to Cart:", item.name);
-            console.log(se.profile.user);
-            console.log(item);
-                $http.post('/api/additem', {
-                    userName:se.profile.user,
-                    userId: se.profile._id,
-                    item:item
-
-
-                    //}).then(function (data) {
-                    //    if (data.data == 'Email already registered') {
-                    //        $scope.err = data.data;
-                    //    } else {
-                    //        $location.path('/home');
-                    //}
-                });
-
-
+            $http.post('/api/additem', {
+                userId: se.profile._id,
+                item: item
+            });
         }
     }
 }());
