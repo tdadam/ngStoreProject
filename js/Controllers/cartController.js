@@ -37,19 +37,16 @@
         //TODO: When we get items, this is going to be an api call as well
         function loadItems() {
             console.log(cC.profile._id);
-            $http.get('/api/getitems/'+cC.profile._id)
-                .then(function(data) {
-                   console.log(data.data);
-            });
-            //var profile = cC.profile;
-            //cC.items = cartService.loadItems(profile);
-            //
-            //$timeout(function () {
-            //    cC.cartTotal = 0;
-            //    for (var i = 0; i < cC.items.length; i++) {
-            //        cC.cartTotal += cC.items[i].salePrice;
-            //    }
-            //}, 750);
+            $http.get('/api/getitems/' + cC.profile._id)
+                .then(function (data) {
+                    cC.items = data.data;
+                    $timeout(function () {
+                        cC.cartTotal = 0;
+                        for (var i = 0; i < cC.items.length; i++) {
+                            cC.cartTotal += cC.items[i].itemObject.salePrice;
+                        }
+                    }, 750);
+                });
         }
 
         if (cC.loggedIn == null || cC.loggedIn == false) {

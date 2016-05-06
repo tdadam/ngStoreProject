@@ -14,7 +14,6 @@
         se.selected = $sessionStorage.object;
 
         se.profile = $sessionStorage.user;
-        //console.log(se.profile);
         se.loggedIn = $sessionStorage.loggedIn;
 
         // search by clicking enter key
@@ -60,17 +59,7 @@
                     userName:se.profile.user,
                     userId: se.profile._id,
                     item:item
-
-
-                    //}).then(function (data) {
-                    //    if (data.data == 'Email already registered') {
-                    //        $scope.err = data.data;
-                    //    } else {
-                    //        $location.path('/home');
-                    //}
                 });
-
-
         }
     }
 }());

@@ -14,25 +14,25 @@
         </div>
     </div>
     <div>
-        <!--<div class="alert featuredDiv featureName">-->
-            <!--<h2 class="whiteFont" style="margin-bottom: 40px">{{cartC.profile.user}}'s Cart</h2>-->
-            <!--<div class="centered">-->
-                <!--<span class="description">You currently have <span class="whiteFont">{{cartC.items.length}}</span> item(s) in your cart.</span>-->
-            <!--</div>-->
-            <!--<div ng-repeat="myCart in cartC.items">-->
-                <!--<div style="border: 3px black solid; margin-top: 1%">-->
-                    <!--<span class="whiteFont description center-block" style="margin-top: 10px">{{myCart.name}}</span><br>-->
-                    <!--<img class="hoverBorder" style="margin: 0 0 10px 15px" ng-src="{{myCart.largeImage || myCart.mediumImage || myCart.thumbnailImage}}" ng-click="cartC.selectedItem(myCart)" ui-sref="select"><br>-->
-                    <!--<div class="lrgfont cartItemInfo">-->
-                        <!--<span><span class="whiteFont lrgfont">Item id:</span> {{myCart.itemId}}</span><br>-->
-                        <!--<span><span class="whiteFont lrgfont">Our Price:</span> {{myCart.salePrice | currency}}</span>-->
-                        <!--<span><button class="btn profileBtns pull-right removeBtn" ng-click="cartC.items.$remove(myCart) && cartC.loadItems()">Remove Item</button></span>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="description" style="text-align: right">-->
-                <!--<span class="featureName"><span class="whiteFont">Total:</span> {{cartC.cartTotal | currency}}</span>-->
-            <!--</div>-->
+        <div class="alert featuredDiv featureName">
+            <h2 class="whiteFont" style="margin-bottom: 40px">{{cartC.profile.user}}'s Cart</h2>
+            <div class="centered">
+                <span class="description">You currently have <span class="whiteFont">{{cartC.items.length}}</span> item(s) in your cart.</span>
+            </div>
+            <div ng-repeat="myCart in cartC.items">
+                <div style="border: 3px black solid; margin-top: 1%">
+                    <span class="whiteFont description center-block" style="margin-top: 10px">{{myCart.itemObject.name}}</span><br>
+                    <img class="hoverBorder" style="margin: 0 0 10px 15px" ng-src="{{myCart.itemObject.largeImage || myCart.itemObject.mediumImage || myCart.itemObject.thumbnailImage}}" ng-click="cartC.selectedItem(myCart)" ui-sref="select"><br>
+                    <div class="lrgfont cartItemInfo">
+                        <span><span class="whiteFont lrgfont">Item id:</span> {{myCart.itemObject.itemId}}</span><br>
+                        <span><span class="whiteFont lrgfont">Our Price:</span> {{myCart.itemObject.salePrice | currency}}</span>
+                        <span><button class="btn profileBtns pull-right removeBtn" ng-click="cartC.items.$remove(myCart) && cartC.loadItems()">Remove Item</button></span>
+                    </div>
+                </div>
+            </div>
+            <div class="description" style="text-align: right">
+                <span class="featureName"><span class="whiteFont">Total:</span> {{cartC.cartTotal | currency}}</span>
+            </div>
         </div>
     </div>
 </div>
