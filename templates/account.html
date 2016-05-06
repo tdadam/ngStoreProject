@@ -39,7 +39,8 @@
                     <label>
                         <span class="label featureName lrgfont">Name:</span>
                         <input type="text" name="name" ng-model="profile.user"/>
-                        <button ng-click="saveName()" class="btn btn-success"><i class="fa fa-plus"></i> Save Name</button>
+                        <button ng-click="saveName()" class="btn btn-success"><i class="fa fa-plus"></i> Save Name
+                        </button>
 
                     </label>
                 </div>
@@ -64,14 +65,15 @@
                 <div>
                     <label style="margin-right: 30px">
                         <span class="label featureName lrgfont">New Password:</span>
-                        <input type="password"  ng-keypress="clear()" ng-model="newpass"/>
+                        <input type="password" ng-keypress="clear()" ng-model="newpass"/>
                     </label>
                     <label style="margin-bottom: 20px">
                         <span class="featureName lrgfont centered">Confirm New Password: </span>
-                        <input type="password"  ng-keypress="clear()" ng-model="confirm" ng-change="passwordCheck()"/>
+                        <input type="password" ng-keypress="clear()" ng-model="confirm" ng-change="passwordCheck()"/>
                     </label>
                 </div>
-                <button class="btn btn-warning" ng-click="changePassword(oldpass, confirm, newpass)"><i class="fa fa-pencil"></i>Change
+                <button class="btn btn-warning" ng-click="changePassword(oldpass, confirm, newpass)"><i
+                        class="fa fa-pencil"></i>Change
                     Password
                 </button>
 
@@ -97,7 +99,9 @@
                     </label>
                 </div>
 
-                <button class="btn btn-warning" ng-click="changeEmail(pass, newEmail)"><i class="fa fa-pencil"></i> Update Email</button>
+                <button class="btn btn-warning" ng-click="changeEmail(pass, newEmail)"><i class="fa fa-pencil"></i>
+                    Update Email
+                </button>
 
                 <p class="error whiteFont lrgfont" ng-show="emailerr">{{emailerr}}</p>
                 <p class="good whiteFont lrgfont" ng-show="emailmsg">{{emailmsg}}</p>

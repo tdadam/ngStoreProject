@@ -2,12 +2,15 @@
 
 <div>
     <div class="centered alert titleDiv">
-        <h1 class="title" ui-sref="home"><i class="fa fa-shopping-bag magicTitle largerBag"></i> Super-Duper Megastore</h1>
+        <h1 class="title" ui-sref="home"><i class="fa fa-shopping-bag magicTitle largerBag"></i> Super-Duper Megastore
+        </h1>
         <div class="row">
 
             <div class="col-sm-12 right">
-                <input placeholder="Search" type="text" width="200"  name="newSearchInput" ng-model="cartC.newSearch" ng-keypress="cartC.clickEnter($event, cartC.newSearch)">
-                <button class="btn searchBtn" id="searchBtn" ng-click="cartC.search()"><i class="fa fa-search largeIcon magicTitle"></i>
+                <input placeholder="Search" type="text" width="200" name="newSearchInput" ng-model="cartC.newSearch"
+                       ng-keypress="cartC.clickEnter($event, cartC.newSearch)">
+                <button class="btn searchBtn" id="searchBtn" ng-click="cartC.search()"><i
+                        class="fa fa-search largeIcon magicTitle"></i>
                     Search Our Products
                 </button>
             </div>
@@ -21,12 +24,17 @@
             </div>
             <div ng-repeat="myCart in cartC.items">
                 <div style="border: 3px black solid; margin-top: 1%">
-                    <span class="whiteFont description center-block" style="margin-top: 10px">{{myCart.itemObject.name}}</span><br>
-                    <img class="hoverBorder" style="margin: 0 0 10px 15px" ng-src="{{myCart.itemObject.largeImage || myCart.itemObject.mediumImage || myCart.itemObject.thumbnailImage}}" ng-click="cartC.selectedItem(myCart)" ui-sref="select"><br>
+                    <span class="whiteFont description center-block"
+                          style="margin-top: 10px">{{myCart.itemObject.name}}</span><br>
+                    <img class="hoverBorder" style="margin: 0 0 10px 15px"
+                         ng-src="{{myCart.itemObject.largeImage || myCart.itemObject.mediumImage || myCart.itemObject.thumbnailImage}}"
+                         ng-click="cartC.selectedItem(myCart)" ui-sref="select"><br>
                     <div class="lrgfont cartItemInfo">
                         <span><span class="whiteFont lrgfont">Item id:</span> {{myCart.itemObject.itemId}}</span><br>
                         <span><span class="whiteFont lrgfont">Our Price:</span> {{myCart.itemObject.salePrice | currency}}</span>
-                        <span><button class="btn profileBtns pull-right removeBtn" ng-click="cartC.items.$remove(myCart) && cartC.loadItems()">Remove Item</button></span>
+                        <span><button class="btn profileBtns pull-right removeBtn"
+                                      ng-click="cartC.items.$remove(myCart) && cartC.loadItems()">Remove Item
+                        </button></span>
                     </div>
                 </div>
             </div>
