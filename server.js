@@ -119,7 +119,6 @@ app.post('/api/adduser', function (req, res) {
 
 app.post('/api/additem', function (req, res) {
     db.collection('items').insert({
-        "userName": req.body.userName,
         "userId": req.body.userId,
         "itemObject": req.body.item
     }, function (err, result) {
@@ -140,13 +139,9 @@ app.get('/api/getitems/:id', function (req, res) {
 
 app.delete('/api/deleteItem/:id',
     function (req, res) {
-        var par = new mongodb.ObjectID(req.params.id);
-        console.log(par);
         db.collection('items').deleteOne({
-            "_id": par
+            "_id": new mongodb.ObjectID(req.params.id)
         }, function (err, result) {
-            console.log(err);
-            console.log(result.result.n);
             if (err) {
                 res.send(err);
             }
@@ -160,7 +155,7 @@ app.delete('/api/deleteItem/:id',
 app.put('/api/profile/user',
     function (req, res) {
         db.collection('users').findOneAndUpdate({
-                "email": req.body.oldEmail
+                "_id": new mongodb.ObjectID(req.body._id)
             }, {
                 $set: {
                     "user": req.body.user
@@ -178,7 +173,7 @@ app.put('/api/profile/user',
 app.put('/api/profile/pass',
     function (req, res) {
         db.collection('users').findOneAndUpdate({
-                'email': req.body.oldEmail
+                "_id": new mongodb.ObjectID(req.body._id)
             }, {
                 $set: {
                     "password": req.body.password
@@ -196,7 +191,7 @@ app.put('/api/profile/pass',
 app.put('/api/profile/email',
     function (req, res) {
         db.collection('users').findOneAndUpdate({
-                'email': req.body.oldEmail
+                "_id": new mongodb.ObjectID(req.body._id)
             }, {
                 $set: {
                     "email": req.body.email

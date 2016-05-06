@@ -32,11 +32,9 @@
             homeService.addSearch(cC.newSearch);
             $localStorage.searchQuery = cC.newSearch;
             $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
-            console.log(cC.cartItemsNum);
         };
 
         function loadItems() {
-            console.log(cC.profile._id);
             $http.get('/api/getitems/' + cC.profile._id)
                 .then(function (data) {
                     cC.items = data.data;
