@@ -56,7 +56,7 @@
                     if (data.data == 'Email already registered') {
                         $scope.err = data.data;
                     } else {
-                        $location.path('/home');
+                        $scope.login(email, pass);
                     }
                 });
             }

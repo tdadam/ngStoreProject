@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('navController', [])
@@ -8,6 +8,9 @@
 
     function navController($location, $sessionStorage) {
         var nav = this;
+        if ($sessionStorage.loggedIn == null) {
+            $sessionStorage.loggedIn = false;
+        }
 
         nav.profile = $sessionStorage.user;
         nav.loggedIn = $sessionStorage.loggedIn;
