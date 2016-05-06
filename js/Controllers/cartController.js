@@ -11,7 +11,7 @@
 
         cC.loadItems = loadItems;
         cC.selectedItem = selectedItem;
-        cC.removeItem = removeItem;
+        cC.deleteItem = deleteItem;
 
         cC.profile = $sessionStorage.user;
         cC.loggedIn = $sessionStorage.loggedIn;
@@ -58,8 +58,11 @@
         }
 
         //TODO: add call to remove items from the DB and reload page
-        function removeItem(item){
-            $http.delete().then(loadItems);
+        function deleteItem(item) {
+            $http.delete('/api/deleteItem/' + item._id)
+                .then(function (data) {
+                    loadItems();
+                });
         }
 
         loadItems();

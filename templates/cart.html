@@ -33,7 +33,7 @@
                         <span><span class="whiteFont lrgfont">Item id:</span> {{myCart.itemObject.itemId}}</span><br>
                         <span><span class="whiteFont lrgfont">Our Price:</span> {{myCart.itemObject.salePrice | currency}}</span>
                         <span><button class="btn profileBtns pull-right removeBtn"
-                                      ng-click="cartC.items.$remove(myCart) && cartC.loadItems()">Remove Item
+                                      ng-click="cartC.deleteItem(myCart)">Remove Item
                         </button></span>
                     </div>
                 </div>

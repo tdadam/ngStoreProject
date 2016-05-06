@@ -9,7 +9,6 @@ var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
 var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
 var db;
 
 //The uri is the mongo connection info, comment out first line and uncomment the second to connect to mlab
@@ -133,19 +132,33 @@ app.post('/api/additem', function (req, res) {
 });
 
 app.get('/api/getitems/:id', function (req, res) {
-    console.log(req.params.id);
     db.collection('items').find({"userId": req.params.id}).toArray(function (err, doc) {
         if (err) throw error;
-        console.log(doc);
         res.send(doc);
     });
 });
 
+app.delete('/api/deleteItem/:id',
+    function (req, res) {
+        var par = new mongodb.ObjectID(req.params.id);
+        console.log(par);
+        db.collection('items').deleteOne({
+            "_id": par
+        }, function (err, result) {
+            console.log(err);
+            console.log(result.result.n);
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.end();
+            }
+        })
+    });
+
 //profile information
 app.put('/api/profile/user',
     function (req, res) {
-        console.log('ObjectId("' + req.body._id + '")');
-        console.log('"' + req.body.user + '"');
         db.collection('users').findOneAndUpdate({
                 "email": req.body.oldEmail
             }, {
@@ -154,8 +167,6 @@ app.put('/api/profile/user',
                 }
             },
             function (err, result) {
-                console.log(err);
-                console.log(result);
                 if (err) {
                     res.send("There was an error: " + err);
                 } else {
@@ -192,7 +203,6 @@ app.put('/api/profile/email',
                 }
             },
             function (err, result) {
-                console.log(err);
                 if (err != null && err.code == 11000) {
                     res.send('Email already registered');
                 } else {
