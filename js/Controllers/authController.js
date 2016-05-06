@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular.module('authController', [])
@@ -31,7 +31,7 @@
         };
 
         //This has been converted and connected to Mongo
-        $scope.createAccount = function() {
+        $scope.createAccount = function () {
             $scope.err = null;
             if (assertValidAccountProps()) {
                 var email = $scope.email;
@@ -52,7 +52,7 @@
                     email: email,
                     pass: pass,
                     user: name
-                }).then(function(data) {
+                }).then(function (data) {
                     if (data.data == 'Email already registered') {
                         $scope.err = data.data;
                     } else {
