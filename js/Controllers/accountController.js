@@ -65,9 +65,9 @@
         $scope.changeEmail = function (pass, newEmail) {
             resetMessages();
             if (!pass || !newEmail) {
-                $scope.err = 'Please fill in all fields';
+                $scope.emailerr = 'Please fill in all fields';
             } else if (pass != $sessionStorage.user.password) {
-                $scope.err = 'Incorrect Password';
+                $scope.emailerr = 'Incorrect Password';
             } else {
                 $http.put('/api/profile/email', {
                     "_id": $scope.profile._id,
