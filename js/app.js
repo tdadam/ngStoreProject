@@ -10,15 +10,12 @@
             "ngStorage",
             "authController",
             "navController",
-            "firebase.utils",
-            "authSetup",
             "cartController",
-            "cartService",
             "accountController",
             "select",
             "facebookService",
             "toaster"
-    ])
+        ])
 
         .config(["$stateProvider", "$urlRouterProvider",
             function ($stateProvider, $urlRouterProvider) {
@@ -50,12 +47,7 @@
                     .state("select", {
                         url: "/select",
                         templateUrl: "templates/selectedProduct.html",
-                        controller: "selectCtrl as se",
-                        resolve: {
-                            user: ['authSetup', function (authSetup) {
-                                return authSetup.$waitForAuth();
-                            }]
-                        }
+                        controller: "selectCtrl as se"
                     })
                     .state("contact", {
                         url: "/contact",
@@ -77,31 +69,17 @@
                                     .success(function (data) {
                                         return data;
                                     });
-                            },
-                            user: ['authSetup', function (authSetup) {
-                                return authSetup.$waitForAuth();
-                            }]
+                            }
                         }
                     })
                     .state("account", {
                         url: "/account",
                         templateUrl: "templates/account.html",
-                        controller: "accountController as acctC",
-                        resolve: {
-                            user: ['authSetup', function (authSetup) {
-                                return authSetup.$waitForAuth();
-                            }]
-                        }
+                        controller: "accountController as acctC"
                     });
 
                 // if none of the above states are matched, use this as the fallback
                 $urlRouterProvider.otherwise("/home");
-            }])
-
-        .run(['$rootScope', 'authSetup', function ($rootScope, authSetup) {
-            // track status of authentication
-            authSetup.$onAuth(function (user) {
-                $rootScope.loggedIn = !!user;
-            });
-        }]);
+            }
+        ]);
 }());

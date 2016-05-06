@@ -316,3 +316,7 @@ input[type=text] {
 .green {
     background-color: springgreen
 }
+.fbLogin {
+    color: black;
+    background-color: buttonface;
+}

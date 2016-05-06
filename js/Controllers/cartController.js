@@ -4,15 +4,18 @@
     angular.module('cartController', [])
         .controller('cartController', cartController);
 
-    cartController.$inject = ['$scope', '$rootScope', '$state', 'user', 'fbutil', 'cartService', '$firebaseObject', '$timeout', '$localStorage', 'homeService', '$sessionStorage'];
+    cartController.$inject = ['$state', '$timeout', '$localStorage', 'homeService', '$sessionStorage', '$http'];
 
-    function cartController($scope, $rootScope, $state, user, fbutil, cartService, $firebaseObject, $timeout, $localStorage, homeService, $sessionStorage) {
+    function cartController($state, $timeout, $localStorage, homeService, $sessionStorage, $http) {
         var cC = this;
 
-        cC.setProfile = setProfile;
         cC.loadItems = loadItems;
         cC.selectedItem = selectedItem;
-        cC.profile = {};
+        cC.deleteItem = deleteItem;
+
+        cC.profile = $sessionStorage.user;
+        cC.loggedIn = $sessionStorage.loggedIn;
+
         cC.total = 0;
         cC.cartTotal = 0;
         cC.items = [];
@@ -29,32 +32,22 @@
             homeService.addSearch(cC.newSearch);
             $localStorage.searchQuery = cC.newSearch;
             $state.go("SearchResult", {searchQuery: $localStorage.searchQuery});
-            console.log(cC.cartItemsNum);
         };
 
-        function setProfile() {
-            if ($rootScope.loggedIn) {
-                var unbind;
-                cC.profile = $firebaseObject(fbutil.ref('users', user.uid));
-                cC.profile.$bindTo($scope, 'profile').then(function (ub) {
-                    unbind = ub;
-                });
-            }
-        }
-
         function loadItems() {
-            var profile = cC.profile;
-            cC.items = cartService.loadItems(profile);
-
-            $timeout(function () {
-                cC.cartTotal = 0;
-                for (var i = 0; i < cC.items.length; i++) {
-                    cC.cartTotal += cC.items[i].salePrice;
-                }
-            }, 750);
+            $http.get('/api/getitems/' + cC.profile._id)
+                .then(function (data) {
+                    cC.items = data.data;
+                    $timeout(function () {
+                        cC.cartTotal = 0;
+                        for (var i = 0; i < cC.items.length; i++) {
+                            cC.cartTotal += cC.items[i].itemObject.salePrice;
+                        }
+                    }, 750);
+                });
         }
 
-        if (!$rootScope.loggedIn) {
+        if (cC.loggedIn == null || cC.loggedIn == false) {
             $state.go("login");
         }
 
@@ -62,8 +55,14 @@
             $sessionStorage.object = object;
         }
 
-        setProfile();
-        loadItems();
+        //TODO: add call to remove items from the DB and reload page
+        function deleteItem(item) {
+            $http.delete('/api/deleteItem/' + item._id)
+                .then(function (data) {
+                    loadItems();
+                });
+        }
 
+        loadItems();
     }
 }());

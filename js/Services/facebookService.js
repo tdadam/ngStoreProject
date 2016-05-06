@@ -12,7 +12,7 @@
         fbS.saveData = saveData;
         fbS.fbData = {};
 
-        function saveData(authData){
+        function saveData(authData) {
             fbS.fbData = authData;
         }
     }
