@@ -51,10 +51,24 @@ passport.deserializeUser(function (obj, done) {
 passport.use('facebook', new FacebookStrategy({
         clientID: '661695950638053',
         clientSecret: '4084a4ffb47ccace28b52570ca12719d',
-        callbackURL: "http://localhost:3000/auth/facebook/callback"
+        callbackURL: "http://localhost:3000/auth/facebook/callback",
+        profileFields: ['id', 'displayName', 'email', 'picture.type(large)']
     },
-    function (accessToken, refreshToken, profile, cb) {
-        cb(null, profile);
+    function (accessToken, refreshToken, profile, done) {
+        db.collection('users').findOne({'_id': profile.id}, function (err, result) {
+            if (result != undefined || result != null) {
+                return done(null, result);
+            }
+            else {
+                db.collection('users').insertOne({
+                    "_id": profile.id,
+                    "user": profile.displayName,
+                    "provider": "facebook"
+                    //"email": profile.picture.type(large)
+                })
+            }
+        });
+        return done(null, profile);
     }
 ));
 
@@ -88,7 +102,7 @@ app.get('/auth/facebook',
 //Not started, attempting local first
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-        failureRedirect: '/fail'
+        failureRedirect: '/login'
     }),
     function (req, res) {
         // Successful authentication, redirect home.
@@ -103,7 +117,7 @@ app.post('/api/login',
 
 //adds the new user to the database, returning message to client if email already used
 app.post('/api/adduser', function (req, res) {
-    db.collection('users').insert({
+    db.collection('users').insertOne({
         "email": req.body.email,
         "password": req.body.pass,
         "user": req.body.user,
@@ -118,7 +132,7 @@ app.post('/api/adduser', function (req, res) {
 });
 
 app.post('/api/additem', function (req, res) {
-    db.collection('items').insert({
+    db.collection('items').insertOne({
         "userId": req.body.userId,
         "itemObject": req.body.item
     }, function (err, result) {
