@@ -13,8 +13,8 @@ var db;
 
 //The uri is the mongo connection info, comment out first line and uncomment the second to connect to mlab
 //var uri = 'mongodb://localhost/store-test';
-var uri = 'mongodb://localhost/People';
-//var uri = 'mongodb://admin:admin@ds032319.mlab.com:32319/matc-project';
+//var uri = 'mongodb://localhost/People';
+var uri = 'mongodb://admin:admin@ds032319.mlab.com:32319/matc-project';
 
 app.use('/', express.static(__dirname));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));

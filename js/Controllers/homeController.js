@@ -4,10 +4,19 @@
     angular.module('home', [])
         .controller('homeController', homeController);
 
-    homeController.$inject = ['$http', '$state', '$localStorage', 'homeService','$sessionStorage'];
+    homeController.$inject = ['$http', '$state', '$localStorage', 'homeService', '$sessionStorage', 'toaster'];
 
-    function homeController($http, $state, $localStorage, homeService,$sessionStorage) {
+    function homeController($http, $state, $localStorage, homeService, $sessionStorage, toaster) {
         var hc = this;
+
+        hc.welcome = function () {
+
+
+            if ($sessionStorage.showToastHome == true) {
+                toaster.pop('success', "Login Successful");
+                $sessionStorage.showToastHome = false;
+            }
+        };
 
         //------> trends not working from walmart side
         //hc.trendurl="http://api.walmartlabs.com/v1/trends?format=json&apiKey=evyfdf3gs4svd5vx3zs9br4w&callback=JSON_CALLBACK";
@@ -30,6 +39,7 @@
                 .success(function (data) {
 
                     hc.carouselDat = data.items;
+                    hc.welcome();
                 });
         };
 

@@ -24,7 +24,7 @@
             }).then(function (data) {
                 $sessionStorage.user = data.data;
                 $sessionStorage.loggedIn = true;
-                $sessionStorage.showToastHome=1;
+                $sessionStorage.showToastHome = true;
                 $location.path('/home');
             }, function (data) {
                 $scope.err = "Invalid username / password";
