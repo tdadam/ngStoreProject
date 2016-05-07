@@ -4,9 +4,9 @@
     angular.module('home', [])
         .controller('homeController', homeController);
 
-    homeController.$inject = ['$http', '$state', '$localStorage', 'homeService','$sessionStorage'];
+    homeController.$inject = ['$http', '$state', '$localStorage', 'homeService','$sessionStorage','toaster'];
 
-    function homeController($http, $state, $localStorage, homeService,$sessionStorage) {
+    function homeController($http, $state, $localStorage, homeService,$sessionStorage,toaster) {
         var hc = this;
 
         //------> trends not working from walmart side
@@ -52,5 +52,18 @@
                 $state.go("SearchResult", {searchQuery: homeService.storage.search});
             }
         };
+
+        hc.showToaster= function () {
+            //if($sessionStorage.showToastHome==true) {
+            //    //toaster.pop('success', "You are logged in",$sessionStorage.showToastHome);
+            //    toaster.pop('success', "Successfully");
+            //
+            //    alert("you are logged in");
+            //}
+            toaster.pop('success', "Successfully Changed Your Password");
+
+            $sessionStorage.showToastHome=false;
+        };
+        hc.showToaster();
     }
 }());
