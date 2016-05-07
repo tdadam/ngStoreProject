@@ -51,26 +51,21 @@ passport.deserializeUser(function (obj, done) {
 passport.use('facebook', new FacebookStrategy({
         clientID: '661695950638053',
         clientSecret: '4084a4ffb47ccace28b52570ca12719d',
-        callbackURL: "http://localhost:3000/auth/facebook/callback",
-        profileFields: ['id', 'displayName', 'email', 'picture.type(large)']
+        callbackURL: "http://ec2-52-26-175-99.us-west-2.compute.amazonaws.com/auth/facebook/callback",
+        profileFields: ['id', 'displayName', 'email', 'photos']
     },
     function (accessToken, refreshToken, profile, done) {
-        db.collection('users').findOne({'_id': profile.id}, function (err, result) {
-            if (result != undefined || result != null) {
-                return done(null, result);
-            }
-            else {
-                db.collection('users').insertOne({
-                    "_id": profile.id,
-                    "user": profile.displayName,
-                    "provider": "facebook"
-                    //"email": profile.picture.type(large)
-                })
-            }
+        console.log(profile);
+        db.collection('users').findOneAndUpdate({'_id': profile.id}, {
+            "_id": profile.id,
+            "user": profile.displayName,
+            "provider": "facebook"
+            //"email": profile.picture.type(large)
+        }, {
+            upsert: true
         });
-        return done(null, profile);
-    }
-));
+        done(null, profile);
+    }));
 
 passport.use(new LocalStrategy({
         usernameField: 'email',
@@ -162,7 +157,7 @@ app.delete('/api/deleteItem/:id',
             else {
                 res.end();
             }
-        })
+        });
     });
 
 //profile information
