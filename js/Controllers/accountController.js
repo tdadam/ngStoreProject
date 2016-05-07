@@ -52,7 +52,6 @@
                 });
             }
         };
-
         $scope.clear = resetMessages;
 
         function resetMessages() {
@@ -61,7 +60,6 @@
             $scope.emailerr = null;
             $scope.emailmsg = null;
         }
-
         $scope.changeEmail = function (pass, newEmail) {
             resetMessages();
             if (!pass || !newEmail) {
@@ -84,7 +82,11 @@
                         toaster.pop('success', "Successfully Changed Your Email: " + $scope.profile.email);
                     }
                 });
+
             }
+
         };
+
+
     }
 }());
