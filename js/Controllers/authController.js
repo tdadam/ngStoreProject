@@ -24,9 +24,10 @@
             }).then(function (data) {
                 $sessionStorage.user = data.data;
                 $sessionStorage.loggedIn = true;
+                $sessionStorage.showToastHome=1;
                 $location.path('/home');
             }, function (data) {
-                $scope.err = "Invalid username / password"
+                $scope.err = "Invalid username / password";
             });
         };
 
@@ -56,7 +57,7 @@
                     if (data.data == 'Email already registered') {
                         $scope.err = data.data;
                     } else {
-                        $location.path('/home');
+                        $scope.login(email, pass);
                     }
                 });
             }
