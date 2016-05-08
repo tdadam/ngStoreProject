@@ -35,7 +35,7 @@ MongoClient.connect(uri, function (err, database) {
     db = database;
     // Start the application after the database connection is ready
     app.listen(3001);
-    console.log("Listening on port 3000");
+    console.log("Listening on port 3001");
 });
 
 passport.serializeUser(function (user, done) {
@@ -138,8 +138,6 @@ app.post('/api/adduser', function (req, res) {
 });
 
 app.post('/api/additem', function (req, res) {
-    console.log(req.headers);
-    console.log(req.session);
     db.collection('items').insertOne({
         "userId": req.body.userId,
         "itemObject": req.body.item
