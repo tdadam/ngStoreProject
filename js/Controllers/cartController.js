@@ -60,6 +60,7 @@
             $http.delete('/api/deleteItem/' + item._id)
                 .then(function (data) {
                     loadItems();
+                    homeService.getSize(cC.profile._id);
                 });
         }
 
