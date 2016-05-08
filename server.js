@@ -34,8 +34,8 @@ MongoClient.connect(uri, function (err, database) {
     if (err) throw err;
     db = database;
     // Start the application after the database connection is ready
-    app.listen(3001);
-    console.log("Listening on port 3001");
+    app.listen(3000);
+    console.log("Listening on port 3000");
 });
 
 passport.serializeUser(function (user, done) {
