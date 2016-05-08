@@ -31,6 +31,12 @@
             });
         };
 
+        ////Just trying to get the FB info into sessionStorage to utilize profile page, couldn't access the info
+        //$scope.loginFB = function () {
+        //    $sessionStorage.FB = true;
+        //    $location.path('/auth/facebook')
+        //};
+
         //This has been converted and connected to Mongo
         $scope.createAccount = function () {
             $scope.err = null;

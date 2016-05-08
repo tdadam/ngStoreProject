@@ -12,8 +12,6 @@ var MongoClient = require('mongodb').MongoClient;
 var db;
 
 //The uri is the mongo connection info, comment out first line and uncomment the second to connect to mlab
-//var uri = 'mongodb://localhost/store-test';
-//var uri = 'mongodb://localhost/People';
 var uri = 'mongodb://admin:admin@ds032319.mlab.com:32319/matc-project';
 
 app.use('/', express.static(__dirname));
@@ -41,30 +39,31 @@ MongoClient.connect(uri, function (err, database) {
 });
 
 passport.serializeUser(function (user, done) {
-    done(null, user._id);
+    done(null, user);
 });
 
 passport.deserializeUser(function (obj, done) {
     done(null, obj);
 });
 
+//Not being used, I removed the button on the UI
 passport.use('facebook', new FacebookStrategy({
         clientID: '661695950638053',
         clientSecret: '4084a4ffb47ccace28b52570ca12719d',
-        callbackURL: "http://ec2-52-26-175-99.us-west-2.compute.amazonaws.com/auth/facebook/callback",
+        callbackURL: "http://localhost:3001/auth/facebook/callback",
+        //callbackURL: "http://ec2-52-39-187-1.us-west-2.compute.amazonaws.com/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'email', 'photos']
     },
-    function (accessToken, refreshToken, profile, done) {
-        console.log(profile);
-        db.collection('users').findOneAndUpdate({'_id': profile.id}, {
-            "_id": profile.id,
-            "user": profile.displayName,
-            "provider": "facebook"
-            //"email": profile.picture.type(large)
+    function (accessToken, refreshToken, user, done) {
+        db.collection('users').findOneAndUpdate({'_id': user.id}, {
+            "_id": user.id,
+            "user": user.displayName,
+            "provider": "facebook",
+            "email": user.photos[0].value
         }, {
             upsert: true
         });
-        done(null, profile);
+        return done(null, user);
     }));
 
 passport.use(new LocalStrategy({
@@ -90,19 +89,31 @@ passport.use(new LocalStrategy({
     }
 ));
 
-//Not started, attempting local first
+//Could not get this to serialize, removed login option
 app.get('/auth/facebook',
     passport.authenticate('facebook'));
 
-//Not started, attempting local first
+//Could not get this to serialize, removed login option
 app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
-        failureRedirect: '/login'
-    }),
-    function (req, res) {
-        // Successful authentication, redirect home.
-        res.redirect('/');
-    });
+    passport.authenticate('facebook',
+        function (req, res) {
+            req.login(req.user, function (error) {
+                if (error) {
+                    console.log('error login', error);
+                    res.redirect('/login');
+                } else {
+                    console.log('login success');
+                    res.redirect('/');
+                }
+            });
+        }));
+
+//attempting to find the serialized user, but did not get what I needed in the console.
+app.get('/fbcheck', function (req, res) {
+    console.log(req.headers);
+    console.log(req.session);
+    res.end();
+});
 
 app.post('/api/login',
     passport.authenticate('local', {}),
