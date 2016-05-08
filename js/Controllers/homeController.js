@@ -31,6 +31,7 @@
 
                     hc.carouselDat = data.items;
                     hc.showToaster();
+                    hc.fbCheck();
                 });
         };
 
@@ -54,11 +55,20 @@
             }
         };
 
-        hc.showToaster= function () {
+        hc.showToaster = function () {
             if ($sessionStorage.showToastHome == true) {
                 toaster.pop('success', "Login Successful");
                 $sessionStorage.showToastHome = false;
             }
         };
+
+        ////Unable to get the response to authController, trying to find another place to run the info save functions
+        //hc.fbCheck = function () {
+        //    if ($sessionStorage.FB == true){
+        //        $http.get('/fbcheck').then(function(data){
+        //            console.log('done');
+        //        });
+        //    }
+        //}
     }
 }());
