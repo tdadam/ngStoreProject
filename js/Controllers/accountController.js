@@ -4,9 +4,9 @@
     angular.module('accountController', [])
         .controller('accountController', accountController);
 
-    accountController.$inject = ['$scope', '$location', 'toaster', '$sessionStorage', '$http'];
+    accountController.$inject = ['$scope', '$location', 'toaster', '$sessionStorage', '$http','homeService'];
 
-    function accountController($scope, $location, toaster, $sessionStorage, $http) {
+    function accountController($scope, $location, toaster, $sessionStorage, $http,homeService) {
 
         $scope.profile = $sessionStorage.user;
         $scope.loggedIn = $sessionStorage.loggedIn;
@@ -27,6 +27,7 @@
 
         $scope.logout = function () {
             $sessionStorage.loggedIn = false;
+            homeService.getSize($scope.profile._id);
             $location.path('/login');
         };
 
