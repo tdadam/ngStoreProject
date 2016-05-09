@@ -57,6 +57,7 @@
                 userId: se.profile._id,
                 item: item
             });
+            homeService.getSize(se.profile._id);
         }
     }
 }());

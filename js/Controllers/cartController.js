@@ -55,11 +55,11 @@
             $sessionStorage.object = object;
         }
 
-        //TODO: add call to remove items from the DB and reload page
         function deleteItem(item) {
             $http.delete('/api/deleteItem/' + item._id)
                 .then(function (data) {
                     loadItems();
+                    homeService.getSize(cC.profile._id);
                 });
         }
 
