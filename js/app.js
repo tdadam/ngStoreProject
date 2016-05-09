@@ -13,7 +13,6 @@
             "cartController",
             "accountController",
             "select",
-            "facebookService",
             "toaster"
         ])
 

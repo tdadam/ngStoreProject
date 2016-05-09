@@ -4,9 +4,10 @@
     angular.module('home', [])
         .controller('homeController', homeController);
 
-    homeController.$inject = ['$http', '$state', '$localStorage', 'homeService'];
+    homeController.$inject = ['$http', '$state', '$localStorage', 'homeService', '$sessionStorage', 'toaster'];
 
-    function homeController($http, $state, $localStorage, homeService) {
+    function homeController($http, $state, $localStorage, homeService, $sessionStorage, toaster) {
+
         var hc = this;
 
         //------> trends not working from walmart side
@@ -30,6 +31,8 @@
                 .success(function (data) {
 
                     hc.carouselDat = data.items;
+                    hc.showToaster();
+                    //hc.fbCheck();
                 });
         };
 
@@ -52,5 +55,21 @@
                 $state.go("SearchResult", {searchQuery: homeService.storage.search});
             }
         };
+
+        hc.showToaster = function () {
+            if ($sessionStorage.showToastHome == true) {
+                toaster.pop('success', "Login Successful");
+                $sessionStorage.showToastHome = false;
+            }
+        };
+
+        ////Unable to get the response to authController, trying to find another place to run the info save functions
+        //hc.fbCheck = function () {
+        //    if ($sessionStorage.FB == true){
+        //        $http.get('/fbcheck').then(function(data){
+        //            console.log('done');
+        //        });
+        //    }
+        //}
     }
 }());

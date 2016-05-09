@@ -72,7 +72,8 @@
                         <input type="password" ng-keypress="clear()" ng-model="confirm" ng-change="passwordCheck()"/>
                     </label>
                 </div>
-                <button class="btn btn-warning" ng-click="changePassword(oldpass, confirm, newpass)"><i
+                <button class="btn btn-warning"
+                        ng-click="changePassword(oldpass, confirm, newpass);oldpass=null;newpass=null;confirm=null"><i
                         class="fa fa-pencil"></i>Change
                     Password
                 </button>
@@ -89,19 +90,21 @@
                 <div>
                     <label>
                         <span class="label2 featureName lrgfont">New Email:</span>
-                        <input type="text" ng-keypress="clear()" ng-model="newEmail"/>
+                        <input id="email" type="text" ng-keypress="clear()" ng-model="newEmail"/>
                     </label>
                 </div>
                 <div>
                     <label>
                         <span class="label2 featureName lrgfont">Current Password:</span>
-                        <input type="password" ng-keypress="clear()" ng-model="pass"/>
+                        <input id="pass" type="password" ng-keypress="clear()" ng-model="pass"/>
                     </label>
                 </div>
 
-                <button class="btn btn-warning" ng-click="changeEmail(pass, newEmail)"><i class="fa fa-pencil"></i>
+                <button class="btn btn-warning" ng-click="changeEmail(pass, newEmail);pass=null;newEmail=null"><i
+                        class="fa fa-pencil"></i>
                     Update Email
                 </button>
+
 
                 <p class="error whiteFont lrgfont" ng-show="emailerr">{{emailerr}}</p>
                 <p class="good whiteFont lrgfont" ng-show="emailmsg">{{emailmsg}}</p>

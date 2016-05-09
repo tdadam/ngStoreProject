@@ -4,9 +4,9 @@
     angular.module('authController', [])
         .controller('authController', authController);
 
-    authController.$inject = ['$http', '$scope', '$location', '$sessionStorage'];
+    authController.$inject = ['$http', '$scope', '$location', '$sessionStorage', 'homeService'];
 
-    function authController($http, $scope, $location, $sessionStorage) {
+    function authController($http, $scope, $location, $sessionStorage, homeService) {
 
         this.$http = $http;
 
@@ -24,11 +24,19 @@
             }).then(function (data) {
                 $sessionStorage.user = data.data;
                 $sessionStorage.loggedIn = true;
+                $sessionStorage.showToastHome = true;
                 $location.path('/home');
+                homeService.getSize($sessionStorage.user._id);
             }, function (data) {
-                $scope.err = "Invalid username / password"
+                $scope.err = "Invalid username / password";
             });
         };
+
+        ////Just trying to get the FB info into sessionStorage to utilize profile page, couldn't access the info
+        //$scope.loginFB = function () {
+        //    $sessionStorage.FB = true;
+        //    $location.path('/auth/facebook')
+        //};
 
         //This has been converted and connected to Mongo
         $scope.createAccount = function () {
