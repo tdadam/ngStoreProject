@@ -4,9 +4,9 @@
     angular.module('authController', [])
         .controller('authController', authController);
 
-    authController.$inject = ['$http', '$scope', '$location', '$sessionStorage','homeService'];
+    authController.$inject = ['$http', '$scope', '$location', '$sessionStorage', 'homeService'];
 
-    function authController($http, $scope, $location, $sessionStorage,homeService) {
+    function authController($http, $scope, $location, $sessionStorage, homeService) {
 
         this.$http = $http;
 

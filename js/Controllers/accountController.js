@@ -4,9 +4,9 @@
     angular.module('accountController', [])
         .controller('accountController', accountController);
 
-    accountController.$inject = ['$scope', '$location', 'toaster', '$sessionStorage', '$http','homeService'];
+    accountController.$inject = ['$scope', '$location', 'toaster', '$sessionStorage', '$http', 'homeService'];
 
-    function accountController($scope, $location, toaster, $sessionStorage, $http,homeService) {
+    function accountController($scope, $location, toaster, $sessionStorage, $http, homeService) {
 
         $scope.profile = $sessionStorage.user;
         $scope.loggedIn = $sessionStorage.loggedIn;
@@ -27,6 +27,9 @@
 
         $scope.logout = function () {
             $sessionStorage.loggedIn = false;
+            $sessionStorage.user = {};
+            $sessionStorage.itemSize = null;
+            //To set the number of items badge to null
             homeService.getSize($scope.profile._id);
             $location.path('/login');
         };
