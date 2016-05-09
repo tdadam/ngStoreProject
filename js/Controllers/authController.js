@@ -4,9 +4,9 @@
     angular.module('authController', [])
         .controller('authController', authController);
 
-    authController.$inject = ['$http', '$scope', '$location', '$sessionStorage'];
+    authController.$inject = ['$http', '$scope', '$location', '$sessionStorage', 'homeService'];
 
-    function authController($http, $scope, $location, $sessionStorage) {
+    function authController($http, $scope, $location, $sessionStorage, homeService) {
 
         this.$http = $http;
 
@@ -26,6 +26,7 @@
                 $sessionStorage.loggedIn = true;
                 $sessionStorage.showToastHome = true;
                 $location.path('/home');
+                homeService.getSize($sessionStorage.user._id);
             }, function (data) {
                 $scope.err = "Invalid username / password";
             });

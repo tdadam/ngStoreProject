@@ -7,6 +7,7 @@
     homeController.$inject = ['$http', '$state', '$localStorage', 'homeService', '$sessionStorage', 'toaster'];
 
     function homeController($http, $state, $localStorage, homeService, $sessionStorage, toaster) {
+
         var hc = this;
 
         //------> trends not working from walmart side
@@ -55,10 +56,6 @@
             }
         };
 
-
-        //The function to show the toast was being called right after this, but the page was not done loading.
-        //When the call for the function was moved to the success callback in the hc.trends function (line 33), everything was loaded before toast tried to appear.
-        //Seems to be working now, but did not do extensive testing.
         hc.showToaster = function () {
             if ($sessionStorage.showToastHome == true) {
                 toaster.pop('success', "Login Successful");
